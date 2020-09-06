@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Introduction to the Math of Neural Networks | Heaton Research</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="DescriptionThis book introduces the reader to the basic math used for neural network calculation. This book assumes the reader has only knowledge of college algebra and computer programming. This book">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Introduction to the Math of Neural Networks">
+<meta property="og:url" content="https://www.heatonresearch.com/book/introduction-neural-network-math.html">
+<meta property="og:site_name" content="Heaton Research">
+<meta property="og:description" content="DescriptionThis book introduces the reader to the basic math used for neural network calculation. This book assumes the reader has only knowledge of college algebra and computer programming. This book">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-07-20T00:41:06.703Z">
+<meta property="article:modified_time" content="2020-07-20T00:41:06.703Z">
+<meta property="article:author" content="Jeff Heaton">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@jeffheaton">
+  
+    <link rel="alternate" href="/atom.xml" title="Heaton Research" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  
+  
+
+  
+
+  
+<link rel="stylesheet" href="/css/styles.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-5393865-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  <script data-ad-client="ca-pub-6846576724383320" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.1.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="/">Heaton Research</a>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/about/">About</a></li>
+        
+          <li><a class=""
+                 href="/jeff/">Blog</a></li>
+        
+          <li><a class=""
+                 href="/contact.html">Contact</a></li>
+        
+          <li><a class=""
+                 href="/encog/">Encog</a></li>
+        
+          <li><a class="active"
+                 href="/book/">Books</a></li>
+        
+          <li><a class=""
+                 href="/aifh/">AIFH</a></li>
+        
+          <li><a class=""
+                 href="/jeff_index/">Articles</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <a href="/book/">[Back to books]</a>
+<h1>Introduction to the Math of Neural Networks</h1>
+
+<div class="row">
+  <div class="col-sm-3">
+    <img width="256" height="312" class="img-responsive center-block" src="/images/books/9781604390339-md.jpg" border="1" alt="Introduction to the Math of Neural Networks">
+  </div>
+  <div class="col-sm-9">
+    <dl class="row">
+        <dt class="col-sm-1">Title:</dt>
+        <dd class="col-sm-11">Introduction to the Math of Neural Networks</dd>
+        <dt class="col-sm-1">ISBN:</dt>
+        <dd class="col-sm-11">9781604390339</dd>
+        <dt class="col-sm-1">Author:</dt>
+        <dd class="col-sm-11">Jeff Heaton</dd>
+        <dt class="col-sm-1">Pages:</dt>
+        <dd class="col-sm-11">112</dd>
+        <dt class="col-sm-1">Status:</dt>
+        <dd class="col-sm-11">Available</dd>
+        
+        <dt class="col-sm-1">Errata:</dt>
+        
+          <dd class="col-sm-11"><a href="introduction-neural-network-math_err.html">[Click to View]</a></dd>
+        
+    </dl>
+  </div>
+</div>
+<br>Note: Our PDF books contain no DRM and can be printed, copied to multiple computers owned by you, and once downloaded do not require an internet connection.<br></td></tr>
+
+
+
+
+<h1>Purchasing</h1>
+<ul>
+  
+    
+      <li>$9.99 (USD) - Buy Kindle EBook from Amazon.COM&nbsp;&nbsp;<a target="_blank" rel="noopener" href="http://www.amazon.com/dp/B00845UQL6">[Buy]</a>
+    
+  
+    
+      <li>$9.99 (USD) - Buy DRMFree PDF EBook Pack
+        <a href="https://www.e-junkie.com/ecom/gb.php?c=cart&i=NeuralMath.zip&cl=207979&ejc=2" target="ej_ejc" class="ec_ejc_thkbx" onClick="javascript:return EJEJC_lc(this);"><img src="https://www.e-junkie.com/ej/ej_add_to_cart.gif" border="0" alt="Add to Cart"/></a>
+&nbsp;
+<a href="https://www.e-junkie.com/ecom/gb.php?c=cart&cl=207979&ejc=2" target="ej_ejc" class="ec_ejc_thkbx" onClick="javascript:return EJEJC_lc(this);"><img src="https://www.e-junkie.com/ej/ej_view_cart.gif" border="0" alt="View Cart"/></a>
+<script language="javascript" type="text/javascript">
+<!--
+function EJEJC_lc(th) { return false; }
+// -->
+</script>
+<script src='https://www.e-junkie.com/ecom/box.js' type='text/javascript'></script>
+    
+  
+</ul>
+
+
+<h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>This book introduces the reader to the basic math used for neural network calculation. This book assumes the reader has only knowledge of college algebra and computer programming. This book begins by showing how to calculate output of a neural network and moves on to more advanced training methods such as backpropagation, resilient propagation and Levenberg Marquardt optimization. The mathematics needed by these techniques is also introduced.</p>
+<p>Mathematical topics covered by this book include first, second, Hessian matrices, gradient descent and partial derivatives. All mathematical notation introduced is explained. Neural networks covered include the feedforward neural network and the self organizing map. This book provides an ideal supplement to our other neural books. This book is ideal for the reader, without a formal mathematical background, that seeks a more mathematical description of neural networks.</p>
+<h1 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h1><ul>
+<li><p><strong>Chapter 1: Neural Network Activation</strong>: Shows how the output from a neural network is calculated. Before you can see how to train and evaluate a neural network you must understand how a neural network produces its output.</p>
+</li>
+<li><p><strong>Chapter 2: Error Calculation</strong>: Demonstrates how to evaluate the output from a neural network. Neural networks begin with random weights. Training adjusts these weights to produce meaningful output.</p>
+</li>
+<li><p><strong>Chapter 3: Understanding Derivatives</strong>: Focuses entirely on a very important Calculus topic. Derivatives, and partial derivatives, are used by several neural network training methods. This chapter will introduce you to those aspects of derivatives that are needed for this book.</p>
+</li>
+<li><p><strong>Chapter 4: Training with Backpropagation</strong>: Shows you how to apply knowledge from Chapter three towards training a neural network. Backpropagation is one of the oldest training techniques for neural networks. There newer, and much superior, training methods available.  However, understanding backpropagation provides a very important foundation for RPROP, QPROP and LMA.</p>
+</li>
+<li><p><strong>Chapter 5: Faster Training with RPROP</strong>: Introduces resilient propagation (RPROP) which builds upon backpropagation to provide much quicker training times.</p>
+</li>
+<li><p><strong>Chapter 6: Weight Initialization</strong>: Shows how neural networks are given their initial random weights. Some sets of random weights perform better than others. This chapter looks at several, less than random, weight initialization methods.</p>
+</li>
+<li><p><strong>Chapter 7: LMA Training</strong>: Introduces the Levenberg Marquardt Algorithm (LMA). LMA is the most mathematically intense training method in this book. LMA sometimes offers very rapid training for a neural network.</p>
+</li>
+<li><p><strong>Chapter 8: Self Organizing Maps</strong>: Shows how to create a clustering neural network. The SOM can be used to group data. The structure of the SOM is similar to the feedforward neural networks seen in this book.</p>
+</li>
+<li><p><strong>Chapter 9: Normalization</strong>: Shows how numbers are normalized for neural networks. Neural networks typically require that input and output numbers be in the range of 0 to 1, or -1 to 1. This chapter shows how to transform numbers into that range.</p>
+</li>
+</ul>
+
+
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2020 by Heaton Research, Inc. - <a href="/legal/">Legal and Copyright Info</a><br>
+Jeff Heaton is a computer scientist, data scientist, and indie publisher. Heaton Research is the homepage for his projects and research. <a href="/tips.html">Tips and support.</a><br><br>
+<ul class="list-inline banner-social-buttons">
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://github.com/jeffheaton"><i class="fa fa-github"> <span class="network-name">GitHub</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://twitter.com/jeffheaton"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.youtube.com/user/HeatonResearch"><i class="fa fa-youtube-play"> <span class="network-name">Youtube</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.facebook.com/encog.framework/"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
+</ul>
+
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'heatonresearch';
+  
+  var disqus_url = 'https://www.heatonresearch.com/book/introduction-neural-network-math.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+<script src="/js/script.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>
