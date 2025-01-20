@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>AIFH Volume 3, Chapter 6: Neural Network Classification | Heaton Research</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Network Type:2:32:1:32:5:32:10:32:15:32:20:32:25:32:50:32:100:32:5:5:32:10:5:32:10:10:32:20:20:32:50:50:3Patterns:          This example makes use of a feedforward neural network to demonst">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AIFH Volume 3, Chapter 6: Neural Network Classification">
+<meta property="og:url" content="https://www.heatonresearch.com/aifh/vol3/classify_ann.html">
+<meta property="og:site_name" content="Heaton Research">
+<meta property="og:description" content="Network Type:2:32:1:32:5:32:10:32:15:32:20:32:25:32:50:32:100:32:5:5:32:10:5:32:10:10:32:20:20:32:50:50:3Patterns:          This example makes use of a feedforward neural network to demonst">
+<meta property="og:locale">
+<meta property="og:image" content="https://www.heatonresearch.com/images/class-0.png">
+<meta property="og:image" content="https://www.heatonresearch.com/images/class-1.png">
+<meta property="og:image" content="https://www.heatonresearch.com/images/class-2.png">
+<meta property="og:image" content="https://www.heatonresearch.com/images/class-3.png">
+<meta property="og:image" content="https://www.heatonresearch.com/images/class-4.png">
+<meta property="article:published_time" content="2025-01-20T12:40:03.278Z">
+<meta property="article:modified_time" content="2025-01-20T12:40:03.278Z">
+<meta property="article:author" content="Jeff Heaton">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.heatonresearch.com/images/class-0.png">
+<meta name="twitter:creator" content="@jeffheaton">
+  
+    <link rel="alternate" href="/atom.xml" title="Heaton Research" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  
+  
+
+  
+    
+      
+    
+    
+      
+        
+<link rel="stylesheet" href="/aifh/vol3/classify_ann.css">
+
+      
+    
+  
+
+  
+<link rel="stylesheet" href="/css/styles.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-5393865-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  <script data-ad-client="ca-pub-6846576724383320" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="/">Heaton Research</a>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/about/">About</a></li>
+        
+          <li><a class=""
+                 href="/jeff_heaton_projects.html">Projects</a></li>
+        
+          <li><a class=""
+                 href="/book/">Books</a></li>
+        
+          <li><a class=""
+                 href="/contact.html">Contact</a></li>
+        
+          <li><a class=""
+                 href="/support.html">Support Me</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <a href="/aifh/"><img src="/images/aifh/web_header.png" class="img-responsive center-block"></a>
+<h1>AIFH Volume 3, Chapter 6: Neural Network Classification</h1>
+<article id="aifh-page-" class="article article-type-aifh-page" itemscope itemprop="blogPost">
+
+
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="example-holder">
+    <div id="divGrid"></div><div id="example-btn1">
+    <input id="btnStart" type="button" value="Start" /><input id="btnStop" type="button" value="Stop" /><input id="btnSingle" type="button" value="Single" /><input id="btnClear" type="button" value="Clear" /><br />Network Type:<select id="selType"><option>2:3</option><option>2:1:3</option><option>2:5:3</option><option>2:10:3</option><option>2:15:3</option><option selected="selected">2:20:3</option><option>2:25:3</option><option>2:50:3</option><option>2:100:3</option><option>2:5:5:3</option><option>2:10:5:3</option><option>2:10:10:3</option><option>2:20:20:3</option><option>2:50:50:3</option></select><input id="btnRetrain" type="button" value="Retrain" /><br />Patterns:<input id="btnRandom2Color" type="button" value="Random 2-Color" /><input id="btnRandomManyColor" type="button" value="Random Many-Color" /><input id="btnDualSpiral" type="button" value="Dual Spiral" /><div id="c1" class="colorOption" style="background:green;"></div><div id="c2" class="colorOption" style="background:yellow;"></div><div id="c3" class="colorOption" style="background:blue;"></div><div id="c4" class="colorOption" style="background:red;"></div><div id="c5" class="colorOption" style="background:white;"></div><p id="pOutput"> </p>
+</div>
+
+</div>
+<script src="../encog.js"></script><script src="../encog-widget.js"></script><script type="text/javascript">
+<!--//--><![CDATA[// ><!--
+
+"use strict";
+if(window.addEventListener) {
+    window.addEventListener('load', function () {
+
+        var currentColor = [1,0,0];
+        var backgroundTimer;
+        var btnStart, btnStop, btnClear, btnSingle, btnRetrain;
+        var btnRandom2Color,btnRandomManyColor,btnDualSpiral;
+        var pOutput;
+        var iteration;
+        var selType;
+
+
+        var GRID_WIDTH = 100;
+        var GRID_HEIGHT = 100;
+        var pixW, pixH;
+        var running = false;
+        var grid;
+
+        var network,trainingInput,trainingIdeal,train;
+
+        function init () {
+
+            grid = ENCOG.GUI.CellGrid.create('divGrid', GRID_WIDTH, GRID_HEIGHT, 500, 500);
+            grid.pointerMode = ENCOG.GUI.CellGrid.MODE_PCT;
+
+            // Attach the mousedown, mousemove and mouseup event listeners.
+            btnStart = document.getElementById('btnStart');
+            btnStop = document.getElementById('btnStop');
+            btnClear = document.getElementById('btnClear');
+            btnSingle = document.getElementById('btnSingle');
+            btnRetrain = document.getElementById('btnRetrain');
+            btnRandom2Color = document.getElementById('btnRandom2Color');
+            btnRandomManyColor = document.getElementById('btnRandomManyColor');
+            btnDualSpiral = document.getElementById('btnDualSpiral');
+            pOutput = document.getElementById('pOutput');
+            selType = document.getElementById('selType');
+
+            btnStart.addEventListener('click', ev_start, false);
+            btnStop.addEventListener('click', ev_stop, false);
+            btnClear.addEventListener('click', ev_clear, false);
+            btnSingle.addEventListener('click', ev_single, false);
+            btnRetrain.addEventListener('click', ev_retrain, false);
+            btnRandom2Color.addEventListener('click', ev_random2Color, false);
+            btnRandomManyColor.addEventListener('click', ev_randomManyColor, false);
+            btnDualSpiral.addEventListener('click', ev_dualSpiral, false);
+
+            var c1 = document.getElementById('c1');
+            var c2 = document.getElementById('c2');
+            var c3 = document.getElementById('c3');
+            var c4 = document.getElementById('c4');
+            var c5 = document.getElementById('c5');
+            c1.clr = [0,1,0];
+            c2.clr = [1,1,0];
+            c3.clr = [0,0,1];
+            c4.clr = [1,0,0];
+            c5.clr = [1,1,1];
+
+            c1.addEventListener('click', ev_color, true);
+            c2.addEventListener('click', ev_color, true);
+            c3.addEventListener('click', ev_color, true);
+            c4.addEventListener('click', ev_color, true);
+            c5.addEventListener('click', ev_color, true);
+
+            trainingInput = [];
+            trainingIdeal = [];
+
+            grid.pointerDown = function(row,col) {
+                trainingInput.push([col,row]);
+                trainingIdeal.push(currentColor);
+                plotPoints();
+            };
+
+            grid.determineColor = function(row,col) {
+                var input, rowAdjust, colAdjust, output, r, g, b;
+                output = {};
+                rowAdjust = 1.0 / grid.gridHeight;
+                colAdjust = 1.0 / grid.gridWidth;
+
+                input = [ col * colAdjust, row * rowAdjust ];
+                network.compute(input, output);
+
+                r = Math.floor(output[0] * 255);
+                g = Math.floor(output[1] * 255);
+                b = Math.floor(output[2] * 255);
+
+                return "rgb(" + r + "," + g + "," + b + ")";
+            };
+
+            ev_retrain(null);
+            ev_clear(null);
+
+        }
+
+        /////////////////////////////////////////////////////////////////////////////
+        // Event functions
+        /////////////////////////////////////////////////////////////////////////////
+
+        function ev_color(ev)
+        {
+            'use strict';
+            currentColor = ev.target.clr;
+        }
+
+        function ev_random2Color(ev)
+        {
+            'use strict';
+            var i;
+            ev_clear(null);
+            for(i=0;i<25;i++)
+            {
+                trainingInput.push([ Math.random(), Math.random()]);
+                trainingIdeal.push([ 1,0,0]);
+            }
+            for(i=0;i<25;i++)
+            {
+                trainingInput.push([ Math.random(), Math.random()]);
+                trainingIdeal.push([ 0,0,1]);
+            }
+            grid.clear();
+            plotPoints();
+        }
+
+        function ev_randomManyColor(ev)
+        {
+            'use strict';
+            ev_clear(null);
+            for(var i=0;i<50;i++)
+            {
+                trainingInput.push([ Math.random(), Math.random()]);
+                trainingIdeal.push([ Math.random(), Math.random(), Math.random()]);
+            }
+            grid.clear();
+            plotPoints();
+        }
+
+        function ev_dualSpiral(ev)
+        {
+            'use strict';
+            ev_clear(null);
+            var angInc = Math.PI/40;
+            var sz = 0.05;
+            for(var i=0;i<(4*Math.PI);i+=angInc)
+            {
+                var x = (Math.sin(i)*sz)+0.5;
+                var y = (Math.cos(i)*sz)+0.5;
+                trainingInput.push([ x,y ]);
+                trainingIdeal.push([ 1,0,0]);
+
+                x = (Math.sin(i)*(sz+0.08))+0.5;
+                y = (Math.cos(i)*(sz+0.08))+0.5;
+                trainingInput.push([ x,y ]);
+                trainingIdeal.push([ 0,0,1]);
+
+                sz+=0.002;
+            }
+            grid.clear();
+            plotPoints();
+        }
+
+        function ev_retrain(ev)
+        {
+            'use strict';
+            ev_stop(null);
+
+            // parse the network type
+            var str = selType.value;
+            var a = str.split(':');
+            var layers = [];
+
+            for(var i=0;i<a.length;i++)
+            {
+                layers[i] = ENCOG.BasicLayer.create(ENCOG.ActivationSigmoid.create(),parseInt(a[i]),1);
+            }
+
+            network = ENCOG.BasicNetwork.create( layers );
+
+            // setup for training
+            iteration = 0;
+            network.randomize();
+            train = ENCOG.PropagationTrainer.create(network,trainingInput,trainingIdeal,"RPROP",0.1,0.3);
+            grid.clear();
+            plotPoints();
+            pOutput.innerHTML = "Ready";
+        }
+
+        function ev_start(ev)
+        {
+            'use strict';
+            if( !running )
+            {
+                if( trainingInput.length<2 )
+                {
+                    alert("Please add at least 2 dots of different colors.");
+                    return;
+                }
+                backgroundTimer = self.setInterval(ev_animate,100);
+                btnStart.disabled = true;
+                btnStop.disabled = false;
+                btnSingle.disabled = true;
+                running = true;
+            }
+        }
+
+        function ev_stop(ev)
+        {
+            'use strict';
+            if( running )
+            {
+                self.clearInterval(backgroundTimer);
+                btnStart.disabled = false;
+                btnStop.disabled = true;
+                btnSingle.disabled = false;
+                running = false;
+            }
+        }
+
+        function ev_clear(ev)
+        {
+            'use strict';
+            ev_stop(null);
+            trainingInput.length = 0;
+            trainingIdeal.length = 0;
+            ev_retrain(null);
+            grid.clear();
+        }
+
+        function ev_single(ev)
+        {
+            'use strict';
+            ev_animate();
+        }
+
+        function plotPoints()
+        {
+            'use strict';
+            var x, y, r, g, b, c;
+
+            for(var i=0;i<trainingInput.length;i++)
+            {
+                x = trainingInput[i][0] * grid.canvas.width;
+                y = trainingInput[i][1] * grid.canvas.height;
+                r = Math.floor(trainingIdeal[i][0] * 255);
+                g = Math.floor(trainingIdeal[i][1] * 255);
+                b = Math.floor(trainingIdeal[i][2] * 255);
+                c = "rgb(" + r + "," + g + "," + b + ")";
+                grid.drawingContext.fillStyle = c;
+                grid.drawingContext.fillRect(x,y,5,5);
+                grid.drawingContext.strokeRect(x,y,5,5);
+            }
+        }
+
+        function ev_animate()
+        {
+            'use strict';
+            var i;
+
+            grid.render();
+
+            plotPoints();
+
+            iteration+=10;
+            pOutput.innerHTML = "Iteration: " + iteration + ", Error: " + train.error;
+
+            for(i=0;i<10;i++) {
+                train.iteration();
+            }
+
+        }
+
+        // cause the init function to be called.
+        init();
+
+    }, false); }
+
+//--><!]]>
+</script>
+
+<br><br><br>
+<p>This example makes use of a feedforward neural network to demonstrate classification.  To make use of this application draw several colored dots onto the drawing area.  Make sure you have at least two colors, or there will be nothing to classify.  Once you have drawn something click begin, and the neural network will begin to train.  You will see how other regions near the data points you provided are classified.</p>
+
+<p>The above neural network has two input neurons and three output neurons.  The hidden layer structure is defined by the drop list.  For example, if you choose 2:10:10:3, you will have a network that looks like the following image.  This network has two hidden layers, with 10 neurons each.</p>
+
+<img src="/images/class-0.png" alt="a simple classification neural network" /><p>The input neurons represent the x and y coordinates of a dot.  To draw the above image the program loops over a grid of x and y coordinates.  The neural network is queried for each of the grid components.  The cell in the upper left is [0,0], the cell in the lower right is [1,1].  Data to a neural network with sigmoid activation functions should usually receive input in the range between 0 and 1, so this range works fine.  The center would be [0.5,0.5].</p>
+
+<p>The output from the neural network represents the RGB color that that grid square should have.  The value of [0,0,0] would represent black, and the value [1,1,1] would represent white.</p>
+
+<p>As you draw on the drawing region you are providing training data.  The input neurons will represent the x and y coordinate that you placed the data at.  The expected, or ideal, output will represent the color that you chose for that location.</p>
+
+<p>Lets look at a simple example.  If you draw only two data points, then the area will be divided in half.  Here you can see a red and blue data point provided.</p>
+
+<img src="/images/class-1.png" alt="classify two data points" /><p>For the application to get the error level low it only needs to make sure that the blue data point is in a blue region, and the red data point is in a red region.  All other points are "guessed" based on the other points.  With such a very small amount of data, it is difficult for the neural network to really guess where the border between the two zones actually is.</p>
+
+<p>If you provide more training data you will get a more complex shape.  If you chose to create a two-color random image, will you will be given data points similar to the following.</p>
+
+<img src="/images/class-2.png" alt="classify complex 2-color pattern" /><p>Here the neural network creates a much more complex pattern to try to fit around all of the data points.</p>
+
+<p>You might also choose to create a complex multi-color pattern.  Here random colors were generated for the points.  The neural network will even blend colors to try to compromise and lower the error as much as it can.</p>
+
+<img src="/images/class-3.png" alt="classify complex 2-color pattern" /><p>It is even possible to learn complex inter-winding shapes such as the following.</p>
+
+
+<img src="/images/class-4.png" alt="classify complex 2-color pattern" />
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://www.heatonresearch.com/aifh/vol3/classify_ann.html" data-id="cm651nwoy001a8vmthpp36b09" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+
+    </footer>
+  </div>
+  
+    
+
+  
+</article>
+
+
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2025 by Heaton Research, Inc. - <a href="/legal/">Legal and Copyright Info</a><br>
+Jeff Heaton is a computer scientist, data scientist, and indie publisher. Heaton Research is the homepage for his projects and research. <a href="/tips.html">Tips and support.</a><br><br>
+<ul class="list-inline banner-social-buttons">
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://github.com/jeffheaton"><i class="fa fa-github"> <span class="network-name">GitHub</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://twitter.com/jeffheaton"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.youtube.com/user/HeatonResearch"><i class="fa fa-youtube-play"> <span class="network-name">Youtube</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.facebook.com/encog.framework/"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
+</ul>
+
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'heatonresearch';
+  
+  var disqus_url = 'https://www.heatonresearch.com/aifh/vol3/classify_ann.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+
+
+  
+    
+  
+  
+    
+      
+<script src="/aifh/vol3/encog-js-1.0.js"></script>
+
+    
+  
+    
+      
+<script src="/aifh/vol3/encog-widget-1.0.js"></script>
+
+    
+  
+
+
+
+
+
+<script src="/js/script.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

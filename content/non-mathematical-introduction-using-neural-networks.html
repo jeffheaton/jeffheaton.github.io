@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Non-Mathematical Introduction to Using Neural Networks | Heaton Research</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="The goal of this article is to help you understand what a neural network is, and how it is used. Most people, even non-programmers, have heard of neural networks. There are many science fiction overto">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Non-Mathematical Introduction to Using Neural Networks">
+<meta property="og:url" content="https://www.heatonresearch.com/content/non-mathematical-introduction-using-neural-networks.html">
+<meta property="og:site_name" content="Heaton Research">
+<meta property="og:description" content="The goal of this article is to help you understand what a neural network is, and how it is used. Most people, even non-programmers, have heard of neural networks. There are many science fiction overto">
+<meta property="og:locale">
+<meta property="og:image" content="https://www.heatonresearch.com/images/content/nonmath_image001.png">
+<meta property="og:image" content="https://www.heatonresearch.com/images/content/nonmath_image002.png">
+<meta property="og:image" content="https://www.heatonresearch.com/images/content/nonmath_image003.png">
+<meta property="og:image" content="https://www.heatonresearch.com/images/content/nonmath_image004.png">
+<meta property="og:image" content="https://www.heatonresearch.com/images/content/nonmath_image005.png">
+<meta property="article:published_time" content="2025-01-20T12:40:08.354Z">
+<meta property="article:modified_time" content="2025-01-20T12:40:08.354Z">
+<meta property="article:author" content="Jeff Heaton">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.heatonresearch.com/images/content/nonmath_image001.png">
+<meta name="twitter:creator" content="@jeffheaton">
+  
+    <link rel="alternate" href="/atom.xml" title="Heaton Research" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  
+  
+
+  
+
+  
+<link rel="stylesheet" href="/css/styles.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-5393865-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  <script data-ad-client="ca-pub-6846576724383320" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="/">Heaton Research</a>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/about/">About</a></li>
+        
+          <li><a class=""
+                 href="/jeff_heaton_projects.html">Projects</a></li>
+        
+          <li><a class=""
+                 href="/book/">Books</a></li>
+        
+          <li><a class=""
+                 href="/contact.html">Contact</a></li>
+        
+          <li><a class=""
+                 href="/support.html">Support Me</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <h1>Non-Mathematical Introduction to Using Neural Networks</h1>
+<div class="row">
+    <div class="col-sm-12 blog-main">
+      <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+
+
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>The goal of this article is to help you understand what a neural network is, and how it is used. Most people, even non-programmers, have heard of neural networks. There are many science fiction overtones associated with them. And like many things, sci-fi writers have created a vast, but somewhat inaccurate, public idea of what a neural network is.</p>
+<p>Most laypeople think of neural networks as a sort of artificial brain. Neural networks would be used to power robots or carry on intelligent conversations with human beings. This notion is a closer definition of Artificial Intelligence (AI), than neural networks. AI seeks to create truly intelligent machines. I am not going to waste several paragraphs explaining what true, human intelligence is, compared to the current state of computers. Anyone who has spent any time with both human beings and computers knows the difference. Current computers are not intelligent.</p>
+<p>Neural networks are one small part of AI. Neural networks, at least as they currently exist, carry out very small specific tasks. Computer based neural networks are not a general-purpose computation device, like the human brain. Perhaps some of the confusion comes from the fact that the brain itself is a network of neurons, or a neural network. This brings up an important distinction.</p>
+<p>The human brain really should be called a biological neural network (BNN). This article is not about biological neural networks. This article is about artificial neural networks (ANN). Most texts do not bother to make the distinction between the two. This article is the same. When I refer to a neural network, I actually mean an artificial neural network.</p>
+<p>There are some basic similarities between biological neural networks and artificial neural networks. But they are very basic similarities. Artificial neural networks are largely mathematical constructs that were inspired by biological neural networks. An important term that is often used to describe various artificial neural network algorithms is biological plausibility. This term defines how close an artificial neural network algorithm is to a biological neural network.</p>
+<p>Like I said, neural networks are designed to accomplish one small task. A full application will likely use neural networks to accomplish certain parts of the application. The entire application will not be implemented as a neural network. The application may be made of several neural networks, each designed for a specific task.</p>
+<p>The task that neural networks accomplish very well is pattern recognition. You communicate a pattern to a neural network and it communicates a pattern back to you. At the highest level, this is all that a typical neural network does. Some network architectures will vary this, but the vast majority of neural networks in place work this way. Figure 1 illustrates a neural network at this level.</p>
+<p><img src="/images/content/nonmath_image001.png" alt="A Typical Neural Network"></p>
+<p><strong>Figure 1: A Typical Neural Network</strong></p>
+<p>As you can see, the neural network above is accepting a pattern and returning a pattern. Neural networks operate completely synchronously. A neural network will only output when presented with input. It is not like a human brain, which does not operate exactly synchronously. The human brain responds to input, but it will produce output anytime it feels like it!</p>
+<p>Neural Network Structure<br>Neural networks are made of layers of similar neurons. Most neural networks have at least an input layer and output layer. The input pattern is presented to the input layer. Then the output pattern is returned from the output layer. What happens between the input and output layers is a black box. At this point in the article, we are not yet concerned with the internal structure of the neural network. There are many different architectures that define what happens between the input and output layer. Later in this article, we will examine some of these architectures.</p>
+<p>The input and output patterns are both arrays of floating point numbers. You could think of it as follows.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Neural Network Input: [ -0.245, .283, 0.0 ]</span><br><span class="line">Neural Network Output: [ 0.782, 0.543 ]</span><br></pre></td></tr></table></figure>
+
+<p>The neural network above has three neurons in the input layer, and two neurons in the output layer. The number of neurons in the input and output layers do not change. As a result, the number of elements in the input and output patterns, for a particular neural network, can never change.</p>
+<p>To make use of the neural network you must express your problem in such a way as to have the input to the problem be an array of floating point numbers. Likewise, the solution to the problem must be an array of floating point numbers. This is really all that neural networks can do for you. They take one array and transform it into a second. Neural networks do not loop, call subroutines, or perform any of the other tasks you might think of with traditional programming. Neural networks recognize patterns.</p>
+<p>You might think of a neural network as something like a hash table in traditional programming. In traditional programming, a hash table is use to map keys to values. Somewhat like a dictionary. The following could be thought up as a hash table.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;hear&quot; -&gt; &quot;to perceive or apprehend by the ear&quot;</span><br><span class="line">&quot;run&quot; -&gt; &quot;to go faster than a walk&quot;</span><br><span class="line">&quot;write&quot; -&gt; &quot;to form (as characters or symbols)</span><br><span class="line">            on a surface with an instrument (as a pen)&quot;</span><br></pre></td></tr></table></figure>
+
+<p>This is a mapping between words and the definition of each word. This is a hash table, just as you might see in any programming language. It uses a key of string, to another value of a string. You provide the dictionary with a key, it returns a value. This is how most neural networks function. One neural network called a BAM, or bidirectional associative memory actually allows you to also pass in the value and receive the key.</p>
+<p>Programming hash tables use keys and values. Think of the pattern sent to the input layer of the neural network as they key to the hash table. Likewise, think of the value returned from the hash table as the pattern that is returned from the output layer of the neural network. The comparison between a hash table and a neural network works well; however, the neural network is much more than a hash table.</p>
+<p>What would happen, with the above hash table, if you were to pass in a word that is not a key in the map? For example, if you were to pass in the key of ìwroteî. A hash table would return null, or in some way indicate that it could not find the specified key. Neural networks do not return null! They find the closest match. Not only do they find the closest math, they will modify the output to guess at what it would be for the missing value. So if you passed ìwroteî to the neural network above, you would likely get back what you would have expected for ìwriteî. There is not enough data for the neural network to have modified the response, as there are only three samples. So you would likely get the output from one of the other keys.</p>
+<p>The above mapping brings up one very important point about neural networks. Recall, I said that neural networks accept an array of floating point numbers, and return another array? How would you put strings into the neural network, as seen above? There is a way to do this, but generally, it is much easier to deal with numeric data than strings. However, we will cover how to pass strings to neural networks later in this article.</p>
+<p>This is one of the most difficult aspects of neural network programming. How do you translate your problem into a fixed-length array of floating point numbers? This is the aspect of neural network programming that is often the most difficult to ìget your head aroundî. The best way to demonstrate this is with several examples.</p>
+<h1 id="A-Simple-Example"><a href="#A-Simple-Example" class="headerlink" title="A Simple Example"></a>A Simple Example</h1><p>If you have read anything about neural networks you have no doubt seen examples with the XOR operator. The XOR operator is essentially the ìHello Worldî of neural network programming. This article will describe scenarios much more complex than XOR. The XOR operator is a great introduction. We shall begin by looking at the XOR operator as though it were a hash table. If you are not familiar with the XOR operator, it works similar to the AND and OR operators. For an AND to be true, both sides must be true. For an OR to be true, either side must be true. For an XOR to be true, both of the sides must be different from each other. The truth table for an XOR is as follows.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">False XOR False = False</span><br><span class="line">True XOR False = True</span><br><span class="line">False XOR True = True</span><br><span class="line">True XOR True = False</span><br></pre></td></tr></table></figure>
+
+<p>To continue the hash table example, the above truth table would be represented as follows.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[ 0.0 , 0.0 ] -&gt; [ 0.0 ]</span><br><span class="line">[ 1.0 , 0.0 ] -&gt; [ 1.0 ]</span><br><span class="line">[ 0.0 , 1.0 ] -&gt; [ 1.0 ]</span><br><span class="line">[ 1.0 , 1.0 ] -&gt; [ 0.0 ]</span><br></pre></td></tr></table></figure>
+
+<p>These mapping show input, and the ideal expected output for the neural network.</p>
+<p>Training: Supervised and Unsupervised<br>When you specify the ideal output you are using something called supervised training. If you did not provide ideal outputs, you would be using unsupervised training.</p>
+<p>Supervised training teaches the neural network to produce the ideal output. Unsupervised training usually teaches the neural network to group the input data into a number of groups defined by the output neuron count.</p>
+<p>Both supervised and unsupervised training is an iterative process. For supervised training, each training iteration calculates how close the actual output is to the ideal output. This closeness is expressed as an error percent. Each iteration modifies the internal weight matrixes of the neural network to get the error rate to a low enough level.</p>
+<p>Unsupervised training is also an iterative process. Calculating the error is not quite as easy, however. You have no expected output, so you cannot measure how far the unsupervised neural network is from your ideal output, you have no ideal output. Often you will just iterate for a fixed number of iterations and then try to use the network. If it needs more training, then that training is provided.</p>
+<p>Another very important aspect to the above training data is that it can be taken in any order. The result of 0 XOR 0 is going to be 0, regardless of which case you just looked at. This is not true of all neural networks. For the XOR operator we would probably use a neural network type called a feedforward perceptron. Order does not matter to a feedforward neural network. Later in this chapter we will see a simple recurrent neural network. Order becomes very important for a simple recurrent neural network.</p>
+<p>You saw how training data was used for the simple XOR operator. Now we will look at a slightly more complex scenario.</p>
+<h1 id="Miles-per-Gallon"><a href="#Miles-per-Gallon" class="headerlink" title="Miles per Gallon"></a>Miles per Gallon</h1><p>Usually neural network problems involve dealing with a set of statistics. You will try to use some of the statistics to predict the others. Consider a car database. It contains the following fields.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Car weight</span><br><span class="line">Engine Displacement</span><br><span class="line">Cylinder Count</span><br><span class="line">Horse Power</span><br><span class="line">Hybrid or Gasoline</span><br><span class="line">Miles per Gallon</span><br></pre></td></tr></table></figure>
+
+<p>I am somewhat oversimplifying the data, but this is more to show how to format data. Assuming you have collected some data for these fields, you should be able to construct a neural network that can predict one field value, based on the other field values. For this example, we will try to predict miles-per-gallon.</p>
+<p>Recall, from before, that we will need to define this problem in terms of an input array of floating points mapped to an output array of floating points. However, there is one additional requirement. The numeric range on each of these array elements should be between 0 and 1 or -1 and 1. This is called normalization. Taking real-world data and turning it into a form that the neural network can process.</p>
+<p>First we see how we would normalize data from above. First, consider the neural network format. We have six total fields. We want to use five of these to predict the sixth. The neural network would have five input neurons and one output neuron.</p>
+<p>Your network would look something like the following.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input Neuron 1: Car weight</span><br><span class="line">Input Neuron 2: Engine Displacement</span><br><span class="line">Input Neuron 3: Cylinder Count</span><br><span class="line">Input Neuron 4: Horse Power</span><br><span class="line">Input Neuron 5: Hybrid or Gasoline</span><br><span class="line">Output Neuron 1: Miles per Gallon</span><br></pre></td></tr></table></figure>
+
+<p>We also need to normalize the data. To do this we must think of reasonable ranges for each of these values. We will then transform input data into a number between 0 and 1 that represents an actual value”s position within that range. We will now look at an example. We will establish reasonable ranges for these values as follows.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Car weight: 100-5000 lbs</span><br><span class="line">Engine Displacement: 0.1 to 10 liters</span><br><span class="line">Cylinder Count: 2-12</span><br><span class="line">Horse Power: 1-1000</span><br><span class="line">Hybrid or Gasoline: true or false</span><br><span class="line">Miles per Gallon: 1-500</span><br></pre></td></tr></table></figure>
+
+<p>These ranges may be a little large, given today’s cars. However, this will allow minimal restructuring to the neural network in the future. It is also good to not have too much data at the extreme ends of the range.</p>
+<p>We will now look at an example. How would we normalize a weight of 2,000 pounds? This weight is 1,900 into the range (2000 - 100). The size of the range is 4,900 pounds (5000-100). The percent of the range size is 0.38 (1,900 / 4,900). Therefore we would feed the value of 0.38 to the input neuron to represent this value. This satisfies the range requirement of 0 to 1 for an input neuron.</p>
+<p>The hybrid or regular value is a true/false. To represent this value we will use a 1 for hybrid and a 0 for regular. We simply normalize a true/false into two values.</p>
+<h1 id="Presenting-Images-to-Neural-Networks"><a href="#Presenting-Images-to-Neural-Networks" class="headerlink" title="Presenting Images to Neural Networks"></a>Presenting Images to Neural Networks</h1><p>Images are a popular source of input for neural networks. In this section, we will see how to normalize an image. There are more advanced methods than this, but this method is often effective.</p>
+<p>Consider an image that might be 300x300 pixels. Additionally, the image is full color. We would have 90,000 pixels times the three RGB colors, giving 270,000 total pixels. If we had an input neuron for each pixel, that would also be 270,000 input neurons. This is just too large for an artificial neural network.</p>
+<p>We need to downsample. Consider the following image. It is at full resolution.</p>
+<p><img src="/images/content/nonmath_image002.png" alt="Encog Full Resolution"></p>
+<p>We will now downsample it to 32x32.</p>
+<p><img src="/images/content/nonmath_image003.png" alt="Encog Downsampled"></p>
+<p>Do you notice the grid-like pattern? It has been reduced to 32x32 pixels. These pixels would form the input to a neural network. This neural network would require 1,024 input neurons, if the network were to only look at the intensity of each square. Looking at the intensity only causes the neural network to see in ìblack and whiteî.</p>
+<p>If you would like the neural network to see in color, then it is necessary to provide red, green and blue (RGB) values for each of these pixels. This would mean three input neurons for each pixel, which would push our input neuron count to 3,072.</p>
+<p>These intensities are between 0 and 255, as 0 to 255 is the normal range for RGB values. Simply divide the intensity by 255 and you will be given a value the neural network can take. For example, intensity number 10 becomes 10/255, or 0.039.</p>
+<p>You may be wondering how the output neurons will be handled. In a case such as this you would like the output neurons to communicate what image the neural network believes it is looking at. The usual solution is to create one output neuron for each type of image the neural network should recognize. The network will be trained to return a value of 1.0 for the output neuron that corresponds to what the image is believed to be.</p>
+<p>We will continue showing you how to format neural networks for real-world problems in the next section. The next section will take a look at financial neural networks.</p>
+<h1 id="Financial-Neural-Networks"><a href="#Financial-Neural-Networks" class="headerlink" title="Financial Neural Networks"></a>Financial Neural Networks</h1><p>Financial neural networks are very popular form of temporal neural network. A temporal neural network is one that accepts input for values that range over time. There are two common ways that temporal data is presented to a neural network. The original method is to use an input window and a prediction window. Consider if you would like the neural network to predict the stock market. You have the following stock price information that represents the closing price for a stock over several days.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Day 1: $45</span><br><span class="line">Day 2: $47</span><br><span class="line">Day 3: $48</span><br><span class="line">Day 4: $40</span><br><span class="line">Day 5: $41</span><br><span class="line">Day 6: $43</span><br><span class="line">Day 7: $45</span><br><span class="line">Day 8: $57</span><br><span class="line">Day 9: $50</span><br><span class="line">Day 10: $41</span><br></pre></td></tr></table></figure>
+
+<p>The first step is to normalize the data. To do this we want to change each number into the percent movement from the previous day. For example, day 2 would become 0.04 percent, because $45 to $47 was a 4% move from $45. We do this with every day’s value.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Day 2: 0.04</span><br><span class="line">Day 3: 0.02</span><br><span class="line">Day 4: -0.16</span><br><span class="line">Day 5: 0.02</span><br><span class="line">Day 6: 0.04</span><br><span class="line">Day 7: 0.04</span><br><span class="line">Day 8: 0.04</span><br><span class="line">Day 9: -0.12</span><br><span class="line">Day 10: -0.18</span><br></pre></td></tr></table></figure>
+
+<p>We would like to create a neural network that will predict the next day’s values. We need to think about how to encode this data to be presented to the neural network. The way we do this depends on if the neural network is recurrent or not. Recall from earlier in the article that I said we would treat the neural network as a black box. I said that there were hidden layers, between the input and output layers. We will now see what these layers are for. They become important now, because they will dictate the structure of the neural network.</p>
+<p>The feedforward perceptron is a very popular neural network architecture. This neural network has one or more hidden layers. This is the type of neural network that we used for the XOR example earlier in this article. To use this network to predict stock prices we must use ìtime windowsî. We are going to use a window of three prices to predict the fourth. So to predict tomorrow we look at the previous three days. This means we will have an input layer with three neurons and an output layer with a single layer. We will feed in three days and request a prediction for the fourth. This neural network looks like Figure 2.</p>
+<p><img src="/images/content/nonmath_image004.png" alt="Feedforward Neural Network"></p>
+<p><strong>Figure 2: Feedforward Neural Network</strong></p>
+<h1 id="A-Feedforward-Neural-Network"><a href="#A-Feedforward-Neural-Network" class="headerlink" title="A Feedforward Neural Network"></a>A Feedforward Neural Network</h1><p>In the above figure, you see the input and output layers. There is also a hidden layer, with ten neurons. Hidden layers help the neural network to recognize more patterns. Choosing the size of the hidden layers can be difficult. This is a topic that will be covered in future articles.</p>
+<p>We will need to create training data for this neural network. The training data is nothing more than three days of price change information followed by an ideal value of what the next day is. You can see the training data here.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[0.04, 0.02, -0.16] -&gt; [0.02]</span><br><span class="line">[0.02, -0.16, 0.02] -&gt; [0.04]</span><br><span class="line">[-0.16, 0.02, 0.04] -&gt; [0.04]</span><br><span class="line">[0.02, 0.04, 0.04] -&gt; [0.04]</span><br><span class="line">[0.04, 0.04, 0.04] -&gt; [-0.12]</span><br><span class="line">[0.04, 0.04, -0.12] -&gt; [-0.18]</span><br></pre></td></tr></table></figure>
+
+<p>Just as was the case with the XOR data, the order of the training data is not important. We are simply providing three days worth of price change for the neural network to use to predict the following day.</p>
+<p>We will also look at how we would present this data to a simple recurrent neural network. There are several different types of simple recurrent neural network. The type we will use for this example is called an Elman neural network. For the Elman neural network we will have a single input neuron and a single output neuron. We will provide just a single day’s worth of price information and expect the next day’s price change back. Figure 3 shows an Elman neural network.</p>
+<p><img src="/images/content/nonmath_image005.png" alt="Feedforward Neural Network"></p>
+<p><strong>Figure 3: An Elman Neural Network</strong></p>
+<h1 id="An-Elman-Neural-Network"><a href="#An-Elman-Neural-Network" class="headerlink" title="An Elman Neural Network"></a>An Elman Neural Network</h1><p>As you can see, the Elman neural network also has 10 hidden neurons. Just as was the case with the feedforward network, the value 10 was chosen arbitrarily. You will also notice a context layer. This context layer is recurrent; it is connected back into the neural network. The context layer allows the neural network to remember some degree of state. This will cause the output of the neural network to be dependent on more than just the last input.</p>
+<p>Because there is a single input and output neuron, the training data is arranged differently. The training data for the Elman neural network is as follows.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[0.04] -&gt; [0.02]</span><br><span class="line">[0.02] -&gt; [-0.16]</span><br><span class="line">[-0.16] -&gt;[0.02]</span><br><span class="line">[0.02] -&gt; [0.04]</span><br><span class="line">[0.04] -&gt; [0.04]</span><br><span class="line">[0.04] -&gt; [0.04]</span><br><span class="line">[0.04] -&gt; [-0.12]</span><br><span class="line">[-0.12] -&gt; [-0.18]</span><br></pre></td></tr></table></figure>
+
+<p>As you can see from the above data the order is very important. The neural network cannot predict tomorrow’s price seeing only today’s price. Rather, because of the context layer, the last few days will influence the output. This is very similar to the human brain. To identify a song, you will need to hear several notes in a sequence. Obviously, the order of the notes is very important.</p>
+<h1 id="Feeding-Text-to-a-Neural-Network"><a href="#Feeding-Text-to-a-Neural-Network" class="headerlink" title="Feeding Text to a Neural Network"></a>Feeding Text to a Neural Network</h1><p>Earlier I said that feeding text into a neural network is particularly challenging. You have two major issues to contend with. First, the individual words are of varying lengths. Neural networks require a fixed input and output size. Secondly, how to encode the letters can be an issue. Should the letters “A” - “Z” be stored in a single neuron, or 26 neurons, or some other way all together?</p>
+<p>Using a recurrent neural network, such as a Elman neural network, solves part of this problem. In the last section that we did not need an input window size with the Elman neural network. We just took the stock prices one at a time. This is a great way to process letters. We will create an Elman neural network that has just enough input neurons to recognize the Latin letters and it will use a context layer to remember the ordering. Just as stock prediction uses one long stream of price changes, text processing will use one long stream of letters.</p>
+<p>The Bag of Words algorithm is a common means of encoding strings. Each input represents the count of one particular word. The entire input vector would contain one value for each unique word. Consider the following strings.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Of Mice and Men</span><br><span class="line">Three Blind Mice</span><br><span class="line">Blind Man’s Bluff</span><br><span class="line">Mice and More Mice</span><br></pre></td></tr></table></figure>
+
+<p>We have the following unique words. This is our “dictionary.”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input 0: and</span><br><span class="line">Input 1: blind</span><br><span class="line">Input 2: bluff</span><br><span class="line">Input 3: man’s</span><br><span class="line">Input 4: men</span><br><span class="line">Input 5: mice</span><br><span class="line">Input 6: more</span><br><span class="line">Input 7: of</span><br><span class="line">Input 8: three</span><br></pre></td></tr></table></figure>
+
+<p>The four lines above would be encoded as follows.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Of Mice and Men [0 4 5 7]</span><br><span class="line">Three Blind Mice [1 5 8]</span><br><span class="line">Blind Man’s Bluff [1 2 3]</span><br><span class="line">Mice and More Mice [0 5 6]</span><br></pre></td></tr></table></figure>
+
+<p>Of course we have to fill in the missing words with zero, so we end up with the following.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Of Mice and Men [1, 0, 0, 0, 1, 1, 0, 1, 0]</span><br><span class="line">Three Blind Mice [0, 1, 0, 0, 0, 1, 0, 0, 1]</span><br><span class="line">Blind Man’s Bluff [0, 1, 1, 1, 0, 0, 0, 0, 0]</span><br><span class="line">Mice and More Mice [1, 0, 0, 0, 0, 2, 1, 0, 0]</span><br></pre></td></tr></table></figure>
+
+<p>Notice that we now have a consistent vector length of nine. Nine is the total number of words in our “dictionary”. Each component number in the vector is an index into our dictionary of available words. At each vector component is stored a count of the number of words for that dictionary entry. Each string will usually contain only a small subset of the dictionary. As a result, most of the vector values will be zero.</p>
+<p>As you can see, one of the most difficult aspects of machine learning pro- gramming is translating your problem into a fixed-length array of floating point numbers. The following section shows how to translate several examples.</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>My goal in this article was to show you what a neural network is, and how you might adapt one to your application. Not every application will benefit from a neural network. In fact, most applications will not benefit from a neural network. However, for the right application a neural network can be an ideal solution. Now that you understand the fundamentals of a neural network, you are ready to take the next step and learn to program a neural network. Other resources you might find useful:</p>
+<ul>
+<li><a href="http://www.heatonresearch.com/book/">My Books on Artificial Intelligence</a></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://www.heatonresearch.com/content/non-mathematical-introduction-using-neural-networks.html" data-id="cm651nwrl00408vmt5jbf9iax" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+
+    </footer>
+  </div>
+  
+    
+
+  
+</article>
+
+    </div>
+</div>
+
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2025 by Heaton Research, Inc. - <a href="/legal/">Legal and Copyright Info</a><br>
+Jeff Heaton is a computer scientist, data scientist, and indie publisher. Heaton Research is the homepage for his projects and research. <a href="/tips.html">Tips and support.</a><br><br>
+<ul class="list-inline banner-social-buttons">
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://github.com/jeffheaton"><i class="fa fa-github"> <span class="network-name">GitHub</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://twitter.com/jeffheaton"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.youtube.com/user/HeatonResearch"><i class="fa fa-youtube-play"> <span class="network-name">Youtube</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.facebook.com/encog.framework/"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
+</ul>
+
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'heatonresearch';
+  
+  var disqus_url = 'https://www.heatonresearch.com/content/non-mathematical-introduction-using-neural-networks.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+<script src="/js/script.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Basic Classification in R: Neural Networks and Support Vector Machines | Heaton Research</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="In this article I will introduce you to classification in R. We will use the Iris dataset to perform this classification.  The Iris data set is a classic data set that isoften used to demonstrate mach">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Basic Classification in R: Neural Networks and Support Vector Machines">
+<meta property="og:url" content="https://www.heatonresearch.com/2013/06/12/r-classification.html">
+<meta property="og:site_name" content="Heaton Research">
+<meta property="og:description" content="In this article I will introduce you to classification in R. We will use the Iris dataset to perform this classification.  The Iris data set is a classic data set that isoften used to demonstrate mach">
+<meta property="og:locale">
+<meta property="article:published_time" content="2013-06-12T13:26:00.000Z">
+<meta property="article:modified_time" content="2025-01-20T12:40:02.135Z">
+<meta property="article:author" content="Jeff Heaton">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@jeffheaton">
+  
+    <link rel="alternate" href="/atom.xml" title="Heaton Research" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  
+  
+
+  
+
+  
+<link rel="stylesheet" href="/css/styles.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-5393865-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  <script data-ad-client="ca-pub-6846576724383320" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="/">Heaton Research</a>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/about/">About</a></li>
+        
+          <li><a class=""
+                 href="/jeff_heaton_projects.html">Projects</a></li>
+        
+          <li><a class=""
+                 href="/book/">Books</a></li>
+        
+          <li><a class=""
+                 href="/contact.html">Contact</a></li>
+        
+          <li><a class=""
+                 href="/support.html">Support Me</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">Heaton Research</h1>
+  
+</div>
+
+<div class="row">
+    <div class="col-sm-8 blog-main">
+      <article id="post-r-classification" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Basic Classification in R: Neural Networks and Support Vector Machines
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2013/06/12/r-classification.html" class="article-date"><time datetime="2013-06-12T13:26:00.000Z" itemprop="datePublished">2013-06-12</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/r/">r</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>In this article I will introduce you to classification in R. We will use the Iris data<br>set to perform this classification.  The Iris data set is a classic data set that is<br>often used to demonstrate machine learning.  This data set provides four measurements<br>for three different iris species.  Data such as this typically comes in a CSV File.  The<br>iris CSV file looks something like this.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&quot;sepal_l&quot;,&quot;sepal_w&quot;,&quot;petal_l&quot;,&quot;petal_w&quot;,&quot;species&quot;</span><br><span class="line">5.1,3.5,1.4,0.2,Iris-setosa</span><br><span class="line">4.9,3.0,1.4,0.2,Iris-setosa</span><br><span class="line">4.7,3.2,1.3,0.2,Iris-setosa</span><br><span class="line">4.6,3.1,1.5,0.2,Iris-setosa</span><br><span class="line">5.0,3.6,1.4,0.2,Iris-setosa</span><br><span class="line">5.4,3.9,1.7,0.4,Iris-setosa</span><br><span class="line">4.6,3.4,1.4,0.3,Iris-setosa</span><br></pre></td></tr></table></figure>
+
+<p>You can download the above file here.</p>
+<h2 id="Reading-a-CSV-File-in-R"><a href="#Reading-a-CSV-File-in-R" class="headerlink" title="Reading a CSV File in R"></a>Reading a CSV File in R</h2><p>By default R expects to find files in your home directory.  You can also specify a full path.  We will now load the iris dataset.  Of course, R has the iris dataset build into the variables iris and iris3.  However, we will assume that you might want to use your own dataset.  Therefore I will demonstrate how to load the iris.csv file.  The following command is used to load the Iris data set.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">irisdata &lt;- read.csv(file=<span class="string">&quot;iris.csv&quot;</span>,head=<span class="literal">TRUE</span>,sep=<span class="string">&quot;,&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>You can also load the data right over the web.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">irisdata &lt;- read.csv(<span class="string">&quot;http://www.heatonresearch.com/dload/data/iris.csv&quot;</span>,head=<span class="literal">TRUE</span>,sep=<span class="string">&quot;,&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Now that the iris data set is loaded, you can display the entire data set just by entering the variable name.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; irisdata</span><br><span class="line">sepal_l sepal_w petal_l petal_w species</span><br><span class="line">1 5.1 3.5 1.4 0.2 Iris-setosa</span><br><span class="line">2 4.9 3.0 1.4 0.2 Iris-setosa</span><br><span class="line">3 4.7 3.2 1.3 0.2 Iris-setosa</span><br><span class="line">4 4.6 3.1 1.5 0.2 Iris-setosa</span><br><span class="line">5 5.0 3.6 1.4 0.2 Iris-setosa</span><br><span class="line">6 5.4 3.9 1.7 0.4 Iris-setosa</span><br><span class="line">7 4.6 3.4 1.4 0.3 Iris-setosa</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>You can also use the summary function to provide a very useful summary of the iris data.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; summary(irisdata)</span><br><span class="line"> sepal_l sepal_w petal_l petal_w</span><br><span class="line"> Min. :4.300 Min. :2.000 Min. :1.000 Min. :0.100</span><br><span class="line"> 1st Qu.:5.100 1st Qu.:2.800 1st Qu.:1.600 1st Qu.:0.300</span><br><span class="line"> Median :5.800 Median :3.000 Median :4.350 Median :1.300</span><br><span class="line"> Mean :5.843 Mean :3.057 Mean :3.758 Mean :1.199</span><br><span class="line"> 3rd Qu.:6.400 3rd Qu.:3.300 3rd Qu.:5.100 3rd Qu.:1.800</span><br><span class="line"> Max. :7.900 Max. :4.400 Max. :6.900 Max. :2.500</span><br><span class="line"> species</span><br><span class="line"> Iris-setosa :50</span><br><span class="line"> Iris-versicolor:50</span><br><span class="line"> Iris-virginica :50</span><br></pre></td></tr></table></figure>
+
+<h2 id="Training-and-Validation-Data"><a href="#Training-and-Validation-Data" class="headerlink" title="Training and Validation Data"></a>Training and Validation Data</h2><p>It is often useful to break the data into training and validation sets.  This allows you to validate the SVM or ANN on data that it was never trained with.  The Iris dataset has 150 elements in it.  For our training set we will sample 100 elements from this 150 element set.  This is done with the following commands.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">irisTrainData = sample(1:150,100)</span><br><span class="line">irisValData = setdiff(1:150,irisTrainData)</span><br></pre></td></tr></table></figure>
+
+<p>It is very important to note that the above vectors are only indexes, and not the actual data.  To obtain the actual data you must use one of the following commands.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">irisdata[irisTrainData,]</span><br><span class="line">irisdata[irisValData,]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Using-a-Support-Vector-Machine-SVM"><a href="#Using-a-Support-Vector-Machine-SVM" class="headerlink" title="Using a Support Vector Machine (SVM)"></a>Using a Support Vector Machine (SVM)</h2><p>I will now show you how to train a support vector for the Iris data set.  First, we must tell R that we are using SVM’s.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">library(kernlab)</span><br></pre></td></tr></table></figure>
+
+<p>Next, we create a radial basis function (RBF) that will be used during training.  This will be used as the kernel function.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rbf &lt;- rbfdot(sigma=<span class="number">0.1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Next we train the SVM.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">irisSVM &lt;- ksvm(species~.,data=irisdata[irisTrainData,],type=<span class="string">&quot;C-bsvc&quot;</span>,kernel=rbf,C=<span class="number">10</span>,prob.model=<span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Next we get the fitted values for this iris SVM.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fitted(irisSVM)</span><br></pre></td></tr></table></figure>
+<p>Test on the validation set with probabilities as output.  The -5 means to remove the 5th column, which is species.  We are trying to predict species.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">predict(irisSVM, irisdata[irisValData,-<span class="number">5</span>], type=<span class="string">&quot;probabilities&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>This produces output similar to the following.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> Iris-setosa Iris-versicolor Iris-virginica</span><br><span class="line"> [1,] 0.964182671 0.022183652 0.013633677</span><br><span class="line"> [2,] 0.952685528 0.032202528 0.015111944</span><br><span class="line"> [3,] 0.966094194 0.021206723 0.012699083</span><br><span class="line"> [4,] 0.965805632 0.020603214 0.013591154</span><br><span class="line"> [5,] 0.962410318 0.024487673 0.013102009</span><br><span class="line"> [6,] 0.964783325 0.022303353 0.012913322</span><br><span class="line"> [7,] 0.975483475 0.012628443 0.011888082</span><br><span class="line"> [8,] 0.918612644 0.060459572 0.020927784</span><br><span class="line"> [9,] 0.953575715 0.030428791 0.015995494</span><br><span class="line">[10,] 0.948050721 0.035563597 0.016385682</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>The above shows the predictions for the first 10 elements of the validation set.  The numbers you see are probabilities.  As you can see each line has one column with the maximum probability.  These samples are all Iris-setosa.  I only show ten rows, so there is not much variety.  If you run the above command in R, you will see the other species as well.</p>
+<h2 id="Using-a-Neural-Network-ANN"><a href="#Using-a-Neural-Network-ANN" class="headerlink" title="Using a Neural Network (ANN)"></a>Using a Neural Network (ANN)</h2><p>I will now show you how to do exactly the same thing using an Artificial Neural Network.  First, we must tell R that we are using ANN’s.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">library(nnet)</span><br></pre></td></tr></table></figure>
+
+<p>The neural network requires that the species be normalized using one-of-n normalization. We will normalize between 0 and 1.  This can be done with the following command.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ideal &lt;- class.ind(irisdata$species)</span><br></pre></td></tr></table></figure>
+
+<p>We can now train a neural network for the training data.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">irisANN = nnet(irisdata[irisTrainData,-<span class="number">5</span>], ideal[irisTrainData,], size=<span class="number">10</span>, softmax=<span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Now we can test the output from the neural network.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">predict(irisANN, irisdata[irisValData,-<span class="number">5</span>], type=<span class="string">&quot;class&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>The new series of books will cover R, as well as the usual Java and C#. You can pledge ($7) at Kickstarter and pre-order and support this project.</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://www.heatonresearch.com/2013/06/12/r-classification.html" data-id="cm651nwpk00238vmt2f2t5iih" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://www.heatonresearch.com/2013/06/12/r-classification.html#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2013/04/01/chart-function-r.html" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">How to Chart a Function in R</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2013/06/13/jug-java-gpu.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">GPU Programming in Java Using OpenCL (JUG)</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+    </div>
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+      
+  <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>Jeff Heaton, Ph.D. is a YouTuber, [computer/data] [scientist/engineer], and indie publisher. Heaton Research is the homepage for his projects and research.</p>
+
+</div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ai/">ai</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/aifh/">aifh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/bbs/">bbs</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/course/">course</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/datascience/">datascience</a><span class="sidebar-module-list-count">11</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/encog/">encog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/gpu/">gpu</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/java/">java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/kaggle/">kaggle</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/learning/">learning</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/mergelife/">mergelife</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/phd/">phd</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/presentation/">presentation</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/python/">python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/r/">r</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/tensorflow/">tensorflow</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/wustl/">wustl</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+
+
+  
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/09/">September 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/05/">May 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/03/">March 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/12/">December 2018</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/11/">November 2018</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/10/">October 2018</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/09/">September 2018</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/08/">August 2018</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/01/">January 2018</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/11/">November 2017</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/06/">June 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">May 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/03/">March 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/02/">February 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/01/">January 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">September 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">March 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/02/">February 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">September 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">August 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">May 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/03/">March 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">December 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/09/">September 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/05/">May 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">February 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/08/">August 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/07/">July 2013</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/06/">June 2013</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/04/">April 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/03/">March 2013</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2019/09/09/pas-2019-features.html">Session 16: B/I - Multivariate Feature Engineering: Beyond Simple Data Preparation</a>
+        </li>
+      
+        <li>
+          <a href="/2019/09/03/tf-no-module-jupyter.html">Why am I getting ImportError: No module named tensorflow?</a>
+        </li>
+      
+        <li>
+          <a href="/2019/05/20/2019-video-schedule.html">Video Release Schedule for Fall 2019 Applications of Deep Learning</a>
+        </li>
+      
+        <li>
+          <a href="/2019/03/13/tensorflow_20_articles.html">My Favorite TensorFlow 2.0 Articles (as of March 2019)</a>
+        </li>
+      
+        <li>
+          <a href="/2018/12/26/youtube-2018-12-26-mergelife-timelapse.html">Time Lapse: Creating Several MergeLife Cellular Automata Online with JavaScript</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+    </div>
+</div>
+
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2025 by Heaton Research, Inc. - <a href="/legal/">Legal and Copyright Info</a><br>
+Jeff Heaton is a computer scientist, data scientist, and indie publisher. Heaton Research is the homepage for his projects and research. <a href="/tips.html">Tips and support.</a><br><br>
+<ul class="list-inline banner-social-buttons">
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://github.com/jeffheaton"><i class="fa fa-github"> <span class="network-name">GitHub</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://twitter.com/jeffheaton"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.youtube.com/user/HeatonResearch"><i class="fa fa-youtube-play"> <span class="network-name">Youtube</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.facebook.com/encog.framework/"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
+</ul>
+
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'heatonresearch';
+  
+  var disqus_url = 'https://www.heatonresearch.com/2013/06/12/r-classification.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+<script src="/js/script.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

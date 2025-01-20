@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Data Science Rosetta Stone: Classification in Python, R, MATLAB, SAS, &amp; Julia | Heaton Research</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="The discovery of the Rosetta Stone in 1799 allowed scholars to finally decipher ancient Egyptian hieroglyphics.  The actual content of the Rosetta stone is a very mundane government decree issued by t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data Science Rosetta Stone: Classification in Python, R, MATLAB, SAS, &amp; Julia">
+<meta property="og:url" content="https://www.heatonresearch.com/2017/08/17/ds_rosetta_stone.html">
+<meta property="og:site_name" content="Heaton Research">
+<meta property="og:description" content="The discovery of the Rosetta Stone in 1799 allowed scholars to finally decipher ancient Egyptian hieroglyphics.  The actual content of the Rosetta stone is a very mundane government decree issued by t">
+<meta property="og:locale">
+<meta property="og:image" content="https://www.heatonresearch.com/images/blog/cls_rosetta_stone.png">
+<meta property="article:published_time" content="2017-08-17T13:26:00.000Z">
+<meta property="article:modified_time" content="2025-01-20T12:40:01.738Z">
+<meta property="article:author" content="Jeff Heaton">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.heatonresearch.com/images/blog/cls_rosetta_stone.png">
+<meta name="twitter:creator" content="@jeffheaton">
+  
+    <link rel="alternate" href="/atom.xml" title="Heaton Research" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  
+  
+
+  
+
+  
+<link rel="stylesheet" href="/css/styles.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-5393865-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  <script data-ad-client="ca-pub-6846576724383320" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="/">Heaton Research</a>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/about/">About</a></li>
+        
+          <li><a class=""
+                 href="/jeff_heaton_projects.html">Projects</a></li>
+        
+          <li><a class=""
+                 href="/book/">Books</a></li>
+        
+          <li><a class=""
+                 href="/contact.html">Contact</a></li>
+        
+          <li><a class=""
+                 href="/support.html">Support Me</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">Heaton Research</h1>
+  
+</div>
+
+<div class="row">
+    <div class="col-sm-8 blog-main">
+      <article id="post-ds_rosetta_stone" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Data Science Rosetta Stone: Classification in Python, R, MATLAB, SAS, &amp; Julia
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2017/08/17/ds_rosetta_stone.html" class="article-date"><time datetime="2017-08-17T13:26:00.000Z" itemprop="datePublished">2017-08-17</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/datascience/">datascience</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>The discovery of the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Rosetta_Stone">Rosetta Stone</a> in 1799 allowed scholars to finally decipher ancient <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Egyptian_hieroglyphs">Egyptian hieroglyphics</a>.  The actual content of the Rosetta stone is a very mundane government decree issued by the Egyptian government around 196 BC. The importance of the Rosetta stone is that this mundane decree was written in Ancient Egyptian using both hieroglyphic script and Demotic script, as well as Ancient Greek.  The Ancient Greek allowed the translation of the Egyptian hieroglyphics.  Sometimes it helps to see what you do not understand represented as what you do understand.  The Rosetta Stone has become a metaphor for that which allows the decoding of something else.</p>
+<p><img src="/images/blog/cls_rosetta_stone.png" alt="Computer Science Big-O Chart in R"></p>
+<p>This article attempts a “Rosetta stone” of data science by showing a simple classification in the following languages:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.continuum.io/downloads">Python</a> - I use Anaconda Python.</li>
+<li><a target="_blank" rel="noopener" href="https://www.r-project.org/about.html">R</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.mathworks.com/">MATLAB</a> - See <a target="_blank" rel="noopener" href="https://www.gnu.org/software/octave/">Octave</a> for a free alternative.</li>
+<li><a target="_blank" rel="noopener" href="https://www.sas.com/en_us/software/university-edition.html">SAS</a> - I used the free University edition.</li>
+<li><a target="_blank" rel="noopener" href="https://julialang.org/">Julia</a></li>
+</ul>
+<h1 id="Titanic-Classification-Problem"><a href="#Titanic-Classification-Problem" class="headerlink" title="Titanic Classification Problem"></a>Titanic Classification Problem</h1><p>We will begin with a simple data science classification problem.  Classification is where you would like the model to learn to identify a non-numeric outcome for input data.  In this case, we would like to input information about passengers on the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/RMS_Titanic">RMS Titanic</a> and get a prediction on if that passenger might survive.  This is a binomial/binary prediction because there are two outcomes: survive (1) or perish (0).  To perform this classification a GLM <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Logistic_regression">Logistic Regression</a> is used.  This technique achieves approximately an 80% accuracy rate.</p>
+<p>Considering the pandemonium that was the final hours of the RMS Titanic, an 80% accuracy rate is decent.  Given the limited information on the passengers, you simply can’t predict everything. There will always be noise.  Generally females had a much higher probability of survival than males.  For females the class of their ticket was the second most important factor in survival.  For males, <em>age</em> was the second most important factor.  However, there is always noise/outliers.  Consider <a target="_blank" rel="noopener" href="https://www.encyclopedia-titanica.org/titanic-victim/loraine-allison.html">Miss Helen Loraine Allison</a>, a female 1st class passenger age 2.  Simply by the numbers, she should have survived.  But she did not.  Somehow she was separated from her parents in the pandemonium that was the sinking Titanic.  Trying to predict Helen’s death is not constructive.  Similarly, <a target="_blank" rel="noopener" href="https://www.encyclopedia-titanica.org/titanic-survivor/charles-edward-dahl.html">Mr. Karl Edwart Dahl</a>, a male 3rd class passenger age 45.  Simply by the numbers, he should have died.  But he did not.  Likewise, trying to predict cases like Mr. Dahl is simply not productive.  An 80% accuracy rate for Titanic is not bad.  </p>
+<p>The model used in these examples is a Logistic regression.  There are more complex models, such as random forests, gradient boosted machines, or deep neural networks.  However, because the purpose of this article is to highlight the languages, a relatively simple model was chosen.</p>
+<p>Some common features to all languages will be mentioned here:</p>
+<ul>
+<li><p><strong>Age</strong> - There are a number of missing ages.  The Kaggle Titanic tutorial participants have found some very clever means of estimating missing ages.  However, for this simple example we will simply fill in all missing ages with the median of the age.</p>
+</li>
+<li><p><strong>Embarked</strong> - There are two records where the port that the passenger embarked from is missing.  These are simply filled in as the most common port (Southampton).  Also, the three departure ports in Europe are encoded into dummy variables.</p>
+</li>
+<li><p><strong>Dropped Fields</strong> - The fields ‘Name’, ‘PassengerId’, ‘Ticket’, ‘Cabin’ are all dropped because they are not particularly predictive.  Several published solutions do increase accuracy by using these fields.  However, to keep this example relatively simple we will not use them.</p>
+</li>
+<li><p><strong>Crossvalidation</strong> - The data are split into a training set and validation set.  The model is trained using the training set and evaluated using the validation set.  This gives a better indication of how accurate the model is by evaluating it on data that it had not seen during training.</p>
+</li>
+</ul>
+<h1 id="Titanic-in-Python"><a href="#Titanic-in-Python" class="headerlink" title="Titanic in Python"></a>Titanic in Python</h1><p>The first language provided is Python 3.x. Python is a general purpose programming language that is widely used both by data scientists and software developers alike.  </p>
+<p>The first section simply imports the needed libraries and defines a convenience function that will encode dummy variables. <a target="_blank" rel="noopener" href="http://pandas.pydata.org/">Pandas</a> is used for all data preprocessing.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> metrics</span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> zscore</span><br><span class="line"></span><br><span class="line">path = <span class="string">&quot;./data/&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode_text_dummy</span>(<span class="params">df, name</span>):</span></span><br><span class="line">    dummies = pd.get_dummies(df[name])</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> dummies.columns:</span><br><span class="line">        dummy_name = <span class="string">&quot;&#123;&#125;-&#123;&#125;&quot;</span>.<span class="built_in">format</span>(name, x)</span><br><span class="line">        df[dummy_name] = dummies[x]</span><br><span class="line">    df.drop(name, axis=<span class="number">1</span>, inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Next, we load the data set CSV and perform the preprocessing.  Male and female are converted to 1 and 0.  Some of the languages have a categorical type and do not require this conversion.  <em>Embarked</em> is encoded to <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/One-hot">dummies</a> and missing values are filled in.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">filename_read = os.path.join(path,<span class="string">&quot;titanic-dataset.csv&quot;</span>)</span><br><span class="line">df = pd.read_csv(filename_read,na_values=[<span class="string">&#x27;NA&#x27;</span>,<span class="string">&#x27;?&#x27;</span>])</span><br><span class="line"></span><br><span class="line">df.drop(<span class="string">&#x27;Name&#x27;</span>,<span class="number">1</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">df.drop(<span class="string">&#x27;PassengerId&#x27;</span>,<span class="number">1</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">df.drop(<span class="string">&#x27;Ticket&#x27;</span>,<span class="number">1</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">df.drop(<span class="string">&#x27;Cabin&#x27;</span>,<span class="number">1</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">df[<span class="string">&#x27;Sex&#x27;</span>].replace(<span class="string">&#x27;female&#x27;</span>, <span class="number">0</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">df[<span class="string">&#x27;Sex&#x27;</span>].replace(<span class="string">&#x27;male&#x27;</span>, <span class="number">1</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">med = df[<span class="string">&#x27;Age&#x27;</span>].median()</span><br><span class="line">df[<span class="string">&#x27;Age&#x27;</span>].fillna(med,inplace=<span class="literal">True</span>)</span><br><span class="line">df[<span class="string">&#x27;Embarked&#x27;</span>].fillna(<span class="string">&#x27;S&#x27;</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">encode_text_dummy(df,<span class="string">&#x27;Embarked&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Next, the data are setup for the logistic regression.  Python requires that the predictors (<em>x</em>) be separated from the target (<em>y</em>).  The target is whether the person survived or not.  The predictors are all of the other values used to determine survival.  Some languages will allow us to keep the predictors and target together. We also split the training and validation sets.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line">x = df.as_matrix([<span class="string">&#x27;Pclass&#x27;</span>,<span class="string">&#x27;Sex&#x27;</span>,<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;SibSp&#x27;</span>,<span class="string">&#x27;Parch&#x27;</span>,<span class="string">&#x27;Fare&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Embarked-C&#x27;</span>,<span class="string">&#x27;Embarked-Q&#x27;</span>,<span class="string">&#x27;Embarked-S&#x27;</span>])</span><br><span class="line">y = np.ravel(df.as_matrix([<span class="string">&#x27;Survived&#x27;</span>]))</span><br><span class="line"></span><br><span class="line">x_train, x_test, y_train, y_test = train_test_split(    </span><br><span class="line">    x, y, test_size=<span class="number">0.25</span>, random_state=<span class="number">42</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Next we setup the Logistic regression classifier and <strong>fit</strong> the model to the training set.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">classifier = LogisticRegression()</span><br><span class="line"></span><br><span class="line">classifier.fit(x_train,y_train)</span><br></pre></td></tr></table></figure>
+
+<p>Finally, we evaluate the accuracy of the model by having it predict the validation set.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pred = classifier.predict(x_test)</span><br><span class="line">score = metrics.accuracy_score(y_test, pred)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Accuracy score: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(score))</span><br></pre></td></tr></table></figure>
+
+<h1 id="Titanic-in-R"><a href="#Titanic-in-R" class="headerlink" title="Titanic in R"></a>Titanic in R</h1><p>R and Python are the two heavyweights of open source data science.  <a target="_blank" rel="noopener" href="http://www.kdnuggets.com/2016/06/r-python-top-analytics-data-mining-data-science-software.html">According to KDDNuggets</a>, R is the most popular programming language for data science – but it is pretty close.  R does win the award for the shortest program in this article.  The small size of the R source code is a result of several sets that R handles for you.</p>
+<p>The first section loads the data file and preprocesses the code.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">df = read.csv(<span class="string">&quot;./data/titanic-dataset.csv&quot;</span>, header = <span class="literal">TRUE</span>)</span><br><span class="line"></span><br><span class="line">drops &lt;- <span class="built_in">c</span>(<span class="string">&quot;PassengerId&quot;</span>,<span class="string">&quot;Name&quot;</span>, <span class="string">&quot;Ticket&quot;</span>, <span class="string">&quot;Cabin&quot;</span>)</span><br><span class="line">df &lt;- df[ , !(<span class="built_in">names</span>(df) %in% drops)]</span><br><span class="line">df$Age[<span class="built_in">is.na</span>(df$Age)] &lt;- median(df$Age, na.rm=<span class="literal">TRUE</span>)</span><br><span class="line">df$Age[<span class="built_in">is.na</span>(df$Embarked)] &lt;- <span class="string">&#x27;S&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>You will notice that unlike Python, R allows the <em>x</em> and <em>y</em> values to remain in the same dataframe.  Additionally, there is no need to encode <em>sex</em> or <em>embarked</em>, because R loaded these values as factors (categoricals) and they are automatically encoded.</p>
+<p>Next the training and validation sets are split.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">smp_size &lt;- <span class="built_in">floor</span>(<span class="number">0.75</span> * nrow(df))</span><br><span class="line"></span><br><span class="line">set.seed(<span class="number">42</span>)</span><br><span class="line">train_ind &lt;- sample(<span class="built_in">seq_len</span>(nrow(df)), size = smp_size)</span><br><span class="line"></span><br><span class="line">train &lt;- df[train_ind, ]</span><br><span class="line">test &lt;- df[-train_ind, ]</span><br></pre></td></tr></table></figure>
+
+<p>The Logistic regression model is created.  R allows more of the GLM inner-workings to be specified than Python.  Below you can see that we specify both the family (binomial, which means there are two outputs).  Additionally, the link function is the logit, or logistic function.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model &lt;- glm(Survived ~.,family=binomial(link=<span class="string">&#x27;logit&#x27;</span>),data=train)</span><br></pre></td></tr></table></figure>
+
+<p>The predictions are made.  These predictions are all probabilities of survival. The <strong>round</strong> function ensures that any prediction &gt;0.5 is treated as survival.  Finally, the accuracy is calculated and displayed.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pred &lt;- predict(model,newdata=test,type=<span class="string">&#x27;response&#x27;</span>)</span><br><span class="line">pred_survived &lt;- <span class="built_in">round</span>(pred)</span><br><span class="line">sprintf( <span class="string">&quot;Accuracy: %f&quot;</span>, <span class="built_in">sum</span>(pred_survived == test$Survived) / nrow(test) )</span><br></pre></td></tr></table></figure>
+
+<h1 id="Titanic-in-MATLAB"><a href="#Titanic-in-MATLAB" class="headerlink" title="Titanic in MATLAB"></a>Titanic in MATLAB</h1><p>MATLAB is a commercial programming language that is favored by many areas of academia and industry.  My primary exposure to MATLAB was in academia.  I used MATLAB for several classes as an undergraduate.  My phd advisor used MATLAB for many of his projects.  The <a target="_blank" rel="noopener" href="https://www.gnu.org/software/octave/">free programming language Octave</a> is somewhat compatible with MATLAB.</p>
+<p>In MATLAB, everything is a matrix.  A single integer is just a matrix of height and width of 1.  Semicolons tell MATLAB if you want the return value printed.  A semicolon will suppress output to the console of the return value of a function.  Julia makes similar use of the semicolon.</p>
+<p>Like the previous examples, the first step is to load and preprocess the data.  MATLAB does have a categorical type, and we use it for both <em>Embarked</em> and <em>Sex</em>.  However, we will still need to encode these values.  Unlike R, dummy variables are not automatically created for us.</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% Load the data</span></span><br><span class="line">ds = <span class="built_in">readtable</span>(<span class="string">&#x27;titanic-dataset.csv&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% Handle missing ages</span></span><br><span class="line">ds.Age(<span class="built_in">isnan</span>(ds.Age)) = <span class="built_in">nanmean</span>(ds.Age);</span><br><span class="line"></span><br><span class="line"><span class="comment">% Handle categoricals</span></span><br><span class="line">ds.Embarked = categorical(ds.Embarked);</span><br><span class="line">t = dummyvar(categorical(ds.Sex));</span><br><span class="line">ds.Sex = t(:,<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>MATLAB, just like Python, requires that the <em>x</em> and <em>y</em> be split into two variables.</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% Split X &amp; Y.</span></span><br><span class="line">y = ds(:,<span class="string">&#x27;Survived&#x27;</span>);</span><br><span class="line">x = ds(:,&#123;<span class="string">&#x27;Pclass&#x27;</span>,<span class="string">&#x27;Sex&#x27;</span>,<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;SibSp&#x27;</span>,<span class="string">&#x27;Parch&#x27;</span>,<span class="string">&#x27;Fare&#x27;</span>&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>The dummy variables for <em>Embarked</em> are concatenated into the matrix.</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% Create training matrix (all numeric)</span></span><br><span class="line">x = table2array(x);</span><br><span class="line">x = horzcat(x,dummyvar(ds.Embarked));</span><br><span class="line">y = table2array(y);</span><br></pre></td></tr></table></figure>
+
+<p>Next, the training and validation sets are split.</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% Training &amp; validation split</span></span><br><span class="line">[trainInd,valInd] = divideblock(<span class="built_in">length</span>(x),<span class="number">0.7</span>,<span class="number">0.3</span>);</span><br><span class="line">x_train = x(trainInd,:);</span><br><span class="line">y_train = y(trainInd,:);</span><br><span class="line">x_val = x(valInd,:);</span><br><span class="line">y_val = y(valInd,:);</span><br></pre></td></tr></table></figure>
+
+<p>Just like the previous examples, a binomial logist regression is created and fit to the training.</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% Fit the model</span></span><br><span class="line">model = glmfit(x_train,y_train,<span class="string">&#x27;binomial&#x27;</span>,<span class="string">&#x27;link&#x27;</span>,<span class="string">&#x27;logit&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Finally, the validation set is used to create predictions and accuracy is evaluated.</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% Predict and calculate accuracy.</span></span><br><span class="line">pred = glmval(model,x_val,<span class="string">&#x27;logit&#x27;</span>);</span><br><span class="line">pred = <span class="built_in">round</span>(pred);</span><br><span class="line">acc = (pred == y_val);</span><br><span class="line">sum(acc)/<span class="built_in">length</span>(acc)</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Titanic-in-SAS"><a href="#Titanic-in-SAS" class="headerlink" title="Titanic in SAS"></a>Titanic in SAS</h1><p>SAS is a commercial language used to create statistical models.  The first thing that you will notice about SAS is that the two primary statement are <strong>PROC</strong> and <strong>DATA</strong>.  Both the <strong>PROC</strong> and <strong>DATA</strong> statements are ended by a <strong>RUN</strong> statement. A SAS program is essentially made up of <strong>PROC</strong> and <strong>DATA</strong> statements that pass data sets between each other.  The data set is the only object type and it is stored to disk at each step.  </p>
+<p>SAS programs can have other statements beyond <strong>PROC</strong> and <strong>DATA</strong>, such as a macro language.  However, the macro language functions as macros and effectively repeats <strong>PROC</strong> and <strong>DATA</strong> segments of the source file.  A <strong>PROC</strong> statement calls a predefined SAS function.  A <strong>DATA</strong> statement loops over a data set and modifies it.  </p>
+<p>The first step is to read in the CSV file.  The <strong>OUT</strong> parameter specifies that the CSV file will be stored in a temporary binary file named train.  Because SAS performs all operations on binary files, it does not require that everything fit into RAM.  All of the other language examples from this article require everything to fit into RAM.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/* Read the CSV */</span><br><span class="line"></span><br><span class="line">PROC IMPORT DBMS=csv OUT=train  REPLACE</span><br><span class="line">  DATAFILE=&quot;/folders/myfolders/titanic-dataset.csv&quot;;</span><br><span class="line">  GETNAMES=YES;</span><br><span class="line">RUN;</span><br></pre></td></tr></table></figure>
+
+<p>Next, the missing ages are filled in with their median values.  This is done with a <strong>DATA</strong> statement that loops over the train data set that was just loaded in.  The resulting data set is written to the same data set as the source.  The <strong>DATA</strong> parameter specifies the input and the <strong>OUT</strong> parameter specifies the output.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/* Fill in missing ages with median */</span><br><span class="line">PROC STDIZE DATA=train OUT=train</span><br><span class="line">            METHOD=median reponly;</span><br><span class="line">    VAR Age;</span><br><span class="line">RUN;</span><br></pre></td></tr></table></figure>
+
+<p>Next, we will separate the training and validation set.  The first step is to add a column, named <em>selected</em> to the <em>train</em> data set that specifies if it is part of the ultimate training set or not.  This is done by using <strong>PROC SURVEYSELECT</strong>, a total of 70% of the data will have a <em>selected</em> variable with a value of 1.  The input and output data sets are both <em>train</em>.  The previous <em>train</em> data set (which held all rows) is replaced by a new <em>train</em> data set that contains only the training data.</p>
+<p>Once the <em>train</em> data set has been properly labeled, it is split into two data sets that are named <em>train</em> and <em>validate</em>.  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/* Train/Validate split */</span><br><span class="line">PROC SURVEYSELECT DATA=train outall OUT=train METHOD=srs SAMPRATE=0.7;</span><br><span class="line">RUN;</span><br><span class="line"></span><br><span class="line">DATA validate;</span><br><span class="line">	SET train;</span><br><span class="line">	IF selected = 0;</span><br><span class="line">RUN;</span><br><span class="line"></span><br><span class="line">DATA train;</span><br><span class="line">	SET train;</span><br><span class="line">	IF selected = 1;</span><br><span class="line">RUN;</span><br></pre></td></tr></table></figure>
+
+<p>Now that we have a <em>train</em> and <em>validation</em> data set we are ready to fit the Logistic regression.  This fitting is performed with <strong>PROC LOGISTIC</strong>.  The two categorical values, <em>Sex</em> and <em>Embarked</em> must be specified with the <strong>CLASS</strong> parameters.  The <strong>ref</strong> setting means to encode as dummy variables.</p>
+<p>The formula that we are regressing is that <em>Survived</em> is equal to some regression of <em>Sex</em>, <em>Age</em>, <em>Pclass</em>, <em>Parch</em>, <em>SibSp</em>, and <em>Embarked</em>.  The model parameters themselves are written to a binary file called <em>model</em>. The <strong>descending</strong> flag specifies that the model will predict values of 1 (survived), as opposed to 0 (perished).</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/* Fit the logit */</span><br><span class="line">PROC LOGISTIC data=train outmodel=model descending;</span><br><span class="line">  CLASS Sex / PARAM=ref ;</span><br><span class="line">  CLASS Embarked / PARAM=ref ;</span><br><span class="line">  MODEL Survived = Sex Age Pclass Parch SibSp Embarked;  </span><br><span class="line">RUN;</span><br></pre></td></tr></table></figure>
+
+<p>Now that the model has been fit, we can predict with another call to <strong>PROC LOGISTIC</strong>.  This will create a data set named <em>pred</em> that contains the <em>validate</em> data set augmented with predictions.  Because we are predicting a binary outcome, two additional columns are added to the data set: <em>P_1</em> specifies the probability that the person survived and <em>P_2</em> specifies the probability that the person perished.  These two values sum to 1.0 for each row.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/* Predict */</span><br><span class="line">PROC LOGISTIC INMODEL=model;</span><br><span class="line">	SCORE DATA=validate OUT=pred;</span><br><span class="line">RUN;</span><br></pre></td></tr></table></figure>
+
+<p>Next a prediction data set is created where any <em>Survived</em> probability is greater than or equal to 0.5 is assumed to have survived is created.  Only the <em>PassengerId</em>, <em>Survived</em>, and <em>P_1</em> columns are kept.  Additionally, a new column named <em>pred_survived</em> is created that holds a value of 1 if the probability of survival was greater or equal than 0.5.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/* Turn prediction probabilities into class values (threshold=.5) */</span><br><span class="line">DATA pred;</span><br><span class="line">    SET PRED(KEEP = PassengerId Survived P_1);</span><br><span class="line">    pred_survived = ROUND(P_1);</span><br><span class="line">RUN;</span><br></pre></td></tr></table></figure>
+
+<p>Finally, a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Confusion_matrix">confusion matrix</a> is generated that measures model performance.  This will tells us the percent of survived and perished predictions that were correct.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/* Evaluate */</span><br><span class="line">proc freq data=pred;</span><br><span class="line">	tables Survived * pred_survived;</span><br><span class="line">run;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Titanic-in-Julia"><a href="#Titanic-in-Julia" class="headerlink" title="Titanic in Julia"></a>Titanic in Julia</h1><p>Julia is a relatively new programming language that the data science community is showing increased support for.  Julia can use advanced linear algebra packages to perform matrix operations with great performance; however, loops and traditional programming constructs will also perform at near C/C++ speed.</p>
+<p>The first step is to read the CSV file into a <strong>DataFrame</strong>.</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> DataFrames;</span><br><span class="line"><span class="keyword">using</span> GLM;</span><br><span class="line"></span><br><span class="line">df = readtable(<span class="string">&quot;./data/titanic-dataset.csv&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>The usual preprocessing steps are performed.  In Julia you will notice that function names and operators sometimes have a prefix/suffix, such as <strong>!</strong> or <strong>.</strong>.  The ! suffix, such as <strong>delete!</strong> notes that this function will modify what is passed to it.  The <strong>.</strong> prefix/suffix, such as .~ means that the not(~) is applied to each member of the vector, not the whole vector.  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">delete!(df, :PassengerId);</span><br><span class="line">delete!(df, :Name);</span><br><span class="line">delete!(df, :Ticket);</span><br><span class="line">delete!(df, :Cabin);</span><br><span class="line">df[isna.(df[:Age]),:Age] = median(df[ .~isna.(df[:Age]),:Age])</span><br><span class="line">df[isna.(df[:Embarked]),:Embarked] = &quot;S&quot;</span><br><span class="line">pool!(df, [:Sex]);</span><br><span class="line">pool!(df, [:Embarked]);</span><br></pre></td></tr></table></figure>
+
+<p>Next we split the training and validation sets into <em>df_train</em> and <em>df_validate</em>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">split_pt = trunc(Int,size(df,1)*0.7) # 70% validation</span><br><span class="line">shuffle_idx = sample(1:size(df,1),size(df,1));</span><br><span class="line">df_train = df[1:split_pt,:];</span><br><span class="line">df_validate = df[split_pt+1:size(df,1),:];</span><br></pre></td></tr></table></figure>
+
+<p>The model is created and the validation set is scored for prediction.  The formula of the regression uses the same regression format as R.  The prediction probabilities are rounded, just like the other languages.  This rounding means that probabilities of survival of 0.5 and higher indicate survived (1); whereas, 0 indicates perished.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model = glm(@formula(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked), df_train, Binomial(), LogitLink());</span><br><span class="line">pred = predict(model,df_validate);</span><br><span class="line">pred = convert(DataArray&#123;Int&#125;, round.(pred));</span><br></pre></td></tr></table></figure>
+
+<p>Finally we can report the accuracy.  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(&quot;Accuracy: &quot;)</span><br><span class="line">println( sum(pred .== df_validate[:Survived]) / length(pred))</span><br></pre></td></tr></table></figure>
+
+<h1 id="Final-Remarks"><a href="#Final-Remarks" class="headerlink" title="Final Remarks"></a>Final Remarks</h1><p>Now you have seen a simple Logistic regression in Python, R, MATLAB, SAS, and Julia.  You can see some of the parallels and differences between the languages.  Python and MATLAB require that <em>x</em> and <em>y</em> be split; whereas, the others do not.  Julia and R use a similar regression formula format.  </p>
+<p>There are other languages that are used for data science.  I tried to focus on the mainstream.  In the future, I may augment this article with additional languages.  Are there any that you would like to see?  Java, Javascript, and C# are candidates, as they are more mainstream IT languages.  </p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://www.heatonresearch.com/2017/08/17/ds_rosetta_stone.html" data-id="cm651nwrl00418vmtdlx50304" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://www.heatonresearch.com/2017/08/17/ds_rosetta_stone.html#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2017/07/30/tensors.html" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">What are Tensors and why are they Flowing? (TensorFlow)</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2017/09/14/install_tf.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">Installing TensorFlow</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+    </div>
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+      
+  <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>Jeff Heaton, Ph.D. is a YouTuber, [computer/data] [scientist/engineer], and indie publisher. Heaton Research is the homepage for his projects and research.</p>
+
+</div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ai/">ai</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/aifh/">aifh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/bbs/">bbs</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/course/">course</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/datascience/">datascience</a><span class="sidebar-module-list-count">11</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/encog/">encog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/gpu/">gpu</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/java/">java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/kaggle/">kaggle</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/learning/">learning</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/mergelife/">mergelife</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/phd/">phd</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/presentation/">presentation</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/python/">python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/r/">r</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/tensorflow/">tensorflow</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/wustl/">wustl</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+
+
+  
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/09/">September 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/05/">May 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/03/">March 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/12/">December 2018</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/11/">November 2018</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/10/">October 2018</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/09/">September 2018</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/08/">August 2018</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/01/">January 2018</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/11/">November 2017</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/06/">June 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">May 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/03/">March 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/02/">February 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/01/">January 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">September 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">March 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/02/">February 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">September 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">August 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">May 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/03/">March 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">December 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/09/">September 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/05/">May 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">February 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/08/">August 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/07/">July 2013</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/06/">June 2013</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/04/">April 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/03/">March 2013</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2019/09/09/pas-2019-features.html">Session 16: B/I - Multivariate Feature Engineering: Beyond Simple Data Preparation</a>
+        </li>
+      
+        <li>
+          <a href="/2019/09/03/tf-no-module-jupyter.html">Why am I getting ImportError: No module named tensorflow?</a>
+        </li>
+      
+        <li>
+          <a href="/2019/05/20/2019-video-schedule.html">Video Release Schedule for Fall 2019 Applications of Deep Learning</a>
+        </li>
+      
+        <li>
+          <a href="/2019/03/13/tensorflow_20_articles.html">My Favorite TensorFlow 2.0 Articles (as of March 2019)</a>
+        </li>
+      
+        <li>
+          <a href="/2018/12/26/youtube-2018-12-26-mergelife-timelapse.html">Time Lapse: Creating Several MergeLife Cellular Automata Online with JavaScript</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+    </div>
+</div>
+
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2025 by Heaton Research, Inc. - <a href="/legal/">Legal and Copyright Info</a><br>
+Jeff Heaton is a computer scientist, data scientist, and indie publisher. Heaton Research is the homepage for his projects and research. <a href="/tips.html">Tips and support.</a><br><br>
+<ul class="list-inline banner-social-buttons">
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://github.com/jeffheaton"><i class="fa fa-github"> <span class="network-name">GitHub</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://twitter.com/jeffheaton"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.youtube.com/user/HeatonResearch"><i class="fa fa-youtube-play"> <span class="network-name">Youtube</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.facebook.com/encog.framework/"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
+</ul>
+
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'heatonresearch';
+  
+  var disqus_url = 'https://www.heatonresearch.com/2017/08/17/ds_rosetta_stone.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+<script src="/js/script.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Flat Spot Problem (Sigmoid/Logist Activation Functions) | Heaton Research</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Flat Spot ProblemThe Flat Spot Problem is an issue observed by Scott Fahlman in a paper on the Quickproptraining method. Flat spot occurs in certain activation functions, particularly theSigmoid&#x2F;Logis">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Flat Spot Problem (Sigmoid&#x2F;Logist Activation Functions)">
+<meta property="og:url" content="https://www.heatonresearch.com/encog/flat_spot.html">
+<meta property="og:site_name" content="Heaton Research">
+<meta property="og:description" content="Flat Spot ProblemThe Flat Spot Problem is an issue observed by Scott Fahlman in a paper on the Quickproptraining method. Flat spot occurs in certain activation functions, particularly theSigmoid&#x2F;Logis">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-01-20T12:40:04.954Z">
+<meta property="article:modified_time" content="2025-01-20T12:40:04.954Z">
+<meta property="article:author" content="Jeff Heaton">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@jeffheaton">
+  
+    <link rel="alternate" href="/atom.xml" title="Heaton Research" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  
+  
+
+  
+
+  
+<link rel="stylesheet" href="/css/styles.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-5393865-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  <script data-ad-client="ca-pub-6846576724383320" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="/">Heaton Research</a>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/about/">About</a></li>
+        
+          <li><a class=""
+                 href="/jeff_heaton_projects.html">Projects</a></li>
+        
+          <li><a class=""
+                 href="/book/">Books</a></li>
+        
+          <li><a class=""
+                 href="/contact.html">Contact</a></li>
+        
+          <li><a class=""
+                 href="/support.html">Support Me</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <h1>Flat Spot Problem (Sigmoid/Logist Activation Functions)</h1>
+<div class="row">
+    <div class="col-sm-12 blog-main">
+      <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+
+
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Flat-Spot-Problem"><a href="#Flat-Spot-Problem" class="headerlink" title="Flat Spot Problem"></a>Flat Spot Problem</h1><p>The Flat Spot Problem is an issue observed by <a target="_blank" rel="noopener" href="https://www.cs.cmu.edu/~sef/">Scott Fahlman</a> in a paper on the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Quickprop">Quickprop</a><br>training method. Flat spot occurs in certain activation functions, particularly the<br><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Sigmoid_function">Sigmoid/Logistic</a> Activation Function. Encog does not use flat spot on the Hyperbolic<br>Tangent or <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)">ReLU</a> Activation Functions. Flatspot can make it very difficult for a neural<br>network to property train with propagation training. Because of the Flatspot problem,<br>certain hidden neurons can be rendered completely useless. This can greatly increase<br>training time, and decrease overall efficiency for neural networks. For small neural<br>networks, with just a few hidden neurons, if enough random weights fall into the flat<br>spot range, the neural network will fail to ever converge.</p>
+<p>To see why the Flatspot problem exists, consider that all propagation training methods<br>require a derivative of the activation function. Consider the derivative of the sigmoid<br>activation function.</p>
+<p>$$ o_j(1 − o_j) $$</p>
+<p>Where $o_j$ is the sigmoid output from unit $j$. The above derivative will approach zero<br>when $o_j$ is near 1.0 or 0.0. The graph illustrates this. You can see the flat spot at<br>the top of the graph, near zero.</p>
+<p>Eliminating the flat spot is as simple as adding a constant, such as 0.1 to the derivative<br>function. This results in.</p>
+<p>$$ oj(1 − o_j) + 0.1 $$</p>
+<p>This, generally, has a very positive effect on all propagation training. No change is<br>made to the actual activation function, so the flat spot modification is only necessary<br>at training time.</p>
+<h1 id="Encog-Handling-of-the-Flat-Spot"><a href="#Encog-Handling-of-the-Flat-Spot" class="headerlink" title="Encog Handling of the Flat Spot"></a>Encog Handling of the Flat Spot</h1><p>By default Encog addresses the flat spot. This has been shown to enhance Encog training.<br>However, you can disable the flat spot propcessing. To do this set the FixFlatSpot<br>property, on any propagation training object to false.</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li>An Empirical Study of Learning Speed in Back-Propagation Networks” (Scott E. Fahlman, 1988)</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://www.heatonresearch.com/encog/flat_spot.html" data-id="cm651nwob000o8vmt1xolcq2e" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+
+    </footer>
+  </div>
+  
+    
+
+  
+</article>
+
+    </div>
+</div>
+
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2025 by Heaton Research, Inc. - <a href="/legal/">Legal and Copyright Info</a><br>
+Jeff Heaton is a computer scientist, data scientist, and indie publisher. Heaton Research is the homepage for his projects and research. <a href="/tips.html">Tips and support.</a><br><br>
+<ul class="list-inline banner-social-buttons">
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://github.com/jeffheaton"><i class="fa fa-github"> <span class="network-name">GitHub</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://twitter.com/jeffheaton"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.youtube.com/user/HeatonResearch"><i class="fa fa-youtube-play"> <span class="network-name">Youtube</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.facebook.com/encog.framework/"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
+</ul>
+
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'heatonresearch';
+  
+  var disqus_url = 'https://www.heatonresearch.com/encog/flat_spot.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+<script src="/js/script.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

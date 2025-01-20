@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>AIFH Volume 2, Chapter 6: Flocking in 2D | Heaton Research</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Show AffinitySeparation: , Alignment: , Cohesion:        This example shows a fascinatingly simple algorithm called flocking.  The particles below are flocking.  Initially they start in random loc">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AIFH Volume 2, Chapter 6: Flocking in 2D">
+<meta property="og:url" content="https://www.heatonresearch.com/aifh/vol2/flock_2d.html">
+<meta property="og:site_name" content="Heaton Research">
+<meta property="og:description" content="Show AffinitySeparation: , Alignment: , Cohesion:        This example shows a fascinatingly simple algorithm called flocking.  The particles below are flocking.  Initially they start in random loc">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-01-20T12:40:02.991Z">
+<meta property="article:modified_time" content="2025-01-20T12:40:02.991Z">
+<meta property="article:author" content="Jeff Heaton">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@jeffheaton">
+  
+    <link rel="alternate" href="/atom.xml" title="Heaton Research" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  
+  
+
+  
+    
+      
+    
+    
+      
+        
+<link rel="stylesheet" href="/aifh/vol2/flock_2d.css">
+
+      
+    
+  
+
+  
+<link rel="stylesheet" href="/css/styles.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-5393865-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  <script data-ad-client="ca-pub-6846576724383320" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="/">Heaton Research</a>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/about/">About</a></li>
+        
+          <li><a class=""
+                 href="/jeff_heaton_projects.html">Projects</a></li>
+        
+          <li><a class=""
+                 href="/book/">Books</a></li>
+        
+          <li><a class=""
+                 href="/contact.html">Contact</a></li>
+        
+          <li><a class=""
+                 href="/support.html">Support Me</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <a href="/aifh/"><img src="/images/aifh/web_header.png" class="img-responsive center-block"></a>
+<h1>AIFH Volume 2, Chapter 6: Flocking in 2D</h1>
+<article id="aifh-page-" class="article article-type-aifh-page" itemscope itemprop="blogPost">
+
+
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="example-holder">
+<div id="drawing-area"></div>
+<div id="example-btn1"><input id="btnStart" type="button" value="Start" /><input id="btnStop" type="button" value="Stop" /><input id="btnSingle" type="button" value="Single" /><input id="btnClear" type="button" value="Clear" /><input id="btnBigBang" type="button" value="Big Bang" /><input id="btnShowAff" type="checkbox" checked="checked" /> Show Affinity<br />Separation: <input id="txtSeparation" type="text" size="5" value="0.25" />, Alignment: <input id="txtAlignment" type="text" size="5" value="0.5" />, Cohesion: <input id="txtCohesion" type="text" size="5" value="0.01" /><input id="btnSet" type="button" value="Set" /></div>
+</div>
+<script src="../encog.js"></script><script src="../encog-widget.js"></script><script type="text/javascript">
+<!--//--><![CDATA[// ><!--
+
+"use strict";
+if(window.addEventListener) {
+    window.addEventListener('load', function () {
+
+        var backgroundTimer,universe;
+        var btnStart, btnStop, btnClear, btnSingle, btnSet, btnBigBang;
+        var txtSeparation,txtAlignment,txtCohesion;
+        var constSeparation,constAlignment,constCohesion;
+        var repelSpot = new Array(0,0);
+        var shouldRepel = false;
+        var btnShowAff;
+        var COUNT = 50;
+        var PARTICLE_SIZE = 10;
+        var PARTICLE_SPEED = 5;
+        var flock;
+
+        function init () {
+            'use strict';
+            // Find the canvas element.
+            universe = ENCOG.GUI.Agents2D.create('drawing-area',500,500);
+            universe.reset(COUNT);
+
+            // repel
+            universe.pointerDown = function(x,y) {
+                'use strict';
+                var repelSpot = [x,y];
+                var repulse = ENCOG.MathUtil.kNearest(repelSpot,universe.agents,COUNT,100,0,2);
+                for(var i=0;i<repulse.length;i++)
+                {
+                    var dx = repelSpot[0] - repulse[i][0];
+                    var dy = repelSpot[1] - repulse[i][1];
+                    var repulseAngle = ((Math.atan2(dx, dy) * 180 / Math.PI))+180;
+                    repulse[i][2]=repulseAngle;
+                }
+            };
+
+            flock = ENCOG.Swarm.create(universe.agents);
+            flock.callbackNeighbors = function(i,neighbors) {
+                if( btnShowAff.checked ) {
+                    universe.plotGroup(i,neighbors);
+                }
+            };
+
+            // Attach the mousedown, mousemove and mouseup event listeners.
+            btnStart = document.getElementById('btnStart');
+            btnStop = document.getElementById('btnStop');
+            btnClear = document.getElementById('btnClear');
+            btnSingle = document.getElementById('btnSingle');
+            btnBigBang = document.getElementById('btnBigBang');
+            btnShowAff = document.getElementById('btnShowAff');
+            btnSet = document.getElementById('btnSet');
+
+            txtSeparation = document.getElementById('txtSeparation');
+            txtAlignment = document.getElementById('txtAlignment');
+            txtCohesion = document.getElementById('txtCohesion');
+
+            btnStart.addEventListener('click', ev_start, false);
+            btnStop.addEventListener('click', ev_stop, false);
+            btnClear.addEventListener('click', ev_clear, false);
+            btnSingle.addEventListener('click', ev_single, false);
+            btnSet.addEventListener('click', ev_set, false);
+            btnBigBang.addEventListener('click', ev_bigBang, false);
+
+            ev_set();
+            ev_clear();
+            ev_start();
+        }
+
+        /////////////////////////////////////////////////////////////////////////////
+        // Event functions
+        /////////////////////////////////////////////////////////////////////////////
+
+        // The user has started dragging (or touching), this will begin to repel
+        // particles that are too close to the event location.
+        function ev_start(ev)
+        {
+            'use strict';
+            backgroundTimer = self.setInterval(ev_animate,50);
+            btnStart.disabled = true;
+            btnStop.disabled = false;
+            btnSingle.disabled = true;
+        }
+
+        // The user has stopped dragging (or touching), this will stop repeling particles.
+        function ev_stop(ev)
+        {
+            'use strict';
+            self.clearInterval(backgroundTimer);
+            btnStart.disabled = false;
+            btnStop.disabled = true;
+            btnSingle.disabled = false;
+        }
+
+        // Set the three flocking constants.
+        function ev_set(ev)
+        {
+            'use strict';
+            constSeparation = parseFloat(txtSeparation.value);
+            constAlignment = parseFloat(txtAlignment.value);
+            constCohesion = parseFloat(txtCohesion.value);
+        }
+
+        // Clear the universe to a "random" state.
+        function ev_clear(ev)
+        {
+            'use strict';
+            universe.reset(COUNT);
+            flock.agents = universe.agents;
+        }
+
+        // Clear the universe by moving every particle to the center, with common
+        // angles.  This creates a 100% deterministic (the same result each time),
+        // yet seemingly random universe.
+        function ev_bigBang(ev)
+        {
+            'use strict';
+            universe.agents = [];
+            flock.agents = universe.agents;
+            for(var i=0;i<COUNT;i++) {
+                universe.agents[i] = [ universe.canvas.width/2,universe.canvas.height/2,0];
+            }
+
+            ev_animate();
+        }
+
+        // Move forward by a single time slice.
+        function ev_single(ev)
+        {
+            'use strict';
+            ev_animate();
+        }
+
+        // If we are repeling, find everything that is within a 100 unit radius of the
+        // repel spot, repel it.  The repel occurs by calculating the ideal angle
+        // to take us to the repel spot, and then use the 180deg opposit of that angle.
+        function performRepel()
+        {
+
+
+        }
+
+        // This is the main loop of the program.  It is called by a timer and drives
+        // the animation.  This method loops over all of the particles and performs
+        // the following.
+        function ev_animate()
+        {
+            'use strict';
+            universe.advance();
+            universe.render();
+            flock.iteration();
+        }
+
+        /////////////////////////////////////////////////////////////////////////////
+        // Downsampling functions
+        /////////////////////////////////////////////////////////////////////////////
+
+
+        /////////////////////////////////////////////////////////////////////////////
+        // Drawing functions
+        /////////////////////////////////////////////////////////////////////////////
+
+        // cause the init function to be called.
+        init();
+
+    }, false); }
+
+//--><!]]>
+</script>
+
+<br><br><br><br><br>
+<p>This example shows a fascinatingly simple algorithm called flocking.  The particles below are flocking.  Initially they start in random locations, however, they soon fill form groups and fly in seemingly complex patterns.  You can also click (or touch) a location and the particles will repel from the location you touched.</p>
+<p><b>It might take up to a minute (or so) for well established flocks to emerge.</b>  Even after these flocks emerge they will often split and recombine.  To start over click "Clear".  It is also possible to click "Big Bang", which uses no random initialization at all. The particles are all placed in the middle of the universe and quickly move outward assuming their "complex" patterns.  </p>
+
+<p>
+I will now explain how this program works.</p>
+<h3>The Flocking Algorithm</h3>
+<p>Flocking behavior was first simulated on a computer in 1986 by <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Flocking_(behavior)">Craig Reynolds</a> with his simulation program, Boids. Flocking seems like a very complex behavior.  It is exhibited by many different animals, using many different names.  A flock of birds.  A swarm of insects.  A school of fish.  A herd of cows.  All different names to describe essentially the same behavior.  Some other languages also use different names for the same behavior.  </p>
+<p>Spanish is the same as English in using different words for each of these behaviors.  Una bandada de pájaros. Un enjambre de insectos. Un banco de peces. Un rebaño de vacas. Todos los nombres diferentes para describir la esencia, el mismo comportamiento. Otros idiomas también parecen utilizar diferentes nombres para el mismo comportamiento.</p>
+<p>At first glance, a flocking algorithm may seem complex.  I would probably create an object to handle the individuals in the flock.  I would need to define a flock object to hold flock members.  Routines would need to be developed to determine which direction the flock should go.  We would also have to decide how a flock should split into two or more flocks.  What criteria determines how big a flock can get?  How are new members admitted.  <a target="_blank" rel="noopener" href="http://www.youtube.com/watch?v=XH-groCeKbE">You can see some real-life examples of bird flocking here.</a></p>
+<p>The flocking algorithm is actually very simple.  It has only three rules.</p>
+
+<p>1. <b>Separation</b> - avoid crowding neighbors (short range repulsion)<br />
+2. <b>Alignment</b> - steer towards average heading of neighbors<br />
+3. <b>Cohesion</b> - steer towards average position of neighbors (long range attraction)</p>
+<p>These three rules are all that it takes.  Flocking is truly an example of "Simple Complexity".</p>
+<p>I wanted to keep this example as utterly simplistic as possible, yet still exhibit seemingly complex behavior.  The particles are all moving at a constant speed.  Each particle has an angle that defines the direction the particle is moving.  The particles cannot speed up or slow down.  They can only turn.  </p>
+<p>The above three rules each specify an "ideal angle" for the particle to move towards.  The desire to obey each of the three rules is dampened by a specific percent.  These are the three numbers you see at the bottom.  You can play with these three and see how they affect things.  Many combinations will not produce flocking behavior at all.  The default values I provide work well.  </p>
+<p>If you want to see the effect of one of the three rules in isolation, set that rule to 1.0 and the others to 0.0.  For example, if you isolate cohesion, then you will end up with all of the particles converging to a few locations in the universe.</p>
+<p>There is no randomness in this universe at all.  Other than placing the particles in initial random locations, no further random numbers are generated.  You can even click the "big bang" button, and eliminate all randomness from the system.  If you click "big bang" all particles will be placed in the center with motion in the same direction.  It does not take long for a complex pattern to emerge.  Flocking is a great example of how very simple rules can produce very complex systems.</p>
+<h3>Other Uses for Flocking/Swarming</h3>
+<p>Flocking can also be used as an search algorithm.  This allows it to be used to optimize the parameters of a system.  In this way it can be used to train <a href="http://www.heatonresearch.com/wiki/Neural_network">neural networks</a>, <a href="http://www.heatonresearch.com/wiki/Bayesian_Network">Bayesian Networks</a>, <a href="http://www.heatonresearch.com/wiki/Support_Vector_Machine">Support Vector Machines</a> and other <a href="http://www.heatonresearch.com/wiki/Machine_Learning_Methods">machine learning methods</a>.  <a href="http://www.heatonresearch.com/encog">Encog</a> makes use of flocking in the <a href="http://www.heatonresearch.com/wiki/PSO">Particle Swarm Optimization algorithm</a>.  More advanced examples of swarming will be demonstrated in future examples.</p>
+<h3>Other Observations</h3>
+<p>Flocking is a fascinating topic because it shows how a "universe", such as the program above, can exhibit seemingly complex behavior.  Our own universe seems very complex.  There are fields of study such as physics, chemistry, biology and others that attempt to develop models to explain natural phenomena. Scientists seek a <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Theory_of_everything">Theory of Everything</a> to unify all physical laws into a simple set of underlying laws.  So no one has made this unifying discovery.  The best we have now is a <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Fundamental_forces">Theory of Almost Everything</a>, or the Fundamental Forces.</p>
+<p>The fundamental forces theory is very interesting because it attempts to explain many physical interactions in terms of four fundamental forces, or interactions.  The strengths of each of these four forces are governed by universal "constants" in a similar way that flocking is governed by the three constant dampers for the three laws of flocking.  Of course the real universe may not be deterministic, as stated by <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Bell's_theorem">Bell's Theroum</a>.  At the atomic level the best we may ever get is a probabilistic outcome.  Nevertheless, fitting simple rules to seemingly complex systems observed in nature is an active area of research.</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://www.heatonresearch.com/aifh/vol2/flock_2d.html" data-id="cm651nwo5000e8vmt338l8ueg" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+
+    </footer>
+  </div>
+  
+    
+
+  
+</article>
+
+
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2025 by Heaton Research, Inc. - <a href="/legal/">Legal and Copyright Info</a><br>
+Jeff Heaton is a computer scientist, data scientist, and indie publisher. Heaton Research is the homepage for his projects and research. <a href="/tips.html">Tips and support.</a><br><br>
+<ul class="list-inline banner-social-buttons">
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://github.com/jeffheaton"><i class="fa fa-github"> <span class="network-name">GitHub</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://twitter.com/jeffheaton"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.youtube.com/user/HeatonResearch"><i class="fa fa-youtube-play"> <span class="network-name">Youtube</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.facebook.com/encog.framework/"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
+</ul>
+
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'heatonresearch';
+  
+  var disqus_url = 'https://www.heatonresearch.com/aifh/vol2/flock_2d.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+
+
+  
+    
+  
+  
+    
+      
+<script src="/aifh/vol2/encog-js-1.0.js"></script>
+
+    
+  
+    
+      
+<script src="/aifh/vol2/encog-widget-1.0.js"></script>
+
+    
+  
+
+
+
+
+
+<script src="/js/script.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Heaton Research</title>
+  
+  
+  <link href="https://www.heatonresearch.com/feed.xml" rel="self"/>
+  
+  <link href="https://www.heatonresearch.com/"/>
+  <updated>2025-01-20T12:40:02.056Z</updated>
+  <id>https://www.heatonresearch.com/</id>
+  
+  <author>
+    <name>Jeff Heaton</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Session 16: B/I - Multivariate Feature Engineering: Beyond Simple Data Preparation</title>
+    <link href="https://www.heatonresearch.com/2019/09/09/pas-2019-features.html"/>
+    <id>https://www.heatonresearch.com/2019/09/09/pas-2019-features.html</id>
+    <published>2019-09-09T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:02.056Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;I am presenting a workshop on “Multivariate Feature Engineering: Beyond Simple Data Preparation” for the Society of Actuaries at the &lt;a h</summary>
+      
+    
+    
+    
+    <category term="presentation" scheme="https://www.heatonresearch.com/categories/presentation/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Why am I getting ImportError: No module named tensorflow?</title>
+    <link href="https://www.heatonresearch.com/2019/09/03/tf-no-module-jupyter.html"/>
+    <id>https://www.heatonresearch.com/2019/09/03/tf-no-module-jupyter.html</id>
+    <published>2019-09-03T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:02.251Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;A common question that I get both from students of &lt;a href=&quot;https://sites.wustl.edu/jeffheaton/t81-558/&quot;&gt;my class&lt;/a&gt; and also &lt;a href=&quot;h</summary>
+      
+    
+    
+    
+    <category term="wustl" scheme="https://www.heatonresearch.com/categories/wustl/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Video Release Schedule for Fall 2019 Applications of Deep Learning</title>
+    <link href="https://www.heatonresearch.com/2019/05/20/2019-video-schedule.html"/>
+    <id>https://www.heatonresearch.com/2019/05/20/2019-video-schedule.html</id>
+    <published>2019-05-20T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:01.561Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Here is the schedule for when I plan to release each of the course videos this summer.  I am planning on finishing video recording before</summary>
+      
+    
+    
+    
+    <category term="course" scheme="https://www.heatonresearch.com/categories/course/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>My Favorite TensorFlow 2.0 Articles (as of March 2019)</title>
+    <link href="https://www.heatonresearch.com/2019/03/13/tensorflow_20_articles.html"/>
+    <id>https://www.heatonresearch.com/2019/03/13/tensorflow_20_articles.html</id>
+    <published>2019-03-13T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:02.221Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://www.tensorflow.org/community/roadmap&quot;&gt;TensorFlow 2.0&lt;/a&gt; should be officially released this spring.  I’ve started lookin</summary>
+      
+    
+    
+    
+    <category term="tensorflow" scheme="https://www.heatonresearch.com/categories/tensorflow/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Time Lapse: Creating Several MergeLife Cellular Automata Online with JavaScript</title>
+    <link href="https://www.heatonresearch.com/2018/12/26/youtube-2018-12-26-mergelife-timelapse.html"/>
+    <id>https://www.heatonresearch.com/2018/12/26/youtube-2018-12-26-mergelife-timelapse.html</id>
+    <published>2018-12-26T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:02.389Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;This video shows how a MergeLife rule can be evolved in time-lapse.  This is nearly 12 hours of MergeLife runtime compressed to just a fw</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Happy Holidays from Jeff Heaton and Family</title>
+    <link href="https://www.heatonresearch.com/2018/12/20/youtube-2018-12-20-happy-holidays.html"/>
+    <id>https://www.heatonresearch.com/2018/12/20/youtube-2018-12-20-happy-holidays.html</id>
+    <published>2018-12-20T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:02.381Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Happy Holidays from the Heaton Family.  This video recaps 2018.&lt;/p&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/5</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Data Science in 4 Minutes: Quick High Level Overview</title>
+    <link href="https://www.heatonresearch.com/2018/12/17/youtube-2018-12-07-ds_4_min.html"/>
+    <id>https://www.heatonresearch.com/2018/12/17/youtube-2018-12-07-ds_4_min.html</id>
+    <published>2018-12-17T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:02.365Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;This is a video that I did for YouTube where I present a high level overview of data science in under 4 minutes.  I begin by explaining t</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MergeLife Rules from Reddit</title>
+    <link href="https://www.heatonresearch.com/2018/12/15/mergelife_reddit.html"/>
+    <id>https://www.heatonresearch.com/2018/12/15/mergelife_reddit.html</id>
+    <published>2018-12-15T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:02.020Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;I recently introduced &lt;a href=&quot;http://www.heatonresearch.com/mergelife/&quot;&gt;MergeLife&lt;/a&gt; to the &lt;a href=&quot;https://www.reddit.com/r/cellular_</summary>
+      
+    
+    
+    
+    <category term="mergelife" scheme="https://www.heatonresearch.com/categories/mergelife/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>An Overview of MergeLife Cellular Automata Rules</title>
+    <link href="https://www.heatonresearch.com/2018/12/10/youtube-2018-12-10-mergelife-rules.html"/>
+    <id>https://www.heatonresearch.com/2018/12/10/youtube-2018-12-10-mergelife-rules.html</id>
+    <published>2018-12-10T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:02.373Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;This video presents an overview of the MergeLife rules.  MergeLife is a cellular automation that I created tha evolves entire families of</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Nova Southeastern: Getting a PhD in my 40s from a Distance Program - Computer Science</title>
+    <link href="https://www.heatonresearch.com/2018/12/01/youtube-2018-12-01-nsu-cs-phd.html"/>
+    <id>https://www.heatonresearch.com/2018/12/01/youtube-2018-12-01-nsu-cs-phd.html</id>
+    <published>2018-12-01T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:02.354Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;This video presents an overview of how I obtained a Ph.D. in computer science from Nova Southeastern University.  &lt;/p&gt;
+&lt;iframe width=&quot;560</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>My New YouTube Trailer (Nov 2018)</title>
+    <link href="https://www.heatonresearch.com/2018/11/24/youtube-2018-11-24-youtube-trailer.html"/>
+    <id>https://www.heatonresearch.com/2018/11/24/youtube-2018-11-24-youtube-trailer.html</id>
+    <published>2018-11-24T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:02.346Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;This is my new YouTube trailer. &lt;/p&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/Vvj6a5ewkpE&quot; frameborder=&quot;0&quot; all</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>My Deep Learning Class YouTube Trailer (Nov 2018)</title>
+    <link href="https://www.heatonresearch.com/2018/11/18/youtube-2018-11-18-class-trailer.html"/>
+    <id>https://www.heatonresearch.com/2018/11/18/youtube-2018-11-18-class-trailer.html</id>
+    <published>2018-11-18T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:02.335Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;This is my new YouTube trailer for my class. &lt;/p&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/EQ38k6z2aks&quot; frameb</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>High Speed Defeat of Stratego iPhone</title>
+    <link href="https://www.heatonresearch.com/2018/10/26/youtube-2018-10-26-stratego.html"/>
+    <id>https://www.heatonresearch.com/2018/10/26/youtube-2018-10-26-stratego.html</id>
+    <published>2018-10-26T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:02.326Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;This is my new YouTube trailer for my class. &lt;/p&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/N5RB7-rpqfg&quot; frameb</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JNA with Maven Quickstart</title>
+    <link href="https://www.heatonresearch.com/2018/10/02/jna-quickstart.html"/>
+    <id>https://www.heatonresearch.com/2018/10/02/jna-quickstart.html</id>
+    <published>2018-10-02T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:01.919Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Java_Native_Access&quot;&gt;Java Native Access&lt;/a&gt; (JNA) and &lt;a href=&quot;https://en.wikipedia.org/wiki/Java_N</summary>
+      
+    
+    
+    
+    <category term="java" scheme="https://www.heatonresearch.com/categories/java/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Installing TensorFlow</title>
+    <link href="https://www.heatonresearch.com/2018/09/13/install_tf_2018.html"/>
+    <id>https://www.heatonresearch.com/2018/09/13/install_tf_2018.html</id>
+    <published>2018-09-13T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:01.903Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Session-11-TensorFlow-Workshop&quot;&gt;&lt;a href=&quot;#Session-11-TensorFlow-Workshop&quot; class=&quot;headerlink&quot; title=&quot;Session 11: TensorFlow Workshop&quot;</summary>
+      
+    
+    
+    
+    <category term="datascience" scheme="https://www.heatonresearch.com/categories/datascience/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Docker Image for TensorFlow/Keras</title>
+    <link href="https://www.heatonresearch.com/2018/09/03/youtube-2018-09-03-docker.html"/>
+    <id>https://www.heatonresearch.com/2018/09/03/youtube-2018-09-03-docker.html</id>
+    <published>2018-09-03T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:02.311Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;How to setup docker image for Keras/TensorFlow. &lt;/p&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/_Lo-5SZDDEc&quot; fra</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Introducing the MergeLife Cellular Automation</title>
+    <link href="https://www.heatonresearch.com/2018/08/27/mergelife_intro.html"/>
+    <id>https://www.heatonresearch.com/2018/08/27/mergelife_intro.html</id>
+    <published>2018-08-27T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:02.006Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/jeffheaton/mergelife/master/img/mergelife-1.png&quot; alt=&quot;MergeLife&quot;&gt;&lt;/p&gt;
+&lt;p&gt;I published a paper </summary>
+      
+    
+    
+    
+    <category term="mergelife" scheme="https://www.heatonresearch.com/categories/mergelife/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Care and Feeding of a Python Environment</title>
+    <link href="https://www.heatonresearch.com/2018/01/01/python-care-feeding.html"/>
+    <id>https://www.heatonresearch.com/2018/01/01/python-care-feeding.html</id>
+    <published>2018-01-01T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:02.101Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;This is a blog post that I continue to update that discusses how I setup a Python Anaconda environment.  As these&lt;br&gt;processes change, an</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>AWS EC2 Data Science: My Jupyter Workspaces for GPU</title>
+    <link href="https://www.heatonresearch.com/2017/11/30/aws-data-science-gpu.html"/>
+    <id>https://www.heatonresearch.com/2017/11/30/aws-data-science-gpu.html</id>
+    <published>2017-11-30T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:01.616Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;This blog post describes how I created a GPU Jupyterhub instance to use with Tensorflow in AWS.  The instance created from these instruct</summary>
+      
+    
+    
+    
+    <category term="datascience" scheme="https://www.heatonresearch.com/categories/datascience/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>AWS EC2 Data Science: My Jupyter Workspaces for Docker CPU Only</title>
+    <link href="https://www.heatonresearch.com/2017/11/25/aws-data-science-cpu.html"/>
+    <id>https://www.heatonresearch.com/2017/11/25/aws-data-science-cpu.html</id>
+    <published>2017-11-25T12:00:00.000Z</published>
+    <updated>2025-01-20T12:40:01.597Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;This blog post describes how I created a CPU-only Jupyterhub instance to be run from Docker in AWS.  The instance created from these inst</summary>
+      
+    
+    
+    
+    <category term="datascience" scheme="https://www.heatonresearch.com/categories/datascience/"/>
+    
+    
+  </entry>
+  
+</feed>

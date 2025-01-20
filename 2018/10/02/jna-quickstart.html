@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>JNA with Maven Quickstart | Heaton Research</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java Native Access (JNA) and Java Native Interface (JNI) are two frameworks that allow Java to directly call C-style functions located in executable libraries, such as Windows Dynamic Link Libraries (">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JNA with Maven Quickstart">
+<meta property="og:url" content="https://www.heatonresearch.com/2018/10/02/jna-quickstart.html">
+<meta property="og:site_name" content="Heaton Research">
+<meta property="og:description" content="Java Native Access (JNA) and Java Native Interface (JNI) are two frameworks that allow Java to directly call C-style functions located in executable libraries, such as Windows Dynamic Link Libraries (">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-10-02T12:00:00.000Z">
+<meta property="article:modified_time" content="2025-01-20T12:40:01.919Z">
+<meta property="article:author" content="Jeff Heaton">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@jeffheaton">
+  
+    <link rel="alternate" href="/atom.xml" title="Heaton Research" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  
+  
+
+  
+
+  
+<link rel="stylesheet" href="/css/styles.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-5393865-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  <script data-ad-client="ca-pub-6846576724383320" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="/">Heaton Research</a>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/about/">About</a></li>
+        
+          <li><a class=""
+                 href="/jeff_heaton_projects.html">Projects</a></li>
+        
+          <li><a class=""
+                 href="/book/">Books</a></li>
+        
+          <li><a class=""
+                 href="/contact.html">Contact</a></li>
+        
+          <li><a class=""
+                 href="/support.html">Support Me</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">Heaton Research</h1>
+  
+</div>
+
+<div class="row">
+    <div class="col-sm-8 blog-main">
+      <article id="post-jna-quickstart" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      JNA with Maven Quickstart
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2018/10/02/jna-quickstart.html" class="article-date"><time datetime="2018-10-02T12:00:00.000Z" itemprop="datePublished">2018-10-02</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Java_Native_Access">Java Native Access</a> (JNA) and <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Java_Native_Interface">Java Native Interface</a> (JNI) are two frameworks that allow Java to directly call C-style functions located in executable libraries, such as Windows <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dynamic-link_library">Dynamic Link Libraries</a> (DLLs).  Very often the Java code seeks to directly access functions inside of the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Windows_API">WIN32</a> API.  This posting describes how I setup a minimal “Hello World” application for JNA that makes use of Maven to obtain the appropriate JAR files for JNA.</p>
+<p>Though JNA and JNI both accomplish similar goals, there are some important differences.  JNI has much better performance than JNA.  However, JNA is much easier to work with than JNI.  The focus of this posting is to show how to setup a simple “Hello World” JNA application that uses Maven to incorporate the necessary JARs needed for JNA support.  JNA is not built into Java.  Because of this a number of JAR files must be included in the build.</p>
+<p>The easiest way to ensure that the JNA JARs are available is to make use of Maven.  For the simple example that I provide here, I use the following Maven script:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&lt;project&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line">  &lt;groupId&gt;org.jeffheaton&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;jna-example&lt;/artifactId&gt;</span><br><span class="line">  &lt;packaging&gt;jar&lt;/packaging&gt;</span><br><span class="line">  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;</span><br><span class="line">  &lt;name&gt;gare-win32&lt;/name&gt;</span><br><span class="line">  &lt;url&gt;http://maven.apache.org&lt;/url&gt;</span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;3.8.1&lt;/version&gt;</span><br><span class="line">      &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt; &lt;!-- JNA dependency --&gt;</span><br><span class="line">      &lt;groupId&gt;net.java.dev.jna&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;jna&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.5.2&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt; &lt;!-- JNA dependency --&gt;</span><br><span class="line">      &lt;groupId&gt;net.java.dev.jna&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;jna-platform&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.5.2&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">  &lt;/dependencies&gt;</span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">    &lt;maven.compiler.source&gt;1.6&lt;/maven.compiler.source&gt;</span><br><span class="line">    &lt;maven.compiler.target&gt;1.6&lt;/maven.compiler.target&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">  &lt;build&gt;</span><br><span class="line">  &lt;plugins&gt;</span><br><span class="line">    &lt;plugin&gt;</span><br><span class="line">      &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;</span><br><span class="line">      &lt;executions&gt;</span><br><span class="line">        &lt;execution&gt;</span><br><span class="line">          &lt;goals&gt;</span><br><span class="line">            &lt;goal&gt;attached&lt;/goal&gt;</span><br><span class="line">          &lt;/goals&gt;</span><br><span class="line">          &lt;phase&gt;package&lt;/phase&gt;</span><br><span class="line">          &lt;configuration&gt;</span><br><span class="line">            &lt;descriptorRefs&gt;</span><br><span class="line">              &lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;</span><br><span class="line">            &lt;/descriptorRefs&gt;</span><br><span class="line">            &lt;archive&gt;</span><br><span class="line">              &lt;manifest&gt;</span><br><span class="line">                &lt;mainClass&gt;org.jeffheaton.jnaexample.JNAExample&lt;/mainClass&gt;</span><br><span class="line">              &lt;/manifest&gt;</span><br><span class="line">            &lt;/archive&gt;</span><br><span class="line">          &lt;/configuration&gt;</span><br><span class="line">        &lt;/execution&gt;</span><br><span class="line">      &lt;/executions&gt;</span><br><span class="line">    &lt;/plugin&gt;</span><br><span class="line">  &lt;/plugins&gt;</span><br><span class="line">  &lt;/build&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+
+<p>The above Maven file is pretty standard.  It could easily be converted to a Gradle file as well.  However, for very simple build scripts I prefer Maven for its simplicity.  There are two main concepts going on:</p>
+<ul>
+<li><strong>Two JNA dependences</strong> - The dependancies section ensures that the two JNA jars are available to the program.</li>
+<li><strong>Fat Jar</strong> - The main class is specified and a JAR file is built with all dependancies included.  This provides a single JAR file that contains everything needed to run this project.</li>
+</ul>
+<p>The actual Java program is based on several JNA examples that simply dumps a list of all top level windows using WIN32. The source code for this example is provided here:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package org.jeffheaton.jnaexample;</span><br><span class="line"></span><br><span class="line">import com.sun.jna.Native;</span><br><span class="line">import com.sun.jna.Pointer;</span><br><span class="line">import com.sun.jna.platform.win32.WinDef.HWND;</span><br><span class="line">import com.sun.jna.platform.win32.WinUser;</span><br><span class="line">import com.sun.jna.platform.win32.WinUser.WNDENUMPROC;</span><br><span class="line">import com.sun.jna.win32.StdCallLibrary;</span><br><span class="line"></span><br><span class="line">public class JNAExample &#123;</span><br><span class="line">   public interface User32 extends StdCallLibrary &#123;</span><br><span class="line">      User32 INSTANCE = (User32) Native.loadLibrary(&quot;user32&quot;, User32.class);</span><br><span class="line">      boolean EnumWindows(WinUser.WNDENUMPROC lpEnumFunc, Pointer arg);</span><br><span class="line">      int GetWindowTextA(HWND hWnd, byte[] lpString, int nMaxCount);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public static void main(String[] args) &#123;</span><br><span class="line">      final User32 user32 = User32.INSTANCE;</span><br><span class="line">      user32.EnumWindows(new WNDENUMPROC() &#123;</span><br><span class="line">         int count = 0;</span><br><span class="line">         @Override</span><br><span class="line">         public boolean callback(HWND hWnd, Pointer arg1) &#123;</span><br><span class="line">            byte[] windowText = new byte[1024];</span><br><span class="line">            user32.GetWindowTextA(hWnd, windowText, windowText.length);</span><br><span class="line">            String wText = Native.toString(windowText);</span><br><span class="line"></span><br><span class="line">            if (wText.isEmpty()) &#123;</span><br><span class="line">               return true;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            System.out.println(&quot;Window, hwnd:&quot; + hWnd + &quot;, total &quot; + ++count</span><br><span class="line">                  + &quot; Title: &quot; + wText);</span><br><span class="line">            return true;</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;, null);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>To build the FatJAR use the following command:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
+
+<p>To run the program, use the following command:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jna-example-1.0-SNAPSHOT-jar-with-dependencies.jar </span><br></pre></td></tr></table></figure>
+
+<p>The complete source code to this project can be found at my <a target="_blank" rel="noopener" href="https://github.com/jeffheaton/jna-example">GitHub repository</a>. This should produce output similar to the following:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><span class="line">Window, hwnd:native@0x1014a, total 1 Title: G</span><br><span class="line">Window, hwnd:native@0x1021c, total 2 Title: Battery Meter</span><br><span class="line">Window, hwnd:native@0x10280, total 3 Title: Network Flyout</span><br><span class="line">Window, hwnd:native@0x10500, total 4 Title: HardwareMonitorWindow</span><br><span class="line">Window, hwnd:native@0x4037a, total 5 Title: HardwareMonitorWindow</span><br><span class="line">Window, hwnd:native@0x605cc, total 6 Title: Command Prompt - java  -jar jna-example-1.0-SNAPSHOT-jar-with-dependencies.jar</span><br><span class="line">Window, hwnd:native@0x50262, total 7 Title: jeffheaton/jna-example: A simple JNA example with Maven build script - Google Chrome</span><br><span class="line">Window, hwnd:native@0x60714, total 8 Title: projects</span><br><span class="line">Window, hwnd:native@0xb0600, total 9 Title: C:\Users\jheaton\projects\jna-example\src\test\java\org\jeffheaton\jna-example\AppTest.java - Notepad++</span><br><span class="line">Window, hwnd:native@0x305f2, total 10 Title: rgare</span><br><span class="line">Window, hwnd:native@0x107ce, total 11 Title: Progress</span><br><span class="line">Window, hwnd:native@0x107c8, total 12 Title: G</span><br><span class="line">Window, hwnd:native@0x3066c, total 13 Title: OutlookFbThreadWnd</span><br><span class="line">Window, hwnd:native@0x50540, total 14 Title: Number of unread items in this folder</span><br><span class="line">Window, hwnd:native@0x1042a, total 15 Title: Inbox - JHeaton@rgare.com - Outlook</span><br><span class="line">Window, hwnd:native@0x20576, total 16 Title: Word</span><br><span class="line">Window, hwnd:native@0x50534, total 17 Title: WMS ST Notif Window 0000247C 00002A7C</span><br><span class="line">Window, hwnd:native@0x204e0, total 18 Title: Outlook Send/Receive Progress</span><br><span class="line">Window, hwnd:native@0x204f6, total 19 Title: DDE Server Window</span><br><span class="line">Window, hwnd:native@0x700d8, total 20 Title: WISPTIS</span><br><span class="line">Window, hwnd:native@0x80510, total 21 Title: WMS ST Notif Window 00002120 000020BC</span><br><span class="line">Window, hwnd:native@0x4026a, total 22 Title: G</span><br><span class="line">Window, hwnd:native@0x40048, total 23 Title: OfficePowerManagerWindow</span><br><span class="line">Window, hwnd:native@0x104ee, total 24 Title: V</span><br><span class="line">Window, hwnd:native@0x20468, total 25 Title: T</span><br><span class="line">Window, hwnd:native@0x104ec, total 26 Title: Microsoft Outlook Social Connector</span><br><span class="line">Window, hwnd:native@0x3031a, total 27 Title: AdxTaskPane</span><br><span class="line">Window, hwnd:native@0x104da, total 28 Title: FolderViewServiceForm</span><br><span class="line">Window, hwnd:native@0x104d8, total 29 Title: AdxTaskPane</span><br><span class="line">Window, hwnd:native@0x104d4, total 30 Title: ReadingPaneServiceForm</span><br><span class="line">Window, hwnd:native@0x30224, total 31 Title: Cisco ViewMail for Outlook Add-In_&#123;62e65727-15dd-444f-b1a9-ea58b91c6184&#125;</span><br><span class="line">Window, hwnd:native@0x30236, total 32 Title: .NET-BroadcastEventWindow.2.0.0.0.33c0d9d.0</span><br><span class="line">Window, hwnd:native@0x10492, total 33 Title: crash service</span><br><span class="line">Window, hwnd:native@0x2048a, total 34 Title: Phish Alert_&#123;5cb25b73-0cb5-4b46-8d77-f504402449b5&#125;</span><br><span class="line">Window, hwnd:native@0x1048c, total 35 Title: .NET-BroadcastEventWindow.4.0.0.0.1ca0192.0</span><br><span class="line">Window, hwnd:native@0x203b4, total 36 Title: GpgOLResponder</span><br><span class="line">Window, hwnd:native@0x1049a, total 37 Title: Slack - RGA Enterprise Services Company</span><br><span class="line">Window, hwnd:native@0x20436, total 38 Title: WMS ST Notif Window 0000247C 00002480</span><br><span class="line">Window, hwnd:native@0x10426, total 39 Title: W</span><br><span class="line">Window, hwnd:native@0x203ca, total 40 Title: OfficePowerManagerWindow</span><br><span class="line">Window, hwnd:native@0x6027c, total 41 Title: G</span><br><span class="line">Window, hwnd:native@0x203fe, total 42 Title: Microsoft Outlook</span><br><span class="line">Window, hwnd:native@0x203da, total 43 Title: .NET-BroadcastEventWindow.4.0.0.0.3e799b.0</span><br><span class="line">Window, hwnd:native@0x103d6, total 44 Title: G</span><br><span class="line">Window, hwnd:native@0x103aa, total 45 Title: .NET-BroadcastEventWindow.4.0.0.0.2cf3e95.0</span><br><span class="line">Window, hwnd:native@0x103a8, total 46 Title: MediaContextNotificationWindow</span><br><span class="line">Window, hwnd:native@0x103a4, total 47 Title: SystemResourceNotifyWindow</span><br><span class="line">Window, hwnd:native@0x102fc, total 48 Title: Skype for Business</span><br><span class="line">Window, hwnd:native@0x1039e, total 49 Title: PPP Client Console</span><br><span class="line">Window, hwnd:native@0x60370, total 50 Title: Printer Installer Client Interface</span><br><span class="line">Window, hwnd:native@0x60320, total 51 Title: Rtc Video PnP Listener</span><br><span class="line">Window, hwnd:native@0x70322, total 52 Title: CUccMediaDeviceManager</span><br><span class="line">Window, hwnd:native@0x10304, total 53 Title: W</span><br><span class="line">Window, hwnd:native@0x202f8, total 54 Title: OfficePowerManagerWindow</span><br><span class="line">Window, hwnd:native@0x3023e, total 55 Title: G</span><br><span class="line">Window, hwnd:native@0x30250, total 56 Title: LogCheckerHiddenRootWindow_ETL</span><br><span class="line">Window, hwnd:native@0x30258, total 57 Title: LogCheckerLogRolloverHandlerHiddenWindow</span><br><span class="line">Window, hwnd:native@0x102ea, total 58 Title: C:\Program Files\Box\Box Sync\BoxSyncMonitor.exe</span><br><span class="line">Window, hwnd:native@0x301be, total 59 Title: Box Sync</span><br><span class="line">Window, hwnd:native@0x702ae, total 60 Title: G</span><br><span class="line">Window, hwnd:native@0x602c2, total 61 Title: .NET-BroadcastEventWindow.4.0.0.0.f96fc5.0</span><br><span class="line">Window, hwnd:native@0x102b0, total 62 Title: Realtek HD Audio Background Process for Vista</span><br><span class="line">Window, hwnd:native@0x102aa, total 63 Title: G</span><br><span class="line">Window, hwnd:native@0x402a6, total 64 Title: Realtek HD Audio New CPL background window</span><br><span class="line">Window, hwnd:native@0x1029e, total 65 Title: CVenderSpecSetting</span><br><span class="line">Window, hwnd:native@0x201f0, total 66 Title: ViennaSettingUI</span><br><span class="line">Window, hwnd:native@0x10294, total 67 Title: Realtek HD Audio New GUI</span><br><span class="line">Window, hwnd:native@0x10292, total 68 Title: Animate Manager</span><br><span class="line">Window, hwnd:native@0x10290, total 69 Title: RTK TRAYICON</span><br><span class="line">Window, hwnd:native@0x1028e, total 70 Title: AudioEngine For Realtek HD Audio New GUI</span><br><span class="line">Window, hwnd:native@0x30260, total 71 Title: RTK AUDIO DRIVER EVENT MGR</span><br><span class="line">Window, hwnd:native@0x5025a, total 72 Title: MS_WebcheckMonitor</span><br><span class="line">Window, hwnd:native@0x10212, total 73 Title: DDE Server Window</span><br><span class="line">Window, hwnd:native@0x101c8, total 74 Title: HotKey Listener</span><br><span class="line">Window, hwnd:native@0x10170, total 75 Title: DDE Server Window</span><br><span class="line">Window, hwnd:native@0x10122, total 76 Title: EXPLORER</span><br><span class="line">Window, hwnd:native@0x20032, total 77 Title: .NET-BroadcastEventWindow.4.0.0.0.1ca0192.0</span><br><span class="line">Window, hwnd:native@0x5006c, total 78 Title: BluetoothNotificationAreaIconWindowClass</span><br><span class="line">Window, hwnd:native@0x1008c, total 79 Title: Windows Push Notifications Platform</span><br><span class="line">Window, hwnd:native@0x2001a, total 80 Title: Task Host Window</span><br><span class="line">Window, hwnd:native@0x10040, total 81 Title: DWM Notification Window</span><br><span class="line">Window, hwnd:native@0x101ba, total 82 Title: igfxtrayWindow</span><br><span class="line">Window, hwnd:native@0x104d2, total 83 Title: ADXOlReceiverWindowCaption</span><br><span class="line">Window, hwnd:native@0x10142, total 84 Title: Program Manager</span><br><span class="line">Window, hwnd:native@0x1014e, total 85 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x101ac, total 86 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x10136, total 87 Title: MSCTFIME UI</span><br><span class="line">Window, hwnd:native@0x100c4, total 88 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x10232, total 89 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x203c2, total 90 Title: MSCTFIME UI</span><br><span class="line">Window, hwnd:native@0x103dc, total 91 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x106ea, total 92 Title: MSCTFIME UI</span><br><span class="line">Window, hwnd:native@0x106cc, total 93 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x806fe, total 94 Title: MSCTFIME UI</span><br><span class="line">Window, hwnd:native@0x6053e, total 95 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x2072c, total 96 Title: MSCTFIME UI</span><br><span class="line">Window, hwnd:native@0x706fc, total 97 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x10630, total 98 Title: MSCTFIME UI</span><br><span class="line">Window, hwnd:native@0x405c6, total 99 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x30206, total 100 Title: MSCTFIME UI</span><br><span class="line">Window, hwnd:native@0x205fa, total 101 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x407b8, total 102 Title: MSCTFIME UI</span><br><span class="line">Window, hwnd:native@0x107d0, total 103 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x107cc, total 104 Title: Default IME</span><br><span class="line">Window, hwnd:native@0xa06f8, total 105 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x606d6, total 106 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x80608, total 107 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x403f8, total 108 Title: MSCTFIME UI</span><br><span class="line">Window, hwnd:native@0x10164, total 109 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x30564, total 110 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x1044a, total 111 Title: MSCTFIME UI</span><br><span class="line">Window, hwnd:native@0x2041a, total 112 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x1053a, total 113 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x2053c, total 114 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x80062, total 115 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x104aa, total 116 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x10494, total 117 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x1047c, total 118 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x20130, total 119 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x10480, total 120 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x303d8, total 121 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x103a6, total 122 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x2034c, total 123 Title: MSCTFIME UI</span><br><span class="line">Window, hwnd:native@0x202e6, total 124 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x10388, total 125 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x102ec, total 126 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x102e0, total 127 Title: MSCTFIME UI</span><br><span class="line">Window, hwnd:native@0x50068, total 128 Title: Default IME</span><br><span class="line">Window, hwnd:native@0xc02c4, total 129 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x102b2, total 130 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x102ac, total 131 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x30256, total 132 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x1024a, total 133 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x10216, total 134 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x101de, total 135 Title: MSCTFIME UI</span><br><span class="line">Window, hwnd:native@0x101ca, total 136 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x1013e, total 137 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x10124, total 138 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x200e4, total 139 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x10096, total 140 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x20092, total 141 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x1008e, total 142 Title: Default IME</span><br><span class="line">Window, hwnd:native@0x1015c, total 143 Title: MSCTFIME UI</span><br><span class="line">Window, hwnd:native@0x100aa, total 144 Title: Default IME</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://www.heatonresearch.com/2018/10/02/jna-quickstart.html" data-id="cm651nwrw00508vmt8jy8a183" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://www.heatonresearch.com/2018/10/02/jna-quickstart.html#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2018/09/13/install_tf_2018.html" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Installing TensorFlow</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2018/10/26/youtube-2018-10-26-stratego.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">High Speed Defeat of Stratego iPhone</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+    </div>
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+      
+  <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>Jeff Heaton, Ph.D. is a YouTuber, [computer/data] [scientist/engineer], and indie publisher. Heaton Research is the homepage for his projects and research.</p>
+
+</div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ai/">ai</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/aifh/">aifh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/bbs/">bbs</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/course/">course</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/datascience/">datascience</a><span class="sidebar-module-list-count">11</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/encog/">encog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/gpu/">gpu</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/java/">java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/kaggle/">kaggle</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/learning/">learning</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/mergelife/">mergelife</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/phd/">phd</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/presentation/">presentation</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/python/">python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/r/">r</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/tensorflow/">tensorflow</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/wustl/">wustl</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+
+
+  
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/09/">September 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/05/">May 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/03/">March 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/12/">December 2018</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/11/">November 2018</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/10/">October 2018</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/09/">September 2018</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/08/">August 2018</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/01/">January 2018</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/11/">November 2017</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/06/">June 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">May 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/03/">March 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/02/">February 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/01/">January 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">September 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">March 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/02/">February 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">September 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">August 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">May 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/03/">March 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">December 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/09/">September 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/05/">May 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">February 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/08/">August 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/07/">July 2013</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/06/">June 2013</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/04/">April 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/03/">March 2013</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2019/09/09/pas-2019-features.html">Session 16: B/I - Multivariate Feature Engineering: Beyond Simple Data Preparation</a>
+        </li>
+      
+        <li>
+          <a href="/2019/09/03/tf-no-module-jupyter.html">Why am I getting ImportError: No module named tensorflow?</a>
+        </li>
+      
+        <li>
+          <a href="/2019/05/20/2019-video-schedule.html">Video Release Schedule for Fall 2019 Applications of Deep Learning</a>
+        </li>
+      
+        <li>
+          <a href="/2019/03/13/tensorflow_20_articles.html">My Favorite TensorFlow 2.0 Articles (as of March 2019)</a>
+        </li>
+      
+        <li>
+          <a href="/2018/12/26/youtube-2018-12-26-mergelife-timelapse.html">Time Lapse: Creating Several MergeLife Cellular Automata Online with JavaScript</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+    </div>
+</div>
+
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2025 by Heaton Research, Inc. - <a href="/legal/">Legal and Copyright Info</a><br>
+Jeff Heaton is a computer scientist, data scientist, and indie publisher. Heaton Research is the homepage for his projects and research. <a href="/tips.html">Tips and support.</a><br><br>
+<ul class="list-inline banner-social-buttons">
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://github.com/jeffheaton"><i class="fa fa-github"> <span class="network-name">GitHub</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://twitter.com/jeffheaton"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.youtube.com/user/HeatonResearch"><i class="fa fa-youtube-play"> <span class="network-name">Youtube</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.facebook.com/encog.framework/"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
+</ul>
+
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'heatonresearch';
+  
+  var disqus_url = 'https://www.heatonresearch.com/2018/10/02/jna-quickstart.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+<script src="/js/script.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>AIFH Volume 1, Chapter 3: Optical Character Recognition Lab | Heaton Research</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="OCR Lab  		     Browser not supported. 	    	Browser not supported.            &quot;use strict&quot;; if(window.addEventListener) { window.addEventListener(&#39;load&#39;, function () {  	var DOWNSAMPLE_WIDTH &#x3D; 5; 	va">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AIFH Volume 1, Chapter 3: Optical Character Recognition Lab">
+<meta property="og:url" content="https://www.heatonresearch.com/aifh/vol1/ocr.html">
+<meta property="og:site_name" content="Heaton Research">
+<meta property="og:description" content="OCR Lab  		     Browser not supported. 	    	Browser not supported.            &quot;use strict&quot;; if(window.addEventListener) { window.addEventListener(&#39;load&#39;, function () {  	var DOWNSAMPLE_WIDTH &#x3D; 5; 	va">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-01-20T12:40:02.850Z">
+<meta property="article:modified_time" content="2025-01-20T12:40:02.850Z">
+<meta property="article:author" content="Jeff Heaton">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@jeffheaton">
+  
+    <link rel="alternate" href="/atom.xml" title="Heaton Research" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  
+  
+
+  
+    
+      
+    
+    
+      
+        
+<link rel="stylesheet" href="/aifh/vol1/ocr.css">
+
+      
+    
+  
+
+  
+<link rel="stylesheet" href="/css/styles.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-5393865-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  <script data-ad-client="ca-pub-6846576724383320" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="/">Heaton Research</a>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/about/">About</a></li>
+        
+          <li><a class=""
+                 href="/jeff_heaton_projects.html">Projects</a></li>
+        
+          <li><a class=""
+                 href="/book/">Books</a></li>
+        
+          <li><a class=""
+                 href="/contact.html">Contact</a></li>
+        
+          <li><a class=""
+                 href="/support.html">Support Me</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <a href="/aifh/"><img src="/images/aifh/web_header.png" class="img-responsive center-block"></a>
+<h1>AIFH Volume 1, Chapter 3: Optical Character Recognition Lab</h1>
+<article id="aifh-page-" class="article article-type-aifh-page" itemscope itemprop="blogPost">
+
+
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1>OCR Lab</h2>
+
+		<div id="example-holder">
+    <canvas id="drawing-area" width="300" height="300">Browser not supported.</canvas>
+	<select id="lstLetters" size="10"></select>
+
+<div id="example-btn1"><input id="btnRecognize" type="button" value="Recognize"/><input id="btnTeach" type="button" value="Teach"/><input id="btnClear" type="button" value="Clear"/><input id="btnDownsample" type="button" value="Down Sample"/><input id="btnRemove" type="button" value="Remove"/></div>
+
+	<canvas id="downsampleView" width="110" height="120">Browser not supported.</canvas>
+
+    </div>
+    <script type="text/javascript">
+"use strict";
+if(window.addEventListener) {
+window.addEventListener('load', function () {
+
+	var DOWNSAMPLE_WIDTH = 5;
+	var DOWNSAMPLE_HEIGHT = 8;
+
+  var canvas, drawingContext, tool, lstLetters, downsampleView,downsampleContext;
+  var charData = {};
+
+  function init () {
+
+    // Find the canvas element.
+    canvas = document.getElementById('drawing-area');
+	lstLetters = document.getElementById('lstLetters');
+	downsampleView = document.getElementById('downsampleView');
+
+    drawingContext = canvas.getContext('2d');
+	downsampleContext = downsampleView.getContext('2d');
+
+    // Pencil tool instance.
+    tool = new tool_pencil();
+
+
+    // Attach the mousedown, mousemove and mouseup event listeners.
+    canvas.addEventListener('mousedown', ev_canvas, true);
+    canvas.addEventListener('mousemove', ev_canvas, true);
+    canvas.addEventListener('mouseup',   ev_canvas, true);
+    canvas.addEventListener('touchstart',   ev_canvas, true);
+    canvas.addEventListener('touchend',   ev_canvas, true);
+    canvas.addEventListener('touchmove',   ev_canvas, true);
+	canvas.addEventListener('mouseout',   ev_canvas, true);
+	lstLetters.addEventListener('change', ev_selectList, true);
+
+	var btnClear = document.getElementById('btnClear');
+	var btnDownsample = document.getElementById('btnDownsample');
+	var btnRecognize = document.getElementById('btnRecognize');
+	var btnTeach = document.getElementById('btnTeach');
+	var btnRemove = document.getElementById('btnRemove');
+
+	btnClear.addEventListener('click', ev_clear, false);
+	btnDownsample.addEventListener('click', ev_downSample, false);
+	btnRecognize.addEventListener('click', ev_recognize, false);
+	btnTeach.addEventListener('click', ev_teach, false);
+	btnRemove.addEventListener('click', ev_remove, false);
+
+	clearDownSample();
+
+	preload();
+  }
+
+  /////////////////////////////////////////////////////////////////////////////
+  // Event functions
+  /////////////////////////////////////////////////////////////////////////////
+
+  // Handle events to the canvas.  This allows drawing to occur.
+  function ev_canvas (ev)
+  {
+	// Firefox
+	if (ev.layerX || ev.layerX == 0)
+	{
+		ev._x = ev.layerX;
+		ev._y = ev.layerY;
+	}
+	// Opera
+	else if (ev.offsetX || ev.offsetX == 0)
+	{
+		ev._x = ev.offsetX;
+		ev._y = ev.offsetY;
+	}
+
+	// Call the event handler of the tool.
+	var func = tool[ev.type];
+	if (func)
+	{
+		func(ev);
+	}
+  }
+
+  // Called when the "Teach" button is clicked.
+  function ev_teach(ev)
+  {
+		var data = performDownSample();
+
+		if( data == null )
+		{
+			alert("You must draw something first.");
+		}
+		else
+		{
+			var charEntered = prompt("What did you just draw?", "");
+
+			if( charEntered )
+			{
+				if( charEntered in charData )
+				{
+					alert("That character is already defined.");
+				}
+				else if( charEntered.length!=1 )
+				{
+					alert("Please enter exactly one character.");
+				}
+				else
+				{
+					canvas.width = canvas.width;
+					performDownSample();
+					charData[charEntered] = data;
+					lstLetters.add(new Option(charEntered));
+					clearDownSample();
+				}
+			}
+		}
+  }
+
+  // Called when the "Remove" button is clicked.
+  function ev_remove(ev)
+  {
+  	for (var i = lstLetters.length - 1; i>=0; i--) {
+		if (lstLetters.options[i].selected) {
+			lstLetters.remove(i);
+		}
+	}
+	clearDownSample();
+  }
+
+  // Called when the "Downsample" button is clicked
+  function ev_downSample(ev)
+  {
+	performDownSample();
+  }
+
+  // Called when the "Clear" button is clicked
+  function ev_clear(ev)
+  {
+	canvas.width = canvas.width;
+	clearDownSample();
+  }
+
+  // Called when the selected letter changes
+  function ev_selectList (ev)
+  {
+	var c = lstLetters.options[lstLetters.selectedIndex].text;
+	displaySample(charData[c]);
+  }
+
+  // Called when the "Recognize" button is clicked
+  function ev_recognize (ev)
+  {
+  	var drawnChar = performDownSample();
+
+	if( lstLetters.length<1 )
+	{
+		alert("Please teach me something first.");
+	}
+	else if( drawnChar == null )
+	{
+		alert("You must draw something to recognize.");
+	}
+	else
+	{
+		var bestChar = '??';
+		var bestScore = 0;
+
+		for(var c in charData )
+		{
+			var data = charData[c];
+
+// Now we will actually recognize the letter drawn.
+// To do this, we will use a Euclidean distance
+// http://www.heatonresearch.com/wiki/Euclidean_Distance
+
+			var sum = 0;
+			for(var i = 0; i<data.length; i++ )
+			{
+				var delta = data[i] - drawnChar[i];
+				sum = sum + (delta*delta);
+			}
+
+			sum = Math.sqrt(sum);
+
+// Basically we are calculating the Euclidean distance between
+// what was just drawn, and each of the samples we taught
+// the program.  The smallest Euclidean distance is the char.
+
+			if( sum<bestScore || bestChar=='??' )
+			{
+				bestScore = sum;
+				bestChar = c;
+			}
+
+		}
+
+		alert('I believe you typed: ' + bestChar );
+	}
+
+	canvas.width = canvas.width;
+	clearDownSample();
+  }
+
+  /////////////////////////////////////////////////////////////////////////////
+  // Downsampling functions
+  /////////////////////////////////////////////////////////////////////////////
+
+  // Preload the digits, so that the user can quickly do some OCR if desired.
+  function preload()
+  {
+	defineChar("0", new Array( -1,1,1,1,-1,1,1,-1,1,1,1,-1,-1,-1,1,1,-1,-1,-1,1,1,-1,-1,-1,1,1,-1,-1,-1,1,1,1,-1,-1,1,-1,1,1,1,-1 ) );
+	defineChar("1", new Array( 1,1,1,-1,-1,1,1,1,-1,-1,1,1,1,-1,-1,1,1,1,1,-1,-1,1,1,1,1,-1,-1,-1,1,1,-1,-1,-1,1,1,-1,1,1,1,1) );
+	defineChar("2", new Array(1,1,1,-1,-1,-1,-1,1,1,-1,-1,-1,-1,1,-1,-1,-1,-1,1,-1,-1,-1,-1,1,-1,1,1,1,1,-1,1,-1,1,1,-1,1,1,1,1,1) );
+	defineChar("3", new Array(1,1,1,1,-1,-1,-1,-1,1,1,-1,-1,-1,1,1,-1,-1,1,1,-1,-1,1,1,1,1,-1,-1,-1,-1,1,-1,-1,-1,-1,1,1,1,1,1,1) );
+	defineChar("4", new Array(1,-1,-1,1,-1,1,-1,-1,1,-1,1,-1,-1,1,-1,1,1,1,1,1,-1,-1,-1,1,-1,-1,-1,-1,1,-1,-1,-1,-1,1,-1,-1,-1,-1,1,-1) );
+	defineChar("5", new Array(1,1,1,1,1,1,-1,-1,-1,-1,1,-1,-1,-1,-1,1,1,1,1,1,-1,-1,-1,-1,1,-1,-1,-1,-1,1,-1,-1,-1,-1,1,1,1,1,1,1) );
+	defineChar("6", new Array(-1,1,1,1,-1,1,1,-1,-1,-1,1,-1,-1,-1,-1,1,-1,1,1,-1,1,1,1,1,1,1,1,-1,-1,1,1,1,-1,-1,1,-1,1,1,1,1) );
+	defineChar("7", new Array(1,1,1,1,1,-1,-1,-1,1,1,-1,-1,-1,1,-1,-1,-1,-1,1,-1,-1,-1,1,1,-1,-1,-1,1,-1,-1,-1,1,1,-1,-1,-1,1,-1,-1,-1) );
+	defineChar("8", new Array(1,1,1,1,1,1,-1,-1,-1,1,1,-1,-1,-1,1,1,1,1,1,1,-1,1,1,1,1,1,1,-1,-1,1,1,-1,-1,-1,1,1,1,1,1,1) );
+	defineChar("9", new Array(1,1,1,1,1,1,1,-1,-1,1,1,-1,-1,-1,1,1,1,1,1,1,-1,-1,-1,-1,1,-1,-1,-1,-1,1,-1,-1,-1,-1,1,-1,-1,-1,-1,1) );
+  }
+
+  // Define a character, add it to the list and to the map.
+  function defineChar(charEntered,data)
+  {
+  	charData[charEntered] = data;
+	lstLetters.add(new Option(charEntered));
+  }
+
+  // Determine if the specificed horizontal line is clear.
+  // This is used to find the top and bottom cropping lines.
+  function isHLineClear(row)
+  {
+	var imgd = drawingContext.getImageData(0, row, canvas.width, 1);
+	var pix = imgd.data;
+
+	for(var i = 0; i<pix.length; i++)
+	{
+		if( pix[i]>0 )
+		{
+			return false;
+		}
+	}
+
+	return true;
+  }
+
+  // Determine if the specificed vertical line is clear.
+  // This is used to find the left and right cropping lines.
+  function isVLineClear(col)
+  {
+	var imgd = drawingContext.getImageData(col, 0, 1, canvas.height);
+	var pix = imgd.data;
+
+	for(var i = 0; i<pix.length; i++)
+	{
+		if( pix[i]>0 )
+		{
+			return false;
+		}
+	}
+
+	return true;
+  }
+
+  // Downsample the drawing area.
+  function performDownSample()
+  {
+	// first find a bounding rectangle so that we can crop out unused space
+	var top = 0;
+
+	while( isHLineClear(top) && top<canvas.height )
+	{
+		top++;
+	}
+
+	var bottom = canvas.height;
+
+	while( isHLineClear(bottom) && bottom>0 )
+	{
+		bottom--;
+	}
+
+	var left = 0;
+
+	while( isVLineClear(left) && left<canvas.width )
+	{
+		left++;
+	}
+
+	var right = canvas.width;
+
+	while( isVLineClear(right) && right>0 )
+	{
+		right--;
+	}
+
+	if( bottom<top )
+	{
+		return null;
+	}
+	//uncomment this if you want to see the cropping rectangle
+	//drawingContext.strokeRect(left,top,right-left,bottom-top);
+
+	// now downsample
+
+	var cellWidth = (right-left) / DOWNSAMPLE_WIDTH;
+	var cellHeight = (bottom-top) / DOWNSAMPLE_HEIGHT;
+	var result = new Array();
+	var resultIndex = 0;
+
+	// to downsample we are going to lay a "grid" over the drawing
+	// the grid's dimensions are defined by DOWNSAMPLE_HEIGHT and
+	// DOWNSAMPLE_WIDTH.  Typically 5x8.  If even one pixel is
+	// present in a grid square, it is downsampled to "black".
+
+	for(var row = 0; row<DOWNSAMPLE_HEIGHT; row++)
+	{
+		for(var col = 0; col<DOWNSAMPLE_WIDTH; col++)
+		{
+			var x = (cellWidth * col)+left;
+			var y = (cellHeight * row)+top;
+
+			// obtain pixel data for the grid square
+			var imgd = drawingContext.getImageData(x, y, cellWidth, cellHeight);
+			var pix = imgd.data;
+
+			var d = false;
+			// see if at least one pixel is "black"
+			for(var i = 0; i<pix.length; i++)
+			{
+				if( pix[i]>0 )
+				{
+					d = true;
+					break;
+				}
+			}
+
+			// we are downsampling to an array where 1.0 is black, and -1.0 is white.
+			// this will be used for Euclidean distance measuring.
+			if( d )
+			{
+				result[resultIndex++] = 1.0;
+			} else
+			{
+				result[resultIndex++] = -1.0;
+			}
+		}
+	}
+
+	displaySample(result);
+	return result;
+  }
+
+  // Clear the downsample area to just a blank grid.
+  function clearDownSample()
+  {
+	downsampleContext.fillStyle = 'white';
+	var pixW = downsampleView.width / DOWNSAMPLE_WIDTH;
+	var pixH = downsampleView.height / DOWNSAMPLE_HEIGHT;
+
+  	for(var row = 0; row<DOWNSAMPLE_HEIGHT; row++)
+	{
+		for(var col = 0; col<DOWNSAMPLE_WIDTH; col++)
+		{
+			downsampleContext.fillRect(col*pixW,row*pixH,pixW,pixH);
+			downsampleContext.strokeRect(col*pixW,row*pixH,pixW,pixW);
+		}
+	}
+  }
+
+  // Display downsampled data to the grid.
+  function displaySample(data)
+  {
+	var dataIndex = 0;
+	var pixW = downsampleView.width / DOWNSAMPLE_WIDTH;
+	var pixH = downsampleView.height / DOWNSAMPLE_HEIGHT;
+
+	for(var row = 0; row<DOWNSAMPLE_HEIGHT; row++)
+	{
+		for(var col = 0; col<DOWNSAMPLE_WIDTH; col++)
+		{
+			var d = data[dataIndex++];
+			if(Math.abs(d-1.0)<0.0001 ) {
+				downsampleContext.fillStyle = 'black';
+			} else {
+				downsampleContext.fillStyle = 'white';
+			}
+			downsampleContext.fillRect(col*pixW,row*pixH,pixW,pixH);
+			downsampleContext.strokeRect(col*pixW,row*pixH,pixW,pixW);
+		}
+	}
+  }
+
+  /////////////////////////////////////////////////////////////////////////////
+  // Drawing functions
+  /////////////////////////////////////////////////////////////////////////////
+
+  // This painting tool works like a drawing pencil which tracks the mouse
+  // movements.
+function tool_pencil ()
+{
+    var tool = this;
+    this.started = false;
+
+// This is called when you start holding down the mouse button.
+// This starts the pencil drawing.
+this.mousedown = function (ev)
+{
+  drawingContext.beginPath();
+  drawingContext.moveTo(ev._x, ev._y);
+  tool.started = true;
+};
+
+// This function is called every time you move the mouse. Obviously, it only
+// draws if the tool.started state is set to true (when you are holding down
+// the mouse button).
+this.mousemove = function (ev)
+{
+  if (tool.started)
+  {
+    drawingContext.lineTo(ev._x, ev._y);
+    drawingContext.stroke();
+  }
+};
+
+// This is called when you release the mouse button.
+this.mouseup = function (ev)
+{
+  if (tool.started)
+  {
+    tool.mousemove(ev);
+    tool.started = false;
+  }
+};
+
+this.mouseout = function(ev)
+{
+  if (tool.started)
+  {
+    tool.mousemove(ev);
+    tool.started = false;
+  }
+}
+
+this.touchstart = function(ev)
+{
+  drawingContext.beginPath();
+  drawingContext.moveTo(ev._x, ev._y);
+  tool.started = true;
+}
+
+this.touchend = function(ev)
+{
+  if (tool.started)
+  {
+    tool.started = false;
+  }
+}
+
+this.touchmove = function(ev)
+{
+  if (tool.started)
+  {
+    drawingContext.lineTo(ev._x, ev._y);
+    drawingContext.stroke();
+    ev.preventDefault();
+  }
+};
+
+  }
+
+  // cause the init function to be called.
+  init();
+
+}, false); }
+</script>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://www.heatonresearch.com/aifh/vol1/ocr.html" data-id="cm651nwp5001x8vmtfbbg1er5" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+
+    </footer>
+  </div>
+  
+    
+
+  
+</article>
+
+
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2025 by Heaton Research, Inc. - <a href="/legal/">Legal and Copyright Info</a><br>
+Jeff Heaton is a computer scientist, data scientist, and indie publisher. Heaton Research is the homepage for his projects and research. <a href="/tips.html">Tips and support.</a><br><br>
+<ul class="list-inline banner-social-buttons">
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://github.com/jeffheaton"><i class="fa fa-github"> <span class="network-name">GitHub</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://twitter.com/jeffheaton"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.youtube.com/user/HeatonResearch"><i class="fa fa-youtube-play"> <span class="network-name">Youtube</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.facebook.com/encog.framework/"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
+</ul>
+
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'heatonresearch';
+  
+  var disqus_url = 'https://www.heatonresearch.com/aifh/vol1/ocr.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+<script src="/js/script.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

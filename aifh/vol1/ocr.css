@@ -1,0 +1,56 @@
+#example-holder
+{
+  border: 1px solid #000;
+  padding:5px;
+  background: #c0c0c0;
+  width: 430px;
+  height: 340px;
+  position: relative;
+}
+
+#drawing-area
+{
+  border: 1px solid #000;
+  background: white;
+  width:300px;
+  height:300px;
+  position: absolute;
+  display: inline;
+  top:5px;
+  left: 5px;
+}
+
+#downsampleView
+{
+  border: 1px solid #000;
+  background: white;
+  width: 110px;
+  height: 120px;
+  position: absolute;
+  display: inline;
+  top:5px;
+  left:313px;
+}
+
+#lstLetters
+{
+  border: 1px solid #000;
+  width:112px;
+  height: 171px;
+  align:top;
+  position: absolute;
+  display: inline;
+  left: 313px;
+  top: 137px;
+  font-size: 12px;
+}
+
+#example-btn1
+{
+  border: 1px solid #000;
+  position: absolute;
+  display: inline;
+  width: 416px;
+  top:315px;
+  font-size: 12px;
+}

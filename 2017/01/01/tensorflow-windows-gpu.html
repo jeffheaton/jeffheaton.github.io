@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Using TensorFlow in Windows with a GPU | Heaton Research</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="In case you missed it, TensorFlow is now available for Windows, as well as Mac and Linux.  This was not always the case.  For most of TensorFlow’s first year of existence, the only means of Windows su">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Using TensorFlow in Windows with a GPU">
+<meta property="og:url" content="https://www.heatonresearch.com/2017/01/01/tensorflow-windows-gpu.html">
+<meta property="og:site_name" content="Heaton Research">
+<meta property="og:description" content="In case you missed it, TensorFlow is now available for Windows, as well as Mac and Linux.  This was not always the case.  For most of TensorFlow’s first year of existence, the only means of Windows su">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-01-01T12:00:00.000Z">
+<meta property="article:modified_time" content="2025-01-20T12:40:02.205Z">
+<meta property="article:author" content="Jeff Heaton">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@jeffheaton">
+  
+    <link rel="alternate" href="/atom.xml" title="Heaton Research" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  
+  
+
+  
+
+  
+<link rel="stylesheet" href="/css/styles.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-5393865-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  <script data-ad-client="ca-pub-6846576724383320" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="/">Heaton Research</a>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/about/">About</a></li>
+        
+          <li><a class=""
+                 href="/jeff_heaton_projects.html">Projects</a></li>
+        
+          <li><a class=""
+                 href="/book/">Books</a></li>
+        
+          <li><a class=""
+                 href="/contact.html">Contact</a></li>
+        
+          <li><a class=""
+                 href="/support.html">Support Me</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">Heaton Research</h1>
+  
+</div>
+
+<div class="row">
+    <div class="col-sm-8 blog-main">
+      <article id="post-tensorflow-windows-gpu" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Using TensorFlow in Windows with a GPU
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2017/01/01/tensorflow-windows-gpu.html" class="article-date"><time datetime="2017-01-01T12:00:00.000Z" itemprop="datePublished">2017-01-01</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/gpu/">gpu</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>In case you missed it, <a target="_blank" rel="noopener" href="https://www.tensorflow.org/">TensorFlow</a> is now <a target="_blank" rel="noopener" href="https://developers.googleblog.com/2016/11/tensorflow-0-12-adds-support-for-windows.html">available for Windows</a>, as well as Mac and Linux.  <a target="_blank" rel="noopener" href="https://github.com/tensorflow/tensorflow/issues/17">This was not always the case</a>.  For most of TensorFlow’s first year of existence, the only means of Windows support was virtualization, <a target="_blank" rel="noopener" href="https://gist.github.com/ericjang/959c03168c0bdfac1ca3">typically through Docker</a>. Even without GPU support, this is great news for me.  I teach a <a target="_blank" rel="noopener" href="https://sites.wustl.edu/jeffheaton/">graduate course in deep learning</a> and dealing with students who only run Windows was always difficult. Previously, I encouraged Windows students to either use Docker or <a target="_blank" rel="noopener" href="https://datascientistworkbench.com/">the cloud</a>.  Now all will be able to run locally.</p>
+<p>Using your GPU for deep learning is widely reported as highly effective.  Clearly very high end GPU clusters can do some amazing things with deep learning.  However, I was curious what deep learning could offer a high-end GPU that you might find on a laptop.  Particularly, I was curious about my Windows Surface Book (GPU: GeForce GT 940) performance of using the GPU vs the CPU.  Should I be using the GPU for my deep learning research?  It turns out that I should be!  For a simple example (see my <a target="_blank" rel="noopener" href="https://github.com/jeffheaton/t81_558_deep_learning/blob/master/t81_558_class14_aws.ipynb">class website</a>), I got the following results:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CPU Version of TensorFlow: 1 hour, 54 minutes.</span><br><span class="line">GPU Version of TensorFlow: 13 minutes.</span><br></pre></td></tr></table></figure>
+
+<p>The newer Surface Book’s have even more advanced GPU’s (GeForce GT 965).  The TensorFlow playing field has really changed between Mac and Windows in the last year.  When TensorFlow was first released (November 2015) there was no Windows version and I could get decent performance on my Mac Book Pro (GPU: NVidia 650M).  Now, on the first day of 2017, the new Mac Book Pros are sporting a strange LCD touch bar (to replace function keys) and an AMD GPU.  Both of which are useless to TensorFlow.  At some point TensorFlow will probably add OpenCL support, and allow AMD chips to run.  But, for now, NVidia CUDA is where most of the interesting developments are being made for deep learning.</p>
+<p>I never thought I would say this a year ago, but the Microsoft Surface Book, is one of the best mainstream laptops for deep learning development.  Of course, if you are willing to go outside the mainstream, there are more <a target="_blank" rel="noopener" href="https://system76.com/laptops/bonobo">powerful options</a>.  Though, if you need extreme heavy lifting with GPU’s you should <a target="_blank" rel="noopener" href="https://aws.amazon.com/blogs/aws/new-p2-instance-type-for-amazon-ec2-up-to-16-gpus/">look to the cloud</a>.  </p>
+<h2 id="Installing"><a href="#Installing" class="headerlink" title="Installing"></a>Installing</h2><p>First, you should make sure you have the correct NVidia drivers installed:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows">CUDA Drivers</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.nvidia.com/cudnn">CUDNN</a> - CUDA for Deep Neural Networks</li>
+</ul>
+<p>Installing TensorFlow into Windows Python is a simple <em>pip</em> command.  As of the writing of this post, TensorFlow requires Python 2.7, 3.4 or 3.5.  In my case I used Anaconda Python 3.5.  <a target="_blank" rel="noopener" href="https://pypi.python.org/pypi/tensorflow">Read here to see what is currently supported</a> The first thing that I did was create CPU and GPU environment for TensorFlow.  This keeps them separate from other non-deep learning Python environments that I have.  To create my CPU TensorFlow environment, I used:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">conda create --name tensorflow python=3.5</span><br><span class="line">activate tensorflow</span><br><span class="line">conda install jupyter</span><br><span class="line">conda install scipy</span><br><span class="line">pip install tensorflow</span><br></pre></td></tr></table></figure>
+
+<p>To create my GPU TensorFlow environment, I used:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">conda create --name tensorflow-gpu python=3.5</span><br><span class="line">activate tensorflow-gpu</span><br><span class="line">conda install jupyter</span><br><span class="line">conda install scipy</span><br><span class="line">pip install tensorflow-gpu</span><br></pre></td></tr></table></figure>
+
+<p>Your TensorFlow code will not change using a single GPU.  You can simply run the same code by switching environments.  TensorFlow will either use the GPU or not, depending on which environment you are in.  You can switch between environments with:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">activate tensorflow</span><br><span class="line">activate tensorflow-gpu</span><br></pre></td></tr></table></figure>
+
+<h2 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h2><p>If you are doing moderate deep learning networks and data sets on your local computer you should probably be using your GPU.  Even if you are using a laptop.  NVidia is the GPU of choice for scientific computing.  While AMD might be fully capable, support for AMD is much more sparse.  </p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://www.heatonresearch.com/2017/01/01/tensorflow-windows-gpu.html" data-id="cm651nwpm00288vmtghow5acx" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://www.heatonresearch.com/2017/01/01/tensorflow-windows-gpu.html#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2016/09/10/ubuntu-tensorflow.html" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Creating a VMWare Tensorflow VM for my Deep Learning Class</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2017/02/10/equilateral.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">Equilateral Encoding</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+    </div>
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+      
+  <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>Jeff Heaton, Ph.D. is a YouTuber, [computer/data] [scientist/engineer], and indie publisher. Heaton Research is the homepage for his projects and research.</p>
+
+</div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ai/">ai</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/aifh/">aifh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/bbs/">bbs</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/course/">course</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/datascience/">datascience</a><span class="sidebar-module-list-count">11</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/encog/">encog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/gpu/">gpu</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/java/">java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/kaggle/">kaggle</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/learning/">learning</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/mergelife/">mergelife</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/phd/">phd</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/presentation/">presentation</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/python/">python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/r/">r</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/tensorflow/">tensorflow</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/wustl/">wustl</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+
+
+  
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/09/">September 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/05/">May 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/03/">March 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/12/">December 2018</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/11/">November 2018</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/10/">October 2018</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/09/">September 2018</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/08/">August 2018</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/01/">January 2018</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/11/">November 2017</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/06/">June 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">May 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/03/">March 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/02/">February 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/01/">January 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">September 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">March 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/02/">February 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">September 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">August 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">May 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/03/">March 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">December 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/09/">September 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/05/">May 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">February 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/08/">August 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/07/">July 2013</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/06/">June 2013</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/04/">April 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/03/">March 2013</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2019/09/09/pas-2019-features.html">Session 16: B/I - Multivariate Feature Engineering: Beyond Simple Data Preparation</a>
+        </li>
+      
+        <li>
+          <a href="/2019/09/03/tf-no-module-jupyter.html">Why am I getting ImportError: No module named tensorflow?</a>
+        </li>
+      
+        <li>
+          <a href="/2019/05/20/2019-video-schedule.html">Video Release Schedule for Fall 2019 Applications of Deep Learning</a>
+        </li>
+      
+        <li>
+          <a href="/2019/03/13/tensorflow_20_articles.html">My Favorite TensorFlow 2.0 Articles (as of March 2019)</a>
+        </li>
+      
+        <li>
+          <a href="/2018/12/26/youtube-2018-12-26-mergelife-timelapse.html">Time Lapse: Creating Several MergeLife Cellular Automata Online with JavaScript</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+    </div>
+</div>
+
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2025 by Heaton Research, Inc. - <a href="/legal/">Legal and Copyright Info</a><br>
+Jeff Heaton is a computer scientist, data scientist, and indie publisher. Heaton Research is the homepage for his projects and research. <a href="/tips.html">Tips and support.</a><br><br>
+<ul class="list-inline banner-social-buttons">
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://github.com/jeffheaton"><i class="fa fa-github"> <span class="network-name">GitHub</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://twitter.com/jeffheaton"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.youtube.com/user/HeatonResearch"><i class="fa fa-youtube-play"> <span class="network-name">Youtube</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.facebook.com/encog.framework/"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
+</ul>
+
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'heatonresearch';
+  
+  var disqus_url = 'https://www.heatonresearch.com/2017/01/01/tensorflow-windows-gpu.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+<script src="/js/script.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

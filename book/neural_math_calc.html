@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Extra Material for Introduction to the Math of Neural Networks | Heaton Research</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Back Propagation (backprop) is one of the oldest learning methods for neural networks.  Back Propagation is a type of propagation training. Weight Update CalculationLayer deltas must be calculated wor">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Extra Material for Introduction to the Math of Neural Networks">
+<meta property="og:url" content="https://www.heatonresearch.com/book/neural_math_calc.html">
+<meta property="og:site_name" content="Heaton Research">
+<meta property="og:description" content="Back Propagation (backprop) is one of the oldest learning methods for neural networks.  Back Propagation is a type of propagation training. Weight Update CalculationLayer deltas must be calculated wor">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-01-20T12:40:03.647Z">
+<meta property="article:modified_time" content="2025-01-20T12:40:03.647Z">
+<meta property="article:author" content="Jeff Heaton">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@jeffheaton">
+  
+    <link rel="alternate" href="/atom.xml" title="Heaton Research" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  
+  
+
+  
+
+  
+<link rel="stylesheet" href="/css/styles.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-5393865-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  <script data-ad-client="ca-pub-6846576724383320" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="/">Heaton Research</a>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/about/">About</a></li>
+        
+          <li><a class=""
+                 href="/jeff_heaton_projects.html">Projects</a></li>
+        
+          <li><a class="active"
+                 href="/book/">Books</a></li>
+        
+          <li><a class=""
+                 href="/contact.html">Contact</a></li>
+        
+          <li><a class=""
+                 href="/support.html">Support Me</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <h1>Extra Material for Introduction to the Math of Neural Networks</h1>
+<div class="row">
+    <div class="col-sm-12 blog-main">
+      <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+
+
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Back Propagation (backprop) is one of the oldest learning methods for neural networks.  Back Propagation is a type of propagation training.</p>
+<h1 id="Weight-Update-Calculation"><a href="#Weight-Update-Calculation" class="headerlink" title="Weight Update Calculation"></a>Weight Update Calculation</h1><p>Layer deltas must be calculated working backwards through the network.  </p>
+<p>Assuming a linear error function, such as the following.</p>
+<p>$$ E = (a-i) $$</p>
+<p>The layer deltas are calculated with the following formula.</p>
+<p>$$ \delta_i = \begin{cases}-E f’<em>i &amp; \mbox{, output nodes}\<br>f’_i \sum_k w</em>{ki}\delta_k &amp; \mbox{, input/hidden nodes}\<br>\end{cases} $$</p>
+<p>The above equation has two modes, depending on if you are calculating for hidden or interior (input/hidden) nodes.  For output nodes take the inverse of the error multiplied by the derivative of the sum (pre-activation function) of the node. For interior nodes multiply by the derivative of the sum (pre-activation function) of the node by the sum of each weight multiplied by the node delta from the next layer(that was just calculated in the previous step).</p>
+<p>The node deltas can be used to find the partial derivatives for the weights, which are the gradients.</p>
+<p>$$ \frac{ \partial E}{\partial w_{(ik)}} = \delta_k \cdot o_i $$</p>
+<p>The above equation should be used once for each weight in the network.  It calculates the gradient from weight ‘’’k’’’ to weight ‘’’i’’’.  Always forward from ‘’’k’’’ to ‘’’i’’’.  For example, ‘’’k’’’ might be in the hidden layer and ‘’’i’’’ in the output.  The above equation multiplies the node delta of ‘’’k’’’ by the output(post activation function) of ‘’’i’’’.</p>
+<p>The actual weights are updated using the equation below.</p>
+<p>$$ \Delta{w_{(t)}} = \epsilon \frac{ \partial E}{\partial w_{(t)}} + \alpha \Delta{w_{(t-1)}}  $$<br>Where ‘’’E’’’ is the output of the [[Error Function]].</p>
+<h1 id="Example-Calculation"><a href="#Example-Calculation" class="headerlink" title="Example Calculation"></a>Example Calculation</h1><p>To establish some baseline numbers for backpropagation calculation I am including this section.  I will also use this section to test future versions of Encog backprop to make sure that nothing fundamental changes.  If you are using standard backpropagation, and start with the same weights, you should end up with the same numbers as me.  The weights I used are summarized here.  There is nothing special about this weight set, they are random.  It is just a common starting point.</p>
+<pre>Weight 0: H1->O1, -0.22791948943117624
+Weight 1: H2->O1, 0.581714099641357
+Weight 2: B2->O1, 0.7792991203673414
+Weight 3: I1->H1, -0.06782947598673161
+Weight 4: I2->H1, 0.22341077197888182
+Weight 5: B1->H1, -0.4635107399577998
+Weight 6: I1->H2, 0.9487814395569221
+Weight 7: I2->H2, 0.461587116462548
+Weight 8: B1->H2, 0.09750161997450091</pre>
+
+<p>This neural network uses [[bias]] and has two input neurons, two hidden neurons and a single output neuron.  The code is shown here, in Java.  C# should produce exactly the same numbers.</p>
+<pre>package org.encog.examples.neural.xor;
+
+import org.encog.Encog;
+import org.encog.engine.network.activation.ActivationSigmoid;
+import org.encog.mathutil.randomize.ConsistentRandomizer;
+import org.encog.ml.data.MLData;
+import org.encog.ml.data.MLDataPair;
+import org.encog.ml.data.MLDataSet;
+import org.encog.ml.data.basic.BasicMLDataSet;
+import org.encog.neural.networks.BasicNetwork;
+import org.encog.neural.networks.layers.BasicLayer;
+import org.encog.neural.networks.training.propagation.back.Backpropagation;
+
+public class XORConst {
+
+    /**
+     * The input necessary for XOR.
+     */
+    public static double XOR_INPUT[][] = { { 1.0, 0.0 }, { 0.0, 0.0 },
+            { 0.0, 1.0 }, { 1.0, 1.0 } };
+
+    /**
+     * The ideal data necessary for XOR.
+     */
+    public static double XOR_IDEAL[][] = { { 1.0 }, { 0.0 }, { 1.0 }, { 0.0 } };
+    
+    /**
+     * The main method.
+     * @param args No arguments are used.
+     */
+    public static void main(final String args[]) {
+        
+        // create a neural network, without using a factory
+        BasicNetwork network = new BasicNetwork();
+        network.addLayer(new BasicLayer(null,true,2));
+        network.addLayer(new BasicLayer(new ActivationSigmoid(),true,2));
+        network.addLayer(new BasicLayer(new ActivationSigmoid(),false,1));
+        network.getStructure().finalizeStructure();
+        network.reset();
+        new ConsistentRandomizer(-1,1,500).randomize(network);
+        System.out.println(network.dumpWeights());
+
+        // create training data
+        MLDataSet trainingSet = new BasicMLDataSet(XOR_INPUT, XOR_IDEAL);
+        
+        // train the neural network
+        final Backpropagation train = new Backpropagation(network, trainingSet, 0.7, 0.3);
+        train.fixFlatSpot(false);
+
+        int epoch = 1;
+
+        do {
+            train.iteration();
+            System.out
+                    .println("Epoch #" + epoch + " Error:" + train.getError());
+            epoch++;
+        } while(train.getError() > 0.01);
+
+        // test the neural network
+        System.out.println("Neural Network Results:");
+        for(MLDataPair pair: trainingSet ) {
+            final MLData output = network.compute(pair.getInput());
+            System.out.println(pair.getInput().getData(0) + "," + pair.getInput().getData(1)
+                    + ", actual=" + output.getData(0) + ",ideal=" + pair.getIdeal().getData(0));
+        }
+        
+        Encog.getInstance().shutdown();
+    }
+}
+</pre>
+
+<h1 id="Iteration-1"><a href="#Iteration-1" class="headerlink" title="Iteration 1"></a>Iteration 1</h1><h2 id="Iteration-1-Neural-Network-Output"><a href="#Iteration-1-Neural-Network-Output" class="headerlink" title="Iteration 1:Neural Network Output"></a>Iteration 1:Neural Network Output</h2><p>You can see the entire neural network here.</p>
+<p>[[Image:Backprop-1.png]]</p>
+<p>This shows the weights and neural network outputs for each location.  The above chart shows the neural network output for the input of [1,0].  The weights are the same as were mentioned in the previous section.  No updates to the weights have been done at this point.<br>====Iteration 1:Calculate Gradients====<br>‘’’Training Element #1’’’</p>
+<pre>Input: [1.0, 0.0]
+Ideal: [1.0]
+Actual: [0.7549937892853826]</pre>
+
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Network Calculation (Training Element #1)<br>|-<br>!Node || Sum || Output || Node Delta<br>|-<br>| Output 1 || 1.1254259630241081 || 0.7549937892853826 || 0.04532079986594939<br>|-<br>| Hidden 1 || -0.5313402159445314 || 0.3702043582229371 || -0.002408353357272021<br>|-<br>| Hidden 2 || 1.046283059531423 || 0.7400605060691366 || 0.005071619394242543<br>|-<br>| Hidden Bias || N/A || 1.0 || 0.0<br>|-<br>| Input 1 || 0.0 || 1.0 || 0.004975215695968892<br>|-<br>| Input 2 || 0.0 || 0.0 || 0.001802942089237876<br>|-<br>| Input Bias || N/A || 1.0 || 0.0016107887535417506<br>|}</p>
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Gradient Calculation (Training Element #1)<br>|-<br>!Node || Gradient<br>|-<br>| Gradient 0: H1-&gt;O1 || 0.01677795762852397<br>|-<br>| Gradient 1: H2-&gt;O1 || 0.03354013408425257<br>|-<br>| Gradient 2: B2-&gt;O1 || 0.04532079986594939<br>|-<br>| Gradient 3: I1-&gt;H1 || -0.002408353357272021<br>|-<br>| Gradient 4: I2-&gt;H1 || 0.0<br>|-<br>| Gradient 5: B1-&gt;H1 || -0.002408353357272021<br>|-<br>| Gradient 6: I1-&gt;H2 || 0.005071619394242543<br>|-<br>| Gradient 7: I2-&gt;H2 || 0.0<br>|-<br>| Gradient 8: B1-&gt;H2 || 0.005071619394242543<br>|}</p>
+<p>‘’’Training Element #2’’’</p>
+<pre>Input: [0.0, 0.0]
+Ideal: [0.0]
+Actual: [0.7303329742286414]</pre>
+
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Network Calculation (Training Element #2)<br>|-<br>!Node || Sum || Output || Node Delta<br>|-<br>| Output 1 || 0.9963125991766215 || 0.7303329742286414 || -0.14383668450008402<br>|-<br>| Hidden 1 || -0.4635107399577998 || 0.3861533099243043 || 0.007770890822508153<br>|-<br>| Hidden 2 || 0.09750161997450091 || 0.5243561128008467 || -0.020868321034070617<br>|-<br>| Hidden Bias || N/A || 1.0 || 0.0<br>|-<br>| Input 1 || 0.0 || 0.0 || -0.020326571124282346<br>|-<br>| Input 2 || 0.0 || 0.0 || -0.00789644741391124<br>|-<br>| Input Bias || N/A || 1.0 || -0.005636586462241866<br>|}</p>
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Gradient Calculation (Training Element #2)<br>|-<br>!Node || Gradient<br>|-<br>| Gradient 0: H1-&gt;O1 || -0.05554301180824532<br>|-<br>| Gradient 1: H2-&gt;O1 || -0.07542164476262586<br>|-<br>| Gradient 2: B2-&gt;O1 || -0.14383668450008402<br>|-<br>| Gradient 3: I1-&gt;H1 || 0.0<br>|-<br>| Gradient 4: I2-&gt;H1 || 0.0<br>|-<br>| Gradient 5: B1-&gt;H1 || 0.007770890822508153<br>|-<br>| Gradient 6: I1-&gt;H2 || 0.0<br>|-<br>| Gradient 7: I2-&gt;H2 || 0.0<br>|-<br>| Gradient 8: B1-&gt;H2 || -0.020868321034070617<br>|}</p>
+<p>‘’’Training Element #3’’’</p>
+<pre>Input: [0.0, 1.0]
+Ideal: [1.0]
+Actual: [0.7405954365271327]</pre>
+
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Network Calculation (Training Element #3)<br>|-<br>!Node || Sum || Output || Node Delta<br>|-<br>| Output 1 || 1.0490656424572 || 0.7405954365271327 || 0.049835205744527086<br>|-<br>| Hidden 1 || -0.24009996797891797 || 0.4402617153429706 || -0.0027990693120837377<br>|-<br>| Hidden 2 || 0.5590887364370489 || 0.6362416652701147 || 0.0067093570643624555<br>|-<br>| Hidden Bias || N/A || 1.0 || 0.0<br>|-<br>| Input 1 || 0.0 || 0.0 || 0.0065555728587163966<br>|-<br>| Input 2 || 0.0 || 1.0 || 0.0024716105448216665<br>|-<br>| Input Bias || N/A || 1.0 || 0.0019515718707998043<br>|}</p>
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Gradient Calculation (Training Element #3)<br>|-<br>!Node || Gradient<br>|-<br>| Gradient 0: H1-&gt;O1 || 0.021940533165555356<br>|-<br>| Gradient 1: H2-&gt;O1 || 0.0317072342919767<br>|-<br>| Gradient 2: B2-&gt;O1 || 0.049835205744527086<br>|-<br>| Gradient 3: I1-&gt;H1 || 0.0<br>|-<br>| Gradient 4: I2-&gt;H1 || -0.0027990693120837377<br>|-<br>| Gradient 5: B1-&gt;H1 || -0.0027990693120837377<br>|-<br>| Gradient 6: I1-&gt;H2 || 0.0<br>|-<br>| Gradient 7: I2-&gt;H2 || 0.0067093570643624555,<br>|-<br>| Gradient 8: B1-&gt;H2 || 0.0067093570643624555<br>|}</p>
+<p>‘’’Training Element #4’’’</p>
+<pre>Input: [1.0, 1.0]
+Ideal: [0.0]
+Actual: [0.7611552402539651]</pre>
+
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Network Calculation (Training Element #4)<br>|-<br>!Node || Sum || Output || Node Delta<br>|-<br>| Output 1 || 1.1590235320580868 || 0.7611552402539651 || -0.13837645506973884<br>|-<br>| Hidden 1 || -0.3079294439656496 || 0.4236202183981808 ||  0.007700680091276262<br>|-<br>| Hidden 2 || 1.507870175993971 || 0.8187453525269879 || -0.011945650103177243<br>|-<br>| Hidden Bias || N/A || 1.0 || 0.0<br>|-<br>| Input 1 || 0.0 || 1.0 || -0.011856144196668526<br>|-<br>| Input 2 || 0.0 || 1.0 || -0.0037935433014416875<br>|-<br>| Input Bias || N/A || 1.0 || -0.004734068163994102<br>|}</p>
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Gradient Calculation (Training Element #4)<br>|-<br>!Node || Gradient<br>|-<br>| Gradient 0: H1-&gt;O1 || -0.05861906411780882<br>|-<br>| Gradient 1: H2-&gt;O1 || -0.11329507948750822<br>|-<br>| Gradient 2: B2-&gt;O1 || -0.13837645506973884<br>|-<br>| Gradient 3: I1-&gt;H1 || 0.007700680091276262<br>|-<br>| Gradient 4: I2-&gt;H1 || 0.007700680091276262<br>|-<br>| Gradient 5: B1-&gt;H1 || 0.007700680091276262<br>|-<br>| Gradient 6: I1-&gt;H2 || -0.011945650103177243<br>|-<br>| Gradient 7: I2-&gt;H2 || -0.011945650103177243<br>|-<br>| Gradient 8: B1-&gt;H2 || -0.011945650103177243<br>|}</p>
+<p>‘’’Batching Training Elements Together’’’</p>
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Batch Gradients (sum of 4 training set elements)<br>|-<br>!Node || Gradient<br>|-<br>| Batch Gradient 0: H1-&gt;O1 || -0.07544358513197481<br>|-<br>| Batch Gradient 1: H2-&gt;O1 || -0.12346935587390481<br>|-<br>| Batch Gradient 2: B2-&gt;O1 || -0.18705713395934637<br>|-<br>| Batch Gradient 3: I1-&gt;H1 || 0.005292326734004241<br>|-<br>| Batch Gradient 4: I2-&gt;H1 || 0.0049016107791925246<br>|-<br>| Batch Gradient 5: B1-&gt;H1 || 0.010264148244428655<br>|-<br>| Batch Gradient 6: I1-&gt;H2 || -0.0068740307089347<br>|-<br>| Batch Gradient 7: I2-&gt;H2 || -0.005236293038814788<br>|-<br>| Batch Gradient 8: B1-&gt;H2 || -0.02103299467864286<br>|}</p>
+<p>====Iteration 1:Update Weights====</p>
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Batch Gradients (sum of 4 training set elements)<br>|-<br>!Weight || Delta t || Delta t-1 || New Weight<br>|-<br>| Batch Gradient 0: H1-&gt;O1 || -0.052810509592382364 || 0 || -0.2807299990235586<br>|-<br>| Batch Gradient 1: H2-&gt;O1 || -0.08642854911173337 || 0 || 0.49528555052962364<br>|-<br>| Batch Gradient 2: B2-&gt;O1 || -0.13093999377154245 || 0 || 0.648359126595799<br>|-<br>| Batch Gradient 3: I1-&gt;H1 || 0.0037046287138029683 || 0 || -0.06412484727292865<br>|-<br>| Batch Gradient 4: I2-&gt;H1 || 0.0034311275454347668 || 0 || 0.22684189952431658<br>|-<br>| Batch Gradient 5: B1-&gt;H1 || 0.007184903771100058 || 0 || -0.45632583618669975<br>|-<br>| Batch Gradient 6: I1-&gt;H2 || -0.004811821496254289 || 0 || 0.9439696180606678<br>|-<br>| Batch Gradient 7: I2-&gt;H2 || -0.003665405127170351 || 0 || 0.4579217113353777<br>|-<br>| Batch Gradient 8: B1-&gt;H2 || -0.014723096275050002 || 0 || 0.0827785236994509<br>|}</p>
+<p>===Iteration 2===</p>
+<p>====Iteration 2:Calculate Gradients====<br>‘’’Training Element #1’’’</p>
+<pre>Input: [1.0, 0.0]
+Ideal: [1.0]
+Actual: [0.7126704320302026]</pre>
+
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Network Calculation (Training Element #1)<br>|-<br>!Node || Sum || Output || Node Delta<br>|-<br>| Output 1 || 0.90838920899152 || 0.7126704320302026 || 0.05883684552404642<br>|-<br>| Hidden 1 || -0.5204506834596284 || 0.3727468548609481 || -0.003861846787694659<br>|-<br>| Hidden 2 || 1.0267481417601187 || 0.7362849697652507 || 0.005658298521549234<br>|-<br>| Hidden Bias || N/A || 1.0 || 0.0<br>|-<br>| Input 1 || 0.0 || 1.0 || 0.005588902229712442<br>|-<br>| Input 2 || 0.0 || 0.0 || 0.001715029081241726<br>|-<br>| Input Bias || N/A || 1.0 || 0.002230646062884317<br>|}</p>
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Gradient Calculation (Training Element #1)<br>|-<br>!Node || Gradient<br>|-<br>| Gradient 0: H1-&gt;O1 || 0.021931249119027756<br>|-<br>| Gradient 1: H2-&gt;O1 || 0.04332068502775525<br>|-<br>| Gradient 2: B2-&gt;O1 || 0.05883684552404642<br>|-<br>| Gradient 3: I1-&gt;H1 || -0.003861846787694659<br>|-<br>| Gradient 4: I2-&gt;H1 || -0.0<br>|-<br>| Gradient 5: B1-&gt;H1 || -0.003861846787694659<br>|-<br>| Gradient 6: I1-&gt;H2 || 0.005658298521549234<br>|-<br>| Gradient 7: I2-&gt;H2 || 0.0<br>|-<br>| Gradient 8: B1-&gt;H2 || 0.005658298521549234<br>|}</p>
+<p>‘’’Training Element #2’’’</p>
+<pre>Input: [0.0, 0.0]
+Ideal: [0.0]
+Actual: [0.6894100086355014]</pre>
+
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Network Calculation (Training Element #2)<br>|-<br>!Node || Sum || Output || Node Delta<br>|-<br>| Output 1 || 0.7973624852278878 || 0.6894100086355014 || -0.14761912433217836<br>|-<br>| Hidden 1 || -0.45632583618669975 || 0.3878577987356633 || 0.009839120925080193<br>|-<br>| Hidden 2 || 0.0827785236994509 || 0.5206828218926742 || -0.018247128336076817<br>|-<br>| Hidden Bias || N/A || 1.0 || 0.0<br>|-<br>| Input 1 || 0.0 || 0.0 || -0.01785566689273107<br>|-<br>| Input 2 || 0.0 || 0.0 || -0.006123831354317917<br>|-<br>| Input Bias || N/A || 1.0 || -0.006000315428894131<br>|}</p>
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Gradient Calculation (Training Element #2)<br>|-<br>!Node || Gradient<br>|-<br>| Gradient 0: H1-&gt;O1 || -0.05725522861476489<br>|-<br>| Gradient 1: H2-&gt;O1 || -0.07686274222260416<br>|-<br>| Gradient 2: B2-&gt;O1 || -0.14761912433217836<br>|-<br>| Gradient 3: I1-&gt;H1 || 0.0<br>|-<br>| Gradient 4: I2-&gt;H1 || 0.0<br>|-<br>| Gradient 5: B1-&gt;H1 || 0.009839120925080193<br>|-<br>| Gradient 6: I1-&gt;H2 || 0.0<br>|-<br>| Gradient 7: I2-&gt;H2 || 0.0<br>|-<br>| Gradient 8: B1-&gt;H2 || -0.018247128336076817<br>|}</p>
+<p>‘’’Training Element #3’’’</p>
+<pre>Input: [0.0, 1.0]
+Ideal: [1.0]
+Actual: [0.6978409768403965]</pre>
+
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Network Calculation (Training Element #3)<br>|-<br>!Node || Sum || Output || Node Delta<br>|-<br>| Output 1 || 0.837037804388766 || 0.6978409768403965 || 0.06371293371673999<br>|-<br>| Hidden 1 || -0.22948393666238318 || 0.44287947369167335 || -0.0044131748974781376<br>|-<br>| Hidden 2 || 0.5407002350348286 || 0.6319752952115714 || 0.007339396247406085<br>|-<br>| Hidden Bias || N/A || 1.0 || *0.0<br>|-<br>| Input 1 || 0.0 || 0.0 || 0.007211161238749329<br>|-<br>| Input 2 || 0.0 || 1.0 || 0.002359775913103672<br>|-<br>| Input Bias || N/A || 1.0 || 0.0026213901115354297<br>|}</p>
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Gradient Calculation (Training Element #3)<br>|-<br>!Node || Gradient<br>|-<br>| Gradient 0: H1-&gt;O1 || 0.028217150551822275<br>|-<br>| Gradient 1: H2-&gt;O1 || 0.040265000094432034<br>|-<br>| Gradient 2: B2-&gt;O1 || 0.06371293371673999<br>|-<br>| Gradient 3: I1-&gt;H1 || 0.0<br>|-<br>| Gradient 4: I2-&gt;H1 || -0.0044131748974781376<br>|<br>| Gradient 5: B1-&gt;H1 || -0.0044131748974781376<br>|-<br>| Gradient 6: I1-&gt;H2 || 0.0<br>|-<br>| Gradient 7: I2-&gt;H2 || 0.007339396247406085<br>|-<br>| Gradient 8: B1-&gt;H2 || 0.007339396247406085<br>|}</p>
+<p>‘’’Training Element #4’’’</p>
+<pre>Input: [1.0, 1.0]
+Ideal: [0.0]
+Actual: [0.7175312197386368]</pre>
+
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Network Calculation (Training Element #4)<br>|-<br>!Node || Sum || Output || Node Delta<br>|-<br>| Output 1 || 0.9322484263876174 || 0.7175312197386368 || -0.14542934847688305<br>|-<br>| Hidden 1 ||-0.2936087839353118 || 0.4271206074568061 ||  0.009989749735560847<br>|-<br>| Hidden 2 || 1.4846698530954965 || 0.8152768984968762 || -0.010847610049093622<br>|-<br>| Hidden Bias || N/A || 1.0 || 0.0<br>|-<br>| Input 1 || 0.0 || 1.0 || -0.010880405491001586<br>|-<br>| Input 2 || 0.0 || 1.0 || -0.0027012623517926305<br>|-<br>| Input Bias || N/A || 1.0 || -0.005456530046906965<br>|}</p>
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Gradient Calculation (Training Element #4)<br>|-<br>!Node || Gradient<br>|-<br>| Gradient 0: H1-&gt;O1 || -0.062115871663493825<br>|-<br>| Gradient 1: H2-&gt;O1 || -0.11856518817665462<br>|-<br>| Gradient 2: B2-&gt;O1 || -0.14542934847688305<br>|-<br>| Gradient 3: I1-&gt;H1 || 0.009989749735560847<br>|-<br>| Gradient 4: I2-&gt;H1 || 0.009989749735560847<br>|-<br>| Gradient 5: B1-&gt;H1 || 0.009989749735560847<br>|-<br>| Gradient 6: I1-&gt;H2 || -0.010847610049093622<br>|-<br>| Gradient 7: I2-&gt;H2 || -0.010847610049093622<br>|-<br>| Gradient 8: B1-&gt;H2 || -0.010847610049093622<br>|}</p>
+<p>‘’’Batching Training Elements Together’’’</p>
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Batch Gradients (sum of 4 training set elements)<br>|-<br>!Node || Gradient<br>|-<br>| Batch Gradient 0: H1-&gt;O1 || -0.06922270060740869<br>|-<br>| Batch Gradient 1: H2-&gt;O1 || -0.1118422452770715<br>|-<br>| Batch Gradient 2: B2-&gt;O1 || -0.17049869356827502<br>|-<br>| Batch Gradient 3: I1-&gt;H1 || 0.0061279029478661885<br>|-<br>| Batch Gradient 4: I2-&gt;H1 || 0.00557657483808271<br>|-<br>| Batch Gradient 5: B1-&gt;H1 || 0.011553848975468243<br>|-<br>| Batch Gradient 6: I1-&gt;H2 || -0.005189311527544388<br>|-<br>| Batch Gradient 7: I2-&gt;H2 || -0.003508213801687537<br>|-<br>| Batch Gradient 8: B1-&gt;H2 || -0.01609704361621512<br>|}</p>
+<p>====Iteration 2:Update Weights====</p>
+<p>{| class=”wikitable” style=”text-align:left”<br>|+ Batch Gradients (sum of 4 training set elements)<br>|-<br>!Weight || Delta t || Delta t-1 || New Weight<br>|-<br>| Batch Gradient 0: H1-&gt;O1 || -0.06429904330290079 || -0.052810509592382364 || -0.34502904232645937<br>|-<br>| Batch Gradient 1: H2-&gt;O1 || -0.10421813642747005 || -0.08642854911173337 || 0.3910674141021536<br>|-<br>| Batch Gradient 2: B2-&gt;O1 || -0.15863108362925524 || -0.13093999377154245 || 0.4897280429665437<br>|-<br>| Batch Gradient 3: I1-&gt;H1 || 0.005400920677647222 || 0.0037046287138029683 || -0.05872392659528143<br>|-<br>| Batch Gradient 4: I2-&gt;H1 || 0.004932940650288327 || 0.0034311275454347668 || 0.2317748401746049<br>|-<br>| Batch Gradient 5: B1-&gt;H1 || 0.010243165414157786 || 0.007184903771100058 || -0.446082670772542<br>|-<br>| Batch Gradient 6: I1-&gt;H2 || -0.005076064518157358 || -0.004811821496254289 || 0.9388935535425105<br>|-<br>| Batch Gradient 7: I2-&gt;H2 || -0.003555371199332381 || -0.003665405127170351 || 0.4543663401360453<br>|-<br>| Batch Gradient 8: B1-&gt;H2 || -0.015684859413865583 || -0.014723096275050002 || 0.06709366428558533<br>|}</p>
+<p>===Other Iterations===<br>We have seen the first two iterations.  It takes additional iterations before the error level of the neural network drops to below 1%.  These iterations are shown here.</p>
+<pre>Epoch #1 Error:0.3100155809627523
+Epoch #2 Error:0.2909988918032235
+Epoch #3 Error:0.2712902750837602
+Epoch #4 Error:0.2583119003843881
+Epoch #5 Error:0.2523050561276289
+Epoch #6 Error:0.2502986971902545
+Epoch #7 Error:0.2498182295192154
+Epoch #8 Error:0.24974245650541688
+Epoch #9 Error:0.24973458893806627
+Epoch #10 Error:0.24972923906975902
+Epoch #11 Error:0.24972189153837634
+Epoch #12 Error:0.24971434375093543
+Epoch #13 Error:0.24970710134743646
+Epoch #14 Error:0.24970001601001643
+Epoch #15 Error:0.24969291819530431
+Epoch #16 Error:0.2496857298315751
+Epoch #17 Error:0.24967842574830518
+Epoch #18 Error:0.2496709985253335
+Epoch #19 Error:0.2496634445301509
+Epoch #20 Error:0.24965576041167767
+Epoch #21 Error:0.24964794264095624
+Epoch #22 Error:0.24963998755908973
+Epoch #23 Error:0.2496318914148358
+Epoch #24 Error:0.24962365036767536
+Epoch #25 Error:0.24961526048198857
+Epoch #26 Error:0.24960671772194287
+Epoch #27 Error:0.2495980179477877
+Epoch #28 Error:0.24958915691268324
+Epoch #29 Error:0.24958013025956088
+Epoch #30 Error:0.24957093351787052
+Epoch #31 Error:0.24956156210020647
+Epoch #32 Error:0.24955201129882154
+Epoch #33 Error:0.24954227628204287
+Epoch #34 Error:0.2495323520905876
+Epoch #35 Error:0.24952223363378223
+Epoch #36 Error:0.2495119156856801
+Epoch #37 Error:0.24950139288107853
+Epoch #38 Error:0.2494906597114292
+Epoch #39 Error:0.24947971052064272
+Epoch #40 Error:0.24946853950078324
+Epoch #41 Error:0.24945714068765068
+Epoch #42 Error:0.2494455079562504
+Epoch #43 Error:0.24943363501614585
+Epoch #44 Error:0.24942151540669405
+Epoch #45 Error:0.24940914249216084
+Epoch #46 Error:0.2493965094567142
+Epoch #47 Error:0.24938360929929476
+Epoch #48 Error:0.24937043482836047
+Epoch #49 Error:0.24935697865650427
+Epoch #50 Error:0.24934323319494384
+Epoch #51 Error:0.2493291906478809
+Epoch #52 Error:0.24931484300672974
+Epoch #53 Error:0.24930018204421345
+Epoch #54 Error:0.24928519930832602
+Epoch #55 Error:0.24926988611616174
+Epoch #56 Error:0.24925423354760812
+Epoch #57 Error:0.2492382324389047
+Epoch #58 Error:0.24922187337606533
+Epoch #59 Error:0.24920514668816585
+Epoch #60 Error:0.24918804244049497
+Epoch #61 Error:0.24917055042757214
+Epoch #62 Error:0.2491526601660287
+Epoch #63 Error:0.24913436088735835
+Epoch #64 Error:0.2491156415305345
+Epoch #65 Error:0.2490964907344973
+Epoch #66 Error:0.2490768968305138
+Epoch #67 Error:0.2490568478344118
+Epoch #68 Error:0.24903633143869064
+Epoch #69 Error:0.24901533500451387
+Epoch #70 Error:0.24899384555358464
+Epoch #71 Error:0.24897184975991077
+Epoch #72 Error:0.24894933394146201
+Epoch #73 Error:0.2489262840517267
+Epoch #74 Error:0.24890268567117108
+Epoch #75 Error:0.24887852399860996
+Epoch #76 Error:0.2488537838424939
+Epoch #77 Error:0.24882844961212114
+Epoch #78 Error:0.24880250530878126
+Epoch #79 Error:0.2487759345168411
+Epoch #80 Error:0.24874872039477997
+Epoch #81 Error:0.24872084566618513
+Epoch #82 Error:0.24869229261071904
+Epoch #83 Error:0.24866304305506665
+Epoch #84 Error:0.24863307836387832
+Epoch #85 Error:0.24860237943071778
+Epoch #86 Error:0.24857092666903038
+Epoch #87 Error:0.24853870000314368
+Epoch #88 Error:0.24850567885931676
+Epoch #89 Error:0.2484718421568517
+Epoch #90 Error:0.2484371682992842
+Epoch #91 Error:0.2484016351656681
+Epoch #92 Error:0.2483652201019731
+Epoch #93 Error:0.24832789991260973
+Epoch #94 Error:0.24828965085210292
+Epoch #95 Error:0.24825044861692888
+Epoch #96 Error:0.24821026833753734
+Epoch #97 Error:0.24816908457057552
+Epoch #98 Error:0.24812687129133337
+Epoch #99 Error:0.2480836018864306
+Epoch #100 Error:0.24803924914676378
+Epoch #101 Error:0.24799378526073232
+Epoch #102 Error:0.24794718180776376
+Epoch #103 Error:0.24789940975215627
+Epoch #104 Error:0.247850439437257
+Epoch #105 Error:0.2478002405799949
+Epoch #106 Error:0.24774878226578395
+Epoch #107 Error:0.24769603294381562
+Epoch #108 Error:0.247641960422753
+Epoch #109 Error:0.2475865318668452
+Epoch #110 Error:0.24752971379247174
+Epoch #111 Error:0.24747147206513093
+Epoch #112 Error:0.24741177189688257
+Epoch #113 Error:0.24735057784425257
+Epoch #114 Error:0.24728785380660845
+Epoch #115 Error:0.24722356302500836
+Epoch #116 Error:0.2471576680815282
+Epoch #117 Error:0.2470901308990665
+Epoch #118 Error:0.24702091274162513
+Epoch #119 Error:0.24694997421506196
+Epoch #120 Error:0.24687727526830808
+Epoch #121 Error:0.2468027751950393
+Epoch #122 Error:0.24672643263579042
+Epoch #123 Error:0.2466482055804965
+Epoch #124 Error:0.246568051371442
+Epoch #125 Error:0.24648592670659816
+Epoch #126 Error:0.24640178764332415
+Epoch #127 Error:0.2463155896024049
+Epoch #128 Error:0.24622728737239746
+Epoch #129 Error:0.24613683511425338
+Epoch #130 Error:0.24604418636618436
+Epoch #131 Error:0.24594929404873317
+Epoch #132 Error:0.245852110470015
+Epoch #133 Error:0.2457525873310876
+Epoch #134 Error:0.24565067573141125
+Epoch #135 Error:0.24554632617435784
+Epoch #136 Error:0.2454394885727269
+Epoch #137 Error:0.24533011225422965
+Epoch #138 Error:0.24521814596689887
+Epoch #139 Error:0.2451035378843885
+Epoch #140 Error:0.24498623561112431
+Epoch #141 Error:0.24486618618727468
+Epoch #142 Error:0.24474333609350843
+Epoch #143 Error:0.24461763125551564
+Epoch #144 Error:0.24448901704827075
+Epoch #145 Error:0.2443574383000207
+Epoch #146 Error:0.24422283929599173
+Epoch #147 Error:0.24408516378181133
+Epoch #148 Error:0.24394435496665412
+Epoch #149 Error:0.24380035552612614
+Epoch #150 Error:0.2436531076049127
+Epoch #151 Error:0.24350255281922725
+Epoch #152 Error:0.2433486322591068
+Epoch #153 Error:0.2431912864906141
+Epoch #154 Error:0.24303045555801814
+Epoch #155 Error:0.2428660789860364
+Epoch #156 Error:0.24269809578224028
+Epoch #157 Error:0.24252644443973276
+Epoch #158 Error:0.2423510629402286
+Epoch #159 Error:0.2421718887576766
+Epoch #160 Error:0.24198885886258256
+Epoch #161 Error:0.24180190972720367
+Epoch #162 Error:0.24161097733180137
+Epoch #163 Error:0.24141599717215478
+Epoch #164 Error:0.2412169042685502
+Epoch #165 Error:0.24101363317647734
+Epoch #166 Error:0.24080611799927562
+Epoch #167 Error:0.24059429240298655
+Epoch #168 Error:0.24037808963368124
+Epoch #169 Error:0.24015744253754098
+Epoch #170 Error:0.23993228358398
+Epoch #171 Error:0.2397025448921065
+Epoch #172 Error:0.23946815826082551
+Epoch #173 Error:0.23922905520289078
+Epoch #174 Error:0.23898516698321748
+Epoch #175 Error:0.23873642466176542
+Epoch #176 Error:0.23848275914130418
+Epoch #177 Error:0.23822410122036458
+Epoch #178 Error:0.2379603816516747
+Epoch #179 Error:0.23769153120637032
+Epoch #180 Error:0.2374174807442544
+Epoch #181 Error:0.23713816129036458
+Epoch #182 Error:0.23685350411808948
+Epoch #183 Error:0.23656344083904915
+Epoch #184 Error:0.23626790349992755
+Epoch #185 Error:0.23596682468641644
+Epoch #186 Error:0.23566013763439095
+Epoch #187 Error:0.23534777634840032
+Epoch #188 Error:0.2350296757275127
+Epoch #189 Error:0.23470577169850368
+Epoch #190 Error:0.23437600135632652
+Epoch #191 Error:0.23404030311174687
+Epoch #192 Error:0.2336986168459597
+Epoch #193 Error:0.23335088407194515
+Epoch #194 Error:0.23299704810224886
+Epoch #195 Error:0.23263705422280045
+Epoch #196 Error:0.23227084987230728
+Epoch #197 Error:0.23189838482668362
+Epoch #198 Error:0.23151961138789198
+Epoch #199 Error:0.231134484576493
+Epoch #200 Error:0.23074296232711494
+Epoch #201 Error:0.2303450056859696
+Epoch #202 Error:0.2299405790094592
+Epoch #203 Error:0.2295296501628348
+Epoch #204 Error:0.2291121907177881
+Epoch #205 Error:0.22868817614778236
+Epoch #206 Error:0.22825758601985507
+Epoch #207 Error:0.22782040418156102
+Epoch #208 Error:0.22737661894166425
+Epoch #209 Error:0.2269262232431381
+Epoch #210 Error:0.22646921482698917
+Epoch #211 Error:0.22600559638539408
+Epoch #212 Error:0.22553537570261567
+Epoch #213 Error:0.2250585657821631
+Epoch #214 Error:0.22457518495866538
+Epoch #215 Error:0.22408525699295367
+Epoch #216 Error:0.22358881114888354
+Epoch #217 Error:0.2230858822504846
+Epoch #218 Error:0.2225765107180943
+Epoch #219 Error:0.22206074258221997
+Epoch #220 Error:0.22153862947397523
+Epoch #221 Error:0.221010228591058
+Epoch #222 Error:0.22047560263836652
+Epoch #223 Error:0.2199348197425032
+Epoch #224 Error:0.21938795333957137
+Epoch #225 Error:0.21883508203584606
+Epoch #226 Error:0.21827628944107985
+Epoch #227 Error:0.21771166397439418
+Epoch #228 Error:0.2171412986429027
+Epoch #229 Error:0.21656529079341202
+Epoch #230 Error:0.21598374183774435
+Epoch #231 Error:0.21539675695242494
+Epoch #232 Error:0.21480444475367338
+Epoch #233 Error:0.21420691694882488
+Epoch #234 Error:0.2136042879654871
+Epoch #235 Error:0.21299667455991023
+Epoch #236 Error:0.21238419540619963
+Epoch #237 Error:0.21176697066814593
+Epoch #238 Error:0.21114512155556997
+Epoch #239 Error:0.2105187698671867
+Epoch #240 Error:0.20988803752208296
+Epoch #241 Error:0.2092530460819696
+Epoch #242 Error:0.2086139162664173
+Epoch #243 Error:0.2079707674633161
+Epoch #244 Error:0.20732371723680276
+Epoch #245 Error:0.20667288083489005
+Epoch #246 Error:0.2060183706990029
+Epoch #247 Error:0.2053602959775751
+Epoch #248 Error:0.2046987620457984
+Epoch #249 Error:0.20403387003353274
+Epoch #250 Error:0.20336571636329595
+Epoch #251 Error:0.2026943923001445
+Epoch #252 Error:0.2020199835151432
+Epoch #253 Error:0.2013425696639975
+Epoch #254 Error:0.20066222398229702
+Epoch #255 Error:0.19997901289868375
+Epoch #256 Error:0.1992929956671255
+Epoch #257 Error:0.1986042240193414
+Epoch #258 Error:0.19791274183829527
+Epoch #259 Error:0.19721858485353888
+Epoch #260 Error:0.19652178035906992
+Epoch #261 Error:0.195822346954247
+Epoch #262 Error:0.19512029430819378
+Epoch #263 Error:0.19441562294802792
+Epoch #264 Error:0.1937083240711511
+Epoch #265 Error:0.1929983793817608
+Epoch #266 Error:0.19228576095167016
+Epoch #267 Error:0.19157043110546443
+Epoch #268 Error:0.19085234232997111
+Epoch #269 Error:0.19013143720799042
+Epoch #270 Error:0.18940764837619845
+Epoch #271 Error:0.18868089850713027
+Epoch #272 Error:0.1879511003151419
+Epoch #273 Error:0.187218156586258
+Epoch #274 Error:0.18648196023183178
+Epoch #275 Error:0.1857423943659678
+Epoch #276 Error:0.18499933240669536
+Epoch #277 Error:0.1842526382009208
+Epoch #278 Error:0.18350216617323836
+Epoch #279 Error:0.18274776149873317
+Epoch #280 Error:0.18198926029996984
+Epoch #281 Error:0.18122648986842338
+Epoch #282 Error:0.1804592689106738
+Epoch #283 Error:0.1796874078197531
+Epoch #284 Error:0.1789107089720991
+Epoch #285 Error:0.17812896705063383
+Epoch #286 Error:0.17734196939454772
+Epoch #287 Error:0.17654949637642608
+Epoch #288 Error:0.17575132180740657
+Epoch #289 Error:0.1749472133711008
+Epoch #290 Error:0.17413693308704556
+Epoch #291 Error:0.1733202378044792
+Epoch #292 Error:0.1724968797272453
+Epoch #293 Error:0.17166660697063274
+Epoch #294 Error:0.1708291641509393
+Epoch #295 Error:0.16998429300851856
+Epoch #296 Error:0.16913173306502072
+Epoch #297 Error:0.1682712223154657
+Epoch #298 Error:0.16740249795570145
+Epoch #299 Error:0.16652529714568398
+Epoch #300 Error:0.16563935780888592
+Epoch #301 Error:0.1647444194679728
+Epoch #302 Error:0.1638402241167062
+Epoch #303 Error:0.162926517127816
+Epoch #304 Error:0.16200304819634356
+Epoch #305 Error:0.16106957231768845
+Epoch #306 Error:0.160125850799293
+Epoch #307 Error:0.1591716523045697
+Epoch #308 Error:0.1582067539273233
+Epoch #309 Error:0.15723094229453444
+Epoch #310 Error:0.1562440146949579
+Epoch #311 Error:0.1552457802305584
+Epoch #312 Error:0.1542360609873409
+Epoch #313 Error:0.15321469322165795
+Epoch #314 Error:0.152181528557576
+Epoch #315 Error:0.15113643519037823
+Epoch #316 Error:0.15007929909075807
+Epoch #317 Error:0.1490100252037463
+Epoch #318 Error:0.1479285386358941
+Epoch #319 Error:0.14683478582373807
+Epoch #320 Error:0.14572873567608863
+Epoch #321 Error:0.1446103806822327
+Epoch #322 Error:0.14347973797773195
+Epoch #323 Error:0.14233685035913068
+Epoch #324 Error:0.14118178723859034
+Epoch #325 Error:0.14001464552923407
+Epoch #326 Error:0.1388355504518368
+Epoch #327 Error:0.13764465625344605
+Epoch #328 Error:0.13644214682855943
+Epoch #329 Error:0.1352282362336583
+Epoch #330 Error:0.1340031690861708
+Epoch #331 Error:0.13276722083935977
+Epoch #332 Error:0.13152069792517324
+Epoch #333 Error:0.13026393775778092
+Epoch #334 Error:0.12899730859134637
+Epoch #335 Error:0.12772120922653737
+Epoch #336 Error:0.12643606856137407
+Epoch #337 Error:0.12514234498322174
+Epoch #338 Error:0.12384052560006499
+Epoch #339 Error:0.12253112531062212
+Epoch #340 Error:0.12121468571436363
+Epoch #341 Error:0.11989177386406517
+Epoch #342 Error:0.1185629808651315
+Epoch #343 Error:0.11722892032754417
+Epoch #344 Error:0.115890226677898
+Epoch #345 Error:0.11454755334055572
+Epoch #346 Error:0.11320157079845716
+Epoch #347 Error:0.11185296454552558
+Epoch #348 Error:0.11050243294390527
+Epoch #349 Error:0.10915068500040971
+Epoch #350 Error:0.10779843807753928
+Epoch #351 Error:0.10644641555521947
+Epoch #352 Error:0.1050953444600049
+Epoch #353 Error:0.10374595307887113
+Epoch #354 Error:0.10239896857487604
+Epoch #355 Error:0.10105511462190382
+Epoch #356 Error:0.09971510907541956
+Epoch #357 Error:0.09837966169565446
+Epoch #358 Error:0.09704947193893299
+Epoch #359 Error:0.0957252268319504
+Epoch #360 Error:0.09440759894273237
+Epoch #361 Error:0.0930972444607828
+Epoch #362 Error:0.0917948013975674
+Epoch #363 Error:0.09050088791702199
+Epoch #364 Error:0.08921610080423807
+Epoch #365 Error:0.08794101407889429
+Epoch #366 Error:0.0866761777583944
+Epoch #367 Error:0.08542211677407002
+Epoch #368 Error:0.08417933004223217
+Epoch #369 Error:0.08294828969033477
+Epoch #370 Error:0.08172944043706307
+Epoch #371 Error:0.08052319912380262
+Epoch #372 Error:0.07932995439369152
+Epoch #373 Error:0.07815006651332447
+Epoch #374 Error:0.07698386733117121
+Epoch #375 Error:0.07583166036589747
+Epoch #376 Error:0.07469372101703958
+Epoch #377 Error:0.07357029688988702
+Epoch #378 Error:0.07246160822595926
+Epoch #379 Error:0.07136784843013287
+Epoch #380 Error:0.07028918468526468
+Epoch #381 Error:0.06922575864506868
+Epoch #382 Error:0.06817768719601615
+Epoch #383 Error:0.06714506327915051
+Epoch #384 Error:0.06612795676290573
+Epoch #385 Error:0.06512641535829994
+Epoch #386 Error:0.06414046556822048
+Epoch #387 Error:0.06317011366291518
+Epoch #388 Error:0.062215346674250493
+Epoch #389 Error:0.06127613340177227
+Epoch #390 Error:0.06035242542410814
+Epoch #391 Error:0.05944415810976657
+Epoch #392 Error:0.05855125162191316
+Epoch #393 Error:0.05767361191222686
+Epoch #394 Error:0.056811131699460296
+Epoch #395 Error:0.05596369142883201
+Epoch #396 Error:0.055131160208870746
+Epoch #397 Error:0.054313396722801624
+Epoch #398 Error:0.053510250112010306
+Epoch #399 Error:0.05272156082954427
+Epoch #400 Error:0.05194716146200465
+Epoch #401 Error:0.0511868775185465
+Epoch #402 Error:0.05044052818604555
+Epoch #403 Error:0.04970792704979528
+Epoch #404 Error:0.04898888277938031
+Epoch #405 Error:0.04828319977962167
+Epoch #406 Error:0.04759067880671464
+Epoch #407 Error:0.046911117549880005
+Epoch #408 Error:0.046244311179019684
+Epoch #409 Error:0.04559005285902118
+Epoch #410 Error:0.044948134231481224
+Epoch #411 Error:0.044318345864728
+Epoch #412 Error:0.043700477673110125
+Epoch #413 Error:0.04309431930659188
+Epoch #414 Error:0.042499660511750297
+Epoch #415 Error:0.04191629146531273
+Epoch #416 Error:0.04134400308139992
+Epoch #417 Error:0.04078258729366059
+Epoch #418 Error:0.0402318373134883
+Epoch #419 Error:0.03969154786551182
+Epoch #420 Error:0.0391615154015402
+Epoch #421 Error:0.03864153829412952
+Epoch #422 Error:0.0381314170109153
+Epoch #423 Error:0.0376309542708296
+Epoch #424 Error:0.03713995518329316
+Epoch #425 Error:0.03665822737143622
+Epoch #426 Error:0.036185581080370455
+Epoch #427 Error:0.035721829271493435
+Epoch #428 Error:0.03526678770376991
+Epoch #429 Error:0.03482027500289418
+Epoch #430 Error:0.03438211271919581
+Epoch #431 Error:0.03395212537511341
+Epoch #432 Error:0.033530140503017274
+Epoch #433 Error:0.03311598867412426
+Epoch #434 Error:0.03270950351920786
+Epoch #435 Error:0.03231052174176729
+Epoch #436 Error:0.031918883124283204
+Epoch #437 Error:0.0315344305281495
+Epoch #438 Error:0.031157009887836276
+Epoch #439 Error:0.03078647019980489
+Epoch #440 Error:0.03042266350666263
+Epoch #441 Error:0.030065444877013826
+Epoch #442 Error:0.02971467238143323
+Epoch #443 Error:0.029370207064960158
+Epoch #444 Error:0.02903191291648297
+Epoch #445 Error:0.028699656835358668
+Epoch #446 Error:0.028373308595587392
+Epoch #447 Error:0.028052740807838438
+Epoch #448 Error:0.027737828879601866
+Epoch #449 Error:0.027428450973720025
+Epoch #450 Error:0.027124487965532865
+Epoch #451 Error:0.026825823398852998
+Epoch #452 Error:0.02653234344096876
+Epoch #453 Error:0.026243936836858425
+Epoch #454 Error:0.025960494862781784
+Epoch #455 Error:0.025681911279403148
+Epoch #456 Error:0.02540808228458449
+Epoch #457 Error:0.025138906465977266
+Epoch #458 Error:0.02487428475352811
+Epoch #459 Error:0.02461412037200357
+Epoch #460 Error:0.0243583187936298
+Epoch #461 Error:0.024106787690932052
+Epoch #462 Error:0.02385943688985246
+Epoch #463 Error:0.023616178323214762
+Epoch #464 Error:0.023376925984598087
+Epoch #465 Error:0.023141595882675434
+Epoch #466 Error:0.0229101059960651
+Epoch #467 Error:0.02268237622873859
+Epoch #468 Error:0.02245832836602291
+Epoch #469 Error:0.02223788603122914
+Epoch #470 Error:0.022020974642936918
+Epoch #471 Error:0.02180752137295783
+Epoch #472 Error:0.02159745510499847
+Epoch #473 Error:0.021390706394040254
+Epoch #474 Error:0.02118720742644902
+Epoch #475 Error:0.020986891980825782
+Epoch #476 Error:0.020789695389606188
+Epoch #477 Error:0.020595554501414766
+Epoch #478 Error:0.02040440764417725
+Epoch #479 Error:0.020216194588992476
+Epoch #480 Error:0.02003085651476362
+Epoch #481 Error:0.019848335973586928
+Epoch #482 Error:0.01966857685689445
+Epoch #483 Error:0.019491524362346423
+Epoch #484 Error:0.019317124961466908
+Epoch #485 Error:0.0191453263680166
+Epoch #486 Error:0.018976077507094596
+Epoch #487 Error:0.01880932848496037
+Epoch #488 Error:0.018645030559567337
+Epoch #489 Error:0.01848313611179742
+Epoch #490 Error:0.01832359861738679
+Epoch #491 Error:0.018166372619531176
+Epoch #492 Error:0.01801141370216045
+Epoch #493 Error:0.01785867846387005
+Epoch #494 Error:0.017708124492497587
+Epoch #495 Error:0.017559710340333143
+Epoch #496 Error:0.017413395499949955
+Epoch #497 Error:0.017269140380644366
+Epoch #498 Error:0.017126906285471505
+Epoch #499 Error:0.016986655388865138
+Epoch #500 Error:0.016848350714828417
+Epoch #501 Error:0.016711956115683664
+Epoch #502 Error:0.016577436251368635
+Epoch #503 Error:0.016444756569266403
+Epoch #504 Error:0.016313883284557584
+Epoch #505 Error:0.01618478336108175
+Epoch #506 Error:0.01605742449269653
+Epoch #507 Error:0.01593177508512255
+Epoch #508 Error:0.01580780423826206
+Epoch #509 Error:0.01568548172898021
+Epoch #510 Error:0.015564777994337024
+Epoch #511 Error:0.015445664115259291
+Epoch #512 Error:0.015328111800640892
+Epoch #513 Error:0.015212093371861331
+Epoch #514 Error:0.015097581747711072
+Epoch #515 Error:0.014984550429713736
+Epoch #516 Error:0.014872973487834885
+Epoch #517 Error:0.01476282554656709
+Epoch #518 Error:0.014654081771381621
+Epoch #519 Error:0.014546717855537263
+Epoch #520 Error:0.014440710007236528
+Epoch #521 Error:0.014336034937120193
+Epoch #522 Error:0.014232669846091502
+Epoch #523 Error:0.014130592413460671
+Epoch #524 Error:0.014029780785401397
+Epoch #525 Error:0.013930213563711213
+Epoch #526 Error:0.013831869794866999
+Epoch #527 Error:0.013734728959368121
+Epoch #528 Error:0.013638770961359351
+Epoch #529 Error:0.0135439761185256
+Epoch #530 Error:0.013450325152251644
+Epoch #531 Error:0.013357799178039262
+Epoch #532 Error:0.013266379696174726
+Epoch #533 Error:0.013176048582640185
+Epoch #534 Error:0.013086788080261855
+Epoch #535 Error:0.01299858079008884
+Epoch #536 Error:0.01291140966299595
+Epoch #537 Error:0.012825257991504985
+Epoch #538 Error:0.012740109401817504
+Epoch #539 Error:0.012655947846054517
+Epoch #540 Error:0.012572757594696116
+Epoch #541 Error:0.012490523229216854
+Epoch #542 Error:0.012409229634910354
+Epoch #543 Error:0.012328861993898646
+Epoch #544 Error:0.012249405778321096
+Epoch #545 Error:0.01217084674369763
+Epoch #546 Error:0.012093170922461986
+Epoch #547 Error:0.012016364617659817
+Epoch #548 Error:0.011940414396807536
+Epoch #549 Error:0.01186530708590733
+Epoch #550 Error:0.011791029763613976
+Epoch #551 Error:0.011717569755549568
+Epoch #552 Error:0.011644914628761726
+Epoch #553 Error:0.011573052186321896
+Epoch #554 Error:0.011501970462059325
+Epoch #555 Error:0.011431657715427491
+Epoch #556 Error:0.011362102426499139
+Epoch #557 Error:0.011293293291086408
+Epoch #558 Error:0.01122521921598292
+Epoch #559 Error:0.011157869314324005
+Epoch #560 Error:0.01109123290106263
+Epoch #561 Error:0.01102529948855689
+Epoch #562 Error:0.01096005878226718
+Epoch #563 Error:0.010895500676558947
+Epoch #564 Error:0.010831615250609324
+Epoch #565 Error:0.010768392764413662
+Epoch #566 Error:0.010705823654890458
+Epoch #567 Error:0.010643898532081014
+Epoch #568 Error:0.010582608175441923
+Epoch #569 Error:0.010521943530227711
+Epoch #570 Error:0.010461895703961211
+Epoch #571 Error:0.010402455962989346
+Epoch #572 Error:0.010343615729122041
+Epoch #573 Error:0.010285366576352045
+Epoch #574 Error:0.010227700227653567
+Epoch #575 Error:0.010170608551857608
+Epoch #576 Error:0.010114083560601988
+Epoch #577 Error:0.01005811740535396
+Epoch #578 Error:0.010002702374503777
+Epoch #579 Error:0.009947830890527089
+Neural Network Results:
+1.0,0.0, actual=0.9040102333814147,ideal=1.0
+0.0,0.0, actual=0.09892634022671229,ideal=0.0
+0.0,1.0, actual=0.904020682439766,ideal=1.0
+1.0,1.0, actual=0.10659032105865764,ideal=0.0</pre>
+<p>==More Information==</p>
+<ul>
+<li>[<a href="http://www.heatonresearch.com/encog/mprop/compare.html">http://www.heatonresearch.com/encog/mprop/compare.html</a> Multithreaded Backpropagation]</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://www.heatonresearch.com/book/neural_math_calc.html" data-id="cm651nws2005g8vmtc7pwabd7" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+
+    </footer>
+  </div>
+  
+    
+
+  
+</article>
+
+    </div>
+</div>
+
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2025 by Heaton Research, Inc. - <a href="/legal/">Legal and Copyright Info</a><br>
+Jeff Heaton is a computer scientist, data scientist, and indie publisher. Heaton Research is the homepage for his projects and research. <a href="/tips.html">Tips and support.</a><br><br>
+<ul class="list-inline banner-social-buttons">
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://github.com/jeffheaton"><i class="fa fa-github"> <span class="network-name">GitHub</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://twitter.com/jeffheaton"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.youtube.com/user/HeatonResearch"><i class="fa fa-youtube-play"> <span class="network-name">Youtube</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.facebook.com/encog.framework/"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
+</ul>
+
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'heatonresearch';
+  
+  var disqus_url = 'https://www.heatonresearch.com/book/neural_math_calc.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+<script src="/js/script.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>
