@@ -1,0 +1,52 @@
+#example-holder
+	  {
+		border: 1px solid #000;
+		padding:5px;
+		background: #c0c0c0;
+		width: 600px;
+		height: 400px;
+		position: relative;
+	  }
+
+	  #lstOutput
+	  {
+		border: 1px solid #000;
+		background: white;
+		width:590px;
+		height:295px;
+		position: absolute;
+		display: inline;
+	  }
+
+
+	  #example-btn1
+	  {
+		border: 1px solid #000;
+		position: absolute;
+		display: inline;
+		width: 590px;
+		top:310px;
+    font-size: 12px;
+	  }
+
+	  #example-btn2
+	  {
+		border: 1px solid #000;
+		position: absolute;
+		display: inline;
+		width: 590px;
+		top:340px;
+    font-size: 12px;
+	  }
+
+	  #example-btn3
+	  {
+		border: 1px solid #000;
+		position: absolute;
+		display: inline;
+		width: 590px;
+		top:370px;
+    font-size: 12px;
+	  }
+
+	  .test { color: red }

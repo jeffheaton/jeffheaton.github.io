@@ -1,0 +1,48 @@
+#example-holder {
+    border: 1px solid #000;
+    padding: 5px;
+    background: #c0c0c0;
+    width: 660px;
+    height: 445px;
+    position: relative;
+}
+
+#drawing-area {
+    border: 1px solid #000;
+    background: white;
+    width: 650px;
+    height: 300px;
+    position: absolute;
+    display: inline;
+}
+
+#example-btn1 {
+    border: 1px solid #000;
+    position: absolute;
+    display: inline;
+    width: 650px;
+    top: 310px;
+    font-size: 12px;
+}
+
+#example-btn2 {
+    border: 1px solid #000;
+    position: absolute;
+    display: inline;
+    width: 650px;
+    top: 340px;
+    font-size: 12px;
+}
+
+#example-btn3 {
+    border: 1px solid #000;
+    position: absolute;
+    display: inline;
+    width: 650px;
+    top: 397px;
+    font-size: 12px;
+}
+
+.test {
+    color: red
+}
