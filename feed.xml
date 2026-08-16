@@ -6,7 +6,7 @@
   <link href="https://www.heatonresearch.com/feed.xml" rel="self"/>
   
   <link href="https://www.heatonresearch.com/"/>
-  <updated>2026-07-21T00:12:43.782Z</updated>
+  <updated>2026-08-16T19:53:18.515Z</updated>
   <id>https://www.heatonresearch.com/</id>
   
   <author>
@@ -17,146 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Session 16: B/I - Multivariate Feature Engineering: Beyond Simple Data Preparation</title>
-    <link href="https://www.heatonresearch.com/2019/09/09/pas-2019-features.html"/>
-    <id>https://www.heatonresearch.com/2019/09/09/pas-2019-features.html</id>
-    <published>2019-09-09T17:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.782Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;I am presenting a workshop on “Multivariate Feature Engineering: Beyond Simple Data Preparation” for the Society of Actuaries at the &lt;a h</summary>
-      
-    
-    
-    
-    <category term="presentation" scheme="https://www.heatonresearch.com/categories/presentation/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Why am I getting ImportError: No module named tensorflow?</title>
-    <link href="https://www.heatonresearch.com/2019/09/03/tf-no-module-jupyter.html"/>
-    <id>https://www.heatonresearch.com/2019/09/03/tf-no-module-jupyter.html</id>
-    <published>2019-09-03T17:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.783Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;A common question that I get both from students of &lt;a href=&quot;https://sites.wustl.edu/jeffheaton/t81-558/&quot;&gt;my class&lt;/a&gt; and also &lt;a href=&quot;h</summary>
-      
-    
-    
-    
-    <category term="wustl" scheme="https://www.heatonresearch.com/categories/wustl/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Video Release Schedule for Fall 2019 Applications of Deep Learning</title>
-    <link href="https://www.heatonresearch.com/2019/05/20/2019-video-schedule.html"/>
-    <id>https://www.heatonresearch.com/2019/05/20/2019-video-schedule.html</id>
-    <published>2019-05-20T17:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.779Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;Here is the schedule for when I plan to release each of the course videos this summer.  I am planning on finishing video recording before</summary>
-      
-    
-    
-    
-    <category term="course" scheme="https://www.heatonresearch.com/categories/course/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>My Favorite TensorFlow 2.0 Articles (as of March 2019)</title>
-    <link href="https://www.heatonresearch.com/2019/03/13/tensorflow_20_articles.html"/>
-    <id>https://www.heatonresearch.com/2019/03/13/tensorflow_20_articles.html</id>
-    <published>2019-03-13T17:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.783Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://www.tensorflow.org/community/roadmap&quot;&gt;TensorFlow 2.0&lt;/a&gt; should be officially released this spring.  I’ve started lookin</summary>
-      
-    
-    
-    
-    <category term="tensorflow" scheme="https://www.heatonresearch.com/categories/tensorflow/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Time Lapse: Creating Several MergeLife Cellular Automata Online with JavaScript</title>
-    <link href="https://www.heatonresearch.com/2018/12/26/youtube-2018-12-26-mergelife-timelapse.html"/>
-    <id>https://www.heatonresearch.com/2018/12/26/youtube-2018-12-26-mergelife-timelapse.html</id>
-    <published>2018-12-26T18:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.784Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;This video shows how a MergeLife rule can be evolved in time-lapse.  This is nearly 12 hours of MergeLife runtime compressed to just a fw</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Happy Holidays from Jeff Heaton and Family</title>
-    <link href="https://www.heatonresearch.com/2018/12/20/youtube-2018-12-20-happy-holidays.html"/>
-    <id>https://www.heatonresearch.com/2018/12/20/youtube-2018-12-20-happy-holidays.html</id>
-    <published>2018-12-20T18:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.784Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;Happy Holidays from the Heaton Family.  This video recaps 2018.&lt;/p&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/5</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Data Science in 4 Minutes: Quick High Level Overview</title>
-    <link href="https://www.heatonresearch.com/2018/12/17/youtube-2018-12-07-ds_4_min.html"/>
-    <id>https://www.heatonresearch.com/2018/12/17/youtube-2018-12-07-ds_4_min.html</id>
-    <published>2018-12-17T18:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.784Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;This is a video that I did for YouTube where I present a high level overview of data science in under 4 minutes.  I begin by explaining t</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>MergeLife Rules from Reddit</title>
     <link href="https://www.heatonresearch.com/2018/12/15/mergelife_reddit.html"/>
     <id>https://www.heatonresearch.com/2018/12/15/mergelife_reddit.html</id>
-    <published>2018-12-15T18:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.782Z</updated>
+    <published>2018-12-15T12:00:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
     
     
       
@@ -172,164 +37,11 @@
   </entry>
   
   <entry>
-    <title>An Overview of MergeLife Cellular Automata Rules</title>
-    <link href="https://www.heatonresearch.com/2018/12/10/youtube-2018-12-10-mergelife-rules.html"/>
-    <id>https://www.heatonresearch.com/2018/12/10/youtube-2018-12-10-mergelife-rules.html</id>
-    <published>2018-12-10T18:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.784Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;This video presents an overview of the MergeLife rules.  MergeLife is a cellular automation that I created tha evolves entire families of</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Nova Southeastern: Getting a PhD in my 40s from a Distance Program - Computer Science</title>
-    <link href="https://www.heatonresearch.com/2018/12/01/youtube-2018-12-01-nsu-cs-phd.html"/>
-    <id>https://www.heatonresearch.com/2018/12/01/youtube-2018-12-01-nsu-cs-phd.html</id>
-    <published>2018-12-01T18:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.784Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;This video presents an overview of how I obtained a Ph.D. in computer science from Nova Southeastern University.  &lt;/p&gt;
-&lt;iframe width=&quot;560</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>My New YouTube Trailer (Nov 2018)</title>
-    <link href="https://www.heatonresearch.com/2018/11/24/youtube-2018-11-24-youtube-trailer.html"/>
-    <id>https://www.heatonresearch.com/2018/11/24/youtube-2018-11-24-youtube-trailer.html</id>
-    <published>2018-11-24T18:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.783Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;This is my new YouTube trailer. &lt;/p&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/Vvj6a5ewkpE&quot; frameborder=&quot;0&quot; all</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>My Deep Learning Class YouTube Trailer (Nov 2018)</title>
-    <link href="https://www.heatonresearch.com/2018/11/18/youtube-2018-11-18-class-trailer.html"/>
-    <id>https://www.heatonresearch.com/2018/11/18/youtube-2018-11-18-class-trailer.html</id>
-    <published>2018-11-18T18:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.783Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;This is my new YouTube trailer for my class. &lt;/p&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/EQ38k6z2aks&quot; frameb</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>High Speed Defeat of Stratego iPhone</title>
-    <link href="https://www.heatonresearch.com/2018/10/26/youtube-2018-10-26-stratego.html"/>
-    <id>https://www.heatonresearch.com/2018/10/26/youtube-2018-10-26-stratego.html</id>
-    <published>2018-10-26T17:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.783Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;This is my new YouTube trailer for my class. &lt;/p&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/N5RB7-rpqfg&quot; frameb</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JNA with Maven Quickstart</title>
-    <link href="https://www.heatonresearch.com/2018/10/02/jna-quickstart.html"/>
-    <id>https://www.heatonresearch.com/2018/10/02/jna-quickstart.html</id>
-    <published>2018-10-02T17:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.781Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Java_Native_Access&quot;&gt;Java Native Access&lt;/a&gt; (JNA) and &lt;a href=&quot;https://en.wikipedia.org/wiki/Java_N</summary>
-      
-    
-    
-    
-    <category term="java" scheme="https://www.heatonresearch.com/categories/java/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Installing TensorFlow</title>
-    <link href="https://www.heatonresearch.com/2018/09/13/install_tf_2018.html"/>
-    <id>https://www.heatonresearch.com/2018/09/13/install_tf_2018.html</id>
-    <published>2018-09-13T17:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.781Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;Session-11-TensorFlow-Workshop&quot;&gt;&lt;a href=&quot;#Session-11-TensorFlow-Workshop&quot; class=&quot;headerlink&quot; title=&quot;Session 11: TensorFlow Workshop&quot;</summary>
-      
-    
-    
-    
-    <category term="datascience" scheme="https://www.heatonresearch.com/categories/datascience/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Docker Image for TensorFlow/Keras</title>
-    <link href="https://www.heatonresearch.com/2018/09/03/youtube-2018-09-03-docker.html"/>
-    <id>https://www.heatonresearch.com/2018/09/03/youtube-2018-09-03-docker.html</id>
-    <published>2018-09-03T17:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.783Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;How to setup docker image for Keras/TensorFlow. &lt;/p&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/_Lo-5SZDDEc&quot; fra</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>Introducing the MergeLife Cellular Automation</title>
     <link href="https://www.heatonresearch.com/2018/08/27/mergelife_intro.html"/>
     <id>https://www.heatonresearch.com/2018/08/27/mergelife_intro.html</id>
-    <published>2018-08-27T17:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.781Z</updated>
+    <published>2018-08-27T12:00:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
     
     
       
@@ -346,34 +58,16 @@
   </entry>
   
   <entry>
-    <title>Care and Feeding of a Python Environment</title>
-    <link href="https://www.heatonresearch.com/2018/01/01/python-care-feeding.html"/>
-    <id>https://www.heatonresearch.com/2018/01/01/python-care-feeding.html</id>
-    <published>2018-01-01T18:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.782Z</updated>
+    <title>Data Science Rosetta Stone: Classification in Python, R, MATLAB, SAS, &amp; Julia</title>
+    <link href="https://www.heatonresearch.com/2017/08/17/ds_rosetta_stone.html"/>
+    <id>https://www.heatonresearch.com/2017/08/17/ds_rosetta_stone.html</id>
+    <published>2017-08-17T13:26:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
     
     
       
       
-    <summary type="html">&lt;p&gt;This is a blog post that I continue to update that discusses how I setup a Python Anaconda environment.  As these&lt;br&gt;processes change, an</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>AWS EC2 Data Science: My Jupyter Workspaces for GPU</title>
-    <link href="https://www.heatonresearch.com/2017/11/30/aws-data-science-gpu.html"/>
-    <id>https://www.heatonresearch.com/2017/11/30/aws-data-science-gpu.html</id>
-    <published>2017-11-30T18:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.779Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;This blog post describes how I created a GPU Jupyterhub instance to use with Tensorflow in AWS.  The instance created from these instruct</summary>
+    <summary type="html">&lt;p&gt;The discovery of the &lt;a href=&quot;https://en.wikipedia.org/wiki/Rosetta_Stone&quot;&gt;Rosetta Stone&lt;/a&gt; in 1799 allowed scholars to finally decipher</summary>
       
     
     
@@ -384,21 +78,325 @@
   </entry>
   
   <entry>
-    <title>AWS EC2 Data Science: My Jupyter Workspaces for Docker CPU Only</title>
-    <link href="https://www.heatonresearch.com/2017/11/25/aws-data-science-cpu.html"/>
-    <id>https://www.heatonresearch.com/2017/11/25/aws-data-science-cpu.html</id>
-    <published>2017-11-25T18:00:00.000Z</published>
-    <updated>2026-07-21T00:12:43.779Z</updated>
+    <title>My Review of Computer Science Ph.D. at Nova Southeastern University</title>
+    <link href="https://www.heatonresearch.com/2017/07/05/finished-nsu-phd.html"/>
+    <id>https://www.heatonresearch.com/2017/07/05/finished-nsu-phd.html</id>
+    <published>2017-07-05T12:00:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
     
     
       
       
-    <summary type="html">&lt;p&gt;This blog post describes how I created a CPU-only Jupyterhub instance to be run from Docker in AWS.  The instance created from these inst</summary>
+    <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=ogwqBySlcms&quot;&gt;YouTube Video about the process of getting the degree.&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;</summary>
+      
+    
+    
+    
+    <category term="phd" scheme="https://www.heatonresearch.com/categories/phd/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>The Number of Hidden Layers</title>
+    <link href="https://www.heatonresearch.com/2017/06/01/hidden-layers.html"/>
+    <id>https://www.heatonresearch.com/2017/06/01/hidden-layers.html</id>
+    <published>2017-06-01T12:00:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;This is a repost/update of previous content that discussed how to choose the number and structure of hidden layers for a neural network. </summary>
+      
+    
+    
+    
+    <category term="ai" scheme="https://www.heatonresearch.com/categories/ai/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Presented at International Joint Conference on Neural Networks (IJCNN 2017)</title>
+    <link href="https://www.heatonresearch.com/2017/05/25/ijcnn_2017.html"/>
+    <id>https://www.heatonresearch.com/2017/05/25/ijcnn_2017.html</id>
+    <published>2017-05-25T12:00:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;I had a &lt;a href=&quot;http://ieeexplore.ieee.org/abstract/document/7966442/&quot;&gt;paper&lt;/a&gt; accepted for the International Joint Conference on Neur</summary>
+      
+    
+    
+    
+    <category term="phd" scheme="https://www.heatonresearch.com/categories/phd/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Reading Wikipedia XML Dumps with Python</title>
+    <link href="https://www.heatonresearch.com/2017/03/03/python-basic-wikipedia-parsing.html"/>
+    <id>https://www.heatonresearch.com/2017/03/03/python-basic-wikipedia-parsing.html</id>
+    <published>2017-03-03T12:00:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Wikipedia contains a vast amount of data.  It is possible to make use of this data in computer programs for a variety of purposes.  Howev</summary>
+      
+    
+    
+    
+    <category term="python" scheme="https://www.heatonresearch.com/categories/python/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Equilateral Encoding</title>
+    <link href="https://www.heatonresearch.com/2017/02/10/equilateral.html"/>
+    <id>https://www.heatonresearch.com/2017/02/10/equilateral.html</id>
+    <published>2017-02-10T12:00:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Equilateral Encoding is a means by which data made up of classes can be normalized into an array of floating point values. Equilateral en</summary>
+      
+    
+    
+    
+    <category term="ai" scheme="https://www.heatonresearch.com/categories/ai/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Presented Two Papers at IEEE SoutheastCON 2016 in Norfolk, VA</title>
+    <link href="https://www.heatonresearch.com/2016/03/19/ieee-southeast-con-2016-papers.html"/>
+    <id>https://www.heatonresearch.com/2016/03/19/ieee-southeast-con-2016-papers.html</id>
+    <published>2016-03-19T12:00:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;I presented two papers at the IEEE SoutheastCON 2016 conference in NorfolkVA on&lt;br&gt;April 1, 2016:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;April, 2016: &lt;a href=&quot;http</summary>
+      
+    
+    
+    
+    <category term="phd" scheme="https://www.heatonresearch.com/categories/phd/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Visiting Spain and the GECCO Confrence</title>
+    <link href="https://www.heatonresearch.com/2015/08/30/madrid-gecco.html"/>
+    <id>https://www.heatonresearch.com/2015/08/30/madrid-gecco.html</id>
+    <published>2015-08-30T13:26:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;I spent six weeks in Spain this summer.  My wife, Tracy, is earning a &lt;a href=&quot;http://www.slu.edu/department-of-languages-literatures-and</summary>
+      
+    
+    
+    
+    <category term="phd" scheme="https://www.heatonresearch.com/categories/phd/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>My First Kaggle Competition</title>
+    <link href="https://www.heatonresearch.com/2015/05/25/first-kaggle.html"/>
+    <id>https://www.heatonresearch.com/2015/05/25/first-kaggle.html</id>
+    <published>2015-05-25T13:26:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;I placed in the top 10% of my first Kaggle competition.  If you are not familiar with it,&lt;br&gt;&lt;a href=&quot;https://www.kaggle.com/&quot;&gt;Kaggle&lt;/a&gt;</summary>
+      
+    
+    
+    
+    <category term="kaggle" scheme="https://www.heatonresearch.com/categories/kaggle/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>How I Got Into Data Science from IT Programming</title>
+    <link href="https://www.heatonresearch.com/2015/03/11/data-science-from-it.html"/>
+    <id>https://www.heatonresearch.com/2015/03/11/data-science-from-it.html</id>
+    <published>2015-03-11T13:26:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Drew Conway describes data scientist as the combination of domain expertise, statistics&lt;br&gt;and hacker skills.  If you are an IT programme</summary>
       
     
     
     
     <category term="datascience" scheme="https://www.heatonresearch.com/categories/datascience/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PhD Update: Second Cluster Visit for Winter 2015 Semester at NSU</title>
+    <link href="https://www.heatonresearch.com/2015/03/09/phd-2nd-cluster-visit.html"/>
+    <id>https://www.heatonresearch.com/2015/03/09/phd-2nd-cluster-visit.html</id>
+    <published>2015-03-09T13:26:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;I just got back to St. Louis from my second cluster visit to NSU for the phd in computer&lt;br&gt;science.  I was feeling pretty good about cho</summary>
+      
+    
+    
+    
+    <category term="phd" scheme="https://www.heatonresearch.com/categories/phd/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>First time at the NSU Campus - Fall 2014</title>
+    <link href="https://www.heatonresearch.com/2014/09/02/first-visit-nsu.html"/>
+    <id>https://www.heatonresearch.com/2014/09/02/first-visit-nsu.html</id>
+    <published>2014-09-02T13:26:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;I just returned from my first cluster meeting for PhD program in computer science at Nova&lt;br&gt;Southeastern University.  Because it was Lab</summary>
+      
+    
+    
+    
+    <category term="phd" scheme="https://www.heatonresearch.com/categories/phd/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Washington University Mini Medical School</title>
+    <link href="https://www.heatonresearch.com/2014/05/20/washington-university-mini-medical-school.html"/>
+    <id>https://www.heatonresearch.com/2014/05/20/washington-university-mini-medical-school.html</id>
+    <published>2014-05-20T13:26:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;My wife and I just finished the &lt;a href=&quot;https://minimed.wustl.edu/&quot;&gt;Mini-Med series&lt;/a&gt; at &lt;a href=&quot;http://www.wustl.edu/&quot;&gt;Washington Un</summary>
+      
+    
+    
+    
+    <category term="learning" scheme="https://www.heatonresearch.com/categories/learning/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>I am Starting a Ph.D. in Computer Science</title>
+    <link href="https://www.heatonresearch.com/2014/05/02/starting-computer-science-phd.html"/>
+    <id>https://www.heatonresearch.com/2014/05/02/starting-computer-science-phd.html</id>
+    <published>2014-05-02T13:26:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;strong&gt;I’ve since completed this degree, you can read about that &lt;a href=&quot;https://www.heatonresearch.com/2017/07/05/finished-nsu-phd.htm</summary>
+      
+    
+    
+    
+    <category term="phd" scheme="https://www.heatonresearch.com/categories/phd/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>The Apollo64 BBS System for the Commodore 64</title>
+    <link href="https://www.heatonresearch.com/2013/08/18/apollo-64-commodore-bbs.html"/>
+    <id>https://www.heatonresearch.com/2013/08/18/apollo-64-commodore-bbs.html</id>
+    <published>2013-08-18T12:00:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/jeffheaton/apollo64/master/apollo64.png&quot; alt=&quot;Apollo64&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Apollo64-BBS-System&quot;&gt;&lt;a </summary>
+      
+    
+    
+    
+    <category term="bbs" scheme="https://www.heatonresearch.com/categories/bbs/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Using Kickstarter to Fund an Indie Technical Book</title>
+    <link href="https://www.heatonresearch.com/2013/07/20/kickstarter-techie-book.html"/>
+    <id>https://www.heatonresearch.com/2013/07/20/kickstarter-techie-book.html</id>
+    <published>2013-07-20T13:26:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;During June and July of 2013 I &lt;a href=&quot;http://www.kickstarter.com/projects/jeffheaton/artificial-intelligence-for-humans-vol-1-fund-algo</summary>
+      
+    
+    
+    
+    <category term="aifh" scheme="https://www.heatonresearch.com/categories/aifh/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>2013 Visit to the Computer History Museum in Palo Alto</title>
+    <link href="https://www.heatonresearch.com/2013/07/17/visit-to-computer-history-museum.html"/>
+    <id>https://www.heatonresearch.com/2013/07/17/visit-to-computer-history-museum.html</id>
+    <published>2013-07-17T13:26:00.000Z</published>
+    <updated>2026-08-16T19:53:18.515Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;During July 2013 I happened to be in Silicon Valley.  While there my wife and I toured&lt;br&gt;the Computer History Museum.  If you find your </summary>
+      
+    
+    
+    
+    <category term="learning" scheme="https://www.heatonresearch.com/categories/learning/"/>
     
     
   </entry>

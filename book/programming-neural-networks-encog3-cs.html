@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>Programming Neural Networks with Encog3 in C#, 2nd Edition | Heaton Research</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="DescriptionIntroduction to Neural Networks for C#, Second Edition, introduces the C# programmer to the world of Neural Networks and Artificial Intelligence. Neural network architectures, such as the f">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Programming Neural Networks with Encog3 in C#, 2nd Edition">
@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Heaton Research">
 <meta property="og:description" content="DescriptionIntroduction to Neural Networks for C#, Second Edition, introduces the C# programmer to the world of Neural Networks and Artificial Intelligence. Neural network architectures, such as the f">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-07-21T00:12:43.797Z">
-<meta property="article:modified_time" content="2026-07-21T00:12:43.797Z">
+<meta property="article:published_time" content="2026-08-16T19:53:18.526Z">
+<meta property="article:modified_time" content="2026-08-16T19:53:18.526Z">
 <meta property="article:author" content="Jeff Heaton">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@jeffheaton">
@@ -21,13 +21,21 @@
     <link rel="alternate" href="/atom.xml" title="Heaton Research" type="application/atom+xml">
   
   
+    <link rel="icon" href="/favicon.png">
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
   
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <meta name="theme-color" content="#428bca">
+  
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.heatonresearch.com/#website","name":"Heaton Research","url":"https://www.heatonresearch.com/","publisher":{"@id":"https://www.heatonresearch.com/#person"}},{"@type":"Person","@id":"https://www.heatonresearch.com/#person","name":"Jeff Heaton","url":"https://www.heatonresearch.com/","jobTitle":"Computer Scientist","sameAs":["https://github.com/jeffheaton","https://www.youtube.com/user/HeatonResearch","https://www.linkedin.com/in/jeffheaton","https://x.com/jeffheaton","https://scholar.google.com/citations?user=1jPGeg4AAAAJ"]},{"@type":"Book","name":"Programming Neural Networks with Encog3 in C#, 2nd Edition","author":{"@id":"https://www.heatonresearch.com/#person"},"isbn":"9781604390261","numberOfPages":232,"url":"https://www.heatonresearch.com/book/programming-neural-networks-encog3-cs.html"}]}</script>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+  
+<link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
+
 
   
   
@@ -38,19 +46,6 @@
 <link rel="stylesheet" href="/css/styles.css">
 
   
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-5393865-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
 
   <script data-ad-client="ca-pub-6846576724383320" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- hexo injector head_end start -->
@@ -64,7 +59,7 @@ ga('send', 'pageview');
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+      <button type="button" class="navbar-toggle collapsed" data-target="#main-menu-navbar" aria-controls="main-menu-navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -113,7 +108,6 @@ ga('send', 'pageview');
   <div class="container">
     <a href="/book/">[Back to books]</a>
 <h1>Programming Neural Networks with Encog3 in C#, 2nd Edition</h1>
-
 <div class="row">
   <div class="col-sm-3">
     <img width="256" height="312" class="img-responsive center-block" src="/images/books/9781604390261-md.jpg" border="1" alt="Programming Neural Networks with Encog3 in C#, 2nd Edition">
@@ -142,26 +136,20 @@ ga('send', 'pageview');
     </dl>
   </div>
 </div>
-<br>Note: Our PDF books contain no DRM and can be printed, copied to multiple computers owned by you, and once downloaded do not require an internet connection.<br></td></tr>
+<br>Note: Our PDF books contain no DRM and can be printed, copied to multiple computers owned by you, and once downloaded do not require an internet connection.<br>
 
 <h1>Purchasing</h1>
 You can purchase a Kindle or paperback below. Purchasing the book supports my projects and is greatly appreciated. I also allow you to download the entire book for free from <a target="_blank" rel="noopener" href="https://github.com/jeffheaton/jeffheaton-book-code/raw/master/ebooks/Encog3CS.zip">this link</a>. The free book is the complete text without any limitations; there are also ways you can <a href="/support.html">support my ability to produce free content</a>.
 <br><br>
 <ul>
-  <li>Amazon USA: <a target="_blank" rel="noopener" href="https://www.amazon.com/gp/product/B005S0XEK0">Buy Kindle($9.99 USD)</a>, <a target="_blank" rel="noopener" href="https://www.amazon.com/gp/product/1604390263">Buy Paperback: ($34.99 USD)</a></li>
-  <li>Amazon UK: <a target="_blank" rel="noopener" href="https://www.amazon.co.uk/gp/product/B005S0XEK0">Buy Kindle(£7.99 GBP)</a>, <a target="_blank" rel="noopener" href="https://www.amazon.co.uk/gp/product/1604390263">Buy Paperback: (£27.99 GPB)</a></li>
-  <li>Amazon Germany: <a target="_blank" rel="noopener" href="https://www.amazon.de/gp/product/B005S0XEK0">Buy Kindle(€9.49 EUR)</a>, <a target="_blank" rel="noopener" href="https://www.amazon.de/gp/product/1604390263">Buy Paperback: (€33.24 EUR)</a></li>
-  <li>Amazon France: <a target="_blank" rel="noopener" href="https://www.amazon.fr/gp/product/B005S0XEK0">Buy Kindle(€9.49 EUR)</a>, <a target="_blank" rel="noopener" href="https://www.amazon.fr/gp/product/1604390263">Buy Paperback: (€33.24 EUR)</a></li>
-  <li>Amazon Spain: <a target="_blank" rel="noopener" href="https://www.amazon.es/gp/product/B005S0XEK0">Buy Kindle(€9.49 EUR)</a>, <a target="_blank" rel="noopener" href="https://www.amazon.es/gp/product/1604390263">Buy Paperback: (€33.24 EUR)</a></li>
-  <li>Amazon Italy: <a target="_blank" rel="noopener" href="https://www.amazon.it/gp/product/B005S0XEK0">Buy Kindle(€9.49 EUR)</a>, <a target="_blank" rel="noopener" href="https://www.amazon.it/gp/product/1604390263">Buy Paperback: (€33.24 EUR)</a></li>
-  <li>Amazon Netherlands: <a target="_blank" rel="noopener" href="https://www.amazon.nl/gp/product/B005S0XEK0">Buy Kindle(€9.49 EUR)</a>, <a target="_blank" rel="noopener" href="https://www.amazon.nl/gp/product/1604390263">Buy Paperback: (€33.24 EUR)</a></li>
-  <li>Amazon Poland: <a target="_blank" rel="noopener" href="https://www.amazon.pl/gp/product/B005S0XEK0">Buy Kindle(zł 43.76 PLN)</a>, <a target="_blank" rel="noopener" href="https://www.amazon.pl/gp/product/1604390263">Buy Paperback: (zł 153.26 PLN)</a></li>
-  <li>Amazon Sweden: <a target="_blank" rel="noopener" href="https://www.amazon.se/gp/product/B005S0XEK0">Buy Kindle(kr 99.3 SEK)</a>, <a target="_blank" rel="noopener" href="https://www.amazon.se/gp/product/1604390263">Buy Paperback: (kr 347.8 SEK)</a></li>
-  <li>Amazon Japan: <a target="_blank" rel="noopener" href="https://www.amazon.jp/gp/product/B005S0XEK0">Buy Kindle(¥1278.12 JPY)</a>, <a target="_blank" rel="noopener" href="https://www.amazon.jp/gp/product/1604390263">Buy Paperback: (¥4476.62 JPY)</a></li>  
-  <li>Amazon Canada: <a target="_blank" rel="noopener" href="https://www.amazon.ca/gp/product/B005S0XEK0">Buy Kindle($12.79 CAD)</a>, <a target="_blank" rel="noopener" href="https://www.amazon.ca/gp/product/1604390263">Buy Paperback: ($44.79 CAD)</a></li>
-  <li>Amazon Australia: <a target="_blank" rel="noopener" href="https://www.amazon.com.au/gp/product/B005S0XEK0">Buy Kindle($14.19 AUD)</a>, <a target="_blank" rel="noopener" href="https://www.amazon.com.au/gp/product/1604390263">Buy Paperback: ($49.69 AUD)</a></li>
+  
+  <li><a target="_blank" rel="noopener" href="https://www.amazon.com/gp/product/B005S0XEK0">Buy the Kindle edition on Amazon</a></li>
+  
+  
+  <li><a target="_blank" rel="noopener" href="https://www.amazon.com/gp/product/1604390263">Buy the paperback on Amazon</a></li>
+  
 </ul>
-Note: prices above are an estimate, Amazon sets the final price. Amazon prices and currency exchange rates tend to fluxuate. Also, note that paperback and ebook may not be available in all regions.
+The book is also available from Amazon's international stores; when you open a link above, Amazon will offer to switch you to your local store.
 
 <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>Introduction to Neural Networks for C#, Second Edition, introduces the C# programmer to the world of Neural Networks and Artificial Intelligence. Neural network architectures, such as the feedforward, Hopfield, and self-organizing map architectures are discussed. Training techniques, such as backpropagation, genetic algorithms and simulated annealing are also introduced. Practical examples are given for each neural network. Examples include the traveling salesman problem, handwriting recognition, financial prediction, game strategy, mathematical functions, and Internet bots. All C# source code is available online for easy downloading.</p>
 <h1 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h1><ul>
@@ -200,12 +188,12 @@ Note: prices above are an estimate, Amazon sets the final price. Amazon prices a
   <div class="container">
     <div id="footer-info" class="inner">
       &copy; 2026 by Heaton Research, Inc. - <a href="/legal/">Legal and Copyright Info</a><br>
-Jeff Heaton is a computer scientist, data scientist, and indie publisher. Heaton Research is the homepage for his projects and research. <a href="/tips.html">Tips and support.</a><br><br>
+Jeff Heaton, Ph.D., is a computer scientist whose work covers artificial intelligence, software development, and simulation.<br><br>
 <ul class="list-inline banner-social-buttons">
-  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://github.com/jeffheaton"><i class="fa fa-github"> <span class="network-name">GitHub</span></i></a></li>
-  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://twitter.com/jeffheaton"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
-  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.youtube.com/user/HeatonResearch"><i class="fa fa-youtube-play"> <span class="network-name">Youtube</span></i></a></li>
-  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.facebook.com/encog.framework/"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://github.com/jeffheaton"><i class="fa-brands fa-github"></i> <span class="network-name">GitHub</span></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://x.com/jeffheaton"><i class="fa-brands fa-x-twitter"></i> <span class="network-name">X</span></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.youtube.com/user/HeatonResearch"><i class="fa-brands fa-youtube"></i> <span class="network-name">Youtube</span></a></li>
+  <li><a class="btn btn-default btn-sm" target="_blank" rel="noopener" href="https://www.facebook.com/encog.framework/"><i class="fa-brands fa-facebook"></i> <span class="network-name">Facebook</span></a></li>
 </ul>
 
     </div>
@@ -222,15 +210,10 @@ Jeff Heaton is a computer scientist, data scientist, and indie publisher. Heaton
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
 
 
 
