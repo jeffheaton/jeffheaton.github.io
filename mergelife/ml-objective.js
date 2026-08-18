@@ -1,20 +1,22 @@
 const canvas1 = document.getElementById('myCanvas')
+const hexCode = document.getElementById('hexCode')
+const ruleButton = document.getElementById('ruleButton')
 window.ml1 = new MergeLifeRender()
-window.ml1.init({rule: $("#hexCode").val(),
+window.ml1.init({rule: hexCode.value,
   canvas: canvas1,
   cellSize: 2,
   controls: false})
 window.ml1.startAnimation()
 window.ml1.autoStep = false
 
-$("#ruleButton").click(function(){
+ruleButton.addEventListener('click', function(){
   window.ml1.autoStep = true
-  const objStats = $('#textStats').val()
+  const objStats = document.getElementById('textStats').value
   const config = JSON.parse(objStats)
-  window.ml1.updateRule = window.ml1.parseUpdateRule($("#hexCode").val())
+  window.ml1.updateRule = window.ml1.parseUpdateRule(hexCode.value)
   window.ml1.stepCount = 0
   window.ml1.randomGrid(window.ml1.grid[window.ml1.currentGrid])
-  $('#ruleButton').prop("disabled",true)
+  ruleButton.disabled = true
   window.mlLog = "Cycle #1\n"
   window.cycle = 1
   window.evalSum = 0
@@ -25,16 +27,16 @@ $("#ruleButton").click(function(){
   window.ml1.postRenderFunction = function(ctx) {
     if (window.ml1.autoStep) {
       const s = JSON.stringify(tracker.track())
-      $("#status").text(`Cycle #${window.cycle}: ${s}`)
+      document.getElementById('status').textContent = `Cycle #${window.cycle}: ${s}`
       window.mlLog += s + '\n'
       if (tracker.hasStabilized()) {
         window.cycle += 1
         if (window.cycle>window.evalCycles) {
-          $("#outputDiv").text(window.mlLog)
+          document.getElementById('outputDiv').textContent = window.mlLog
           window.ml1.autoStep = false
-          $('#ruleButton').prop("disabled",false)
+          ruleButton.disabled = false
           const finalScore = window.evalSum / window.evalCycles
-          $("#status").text(`Final Score: ${finalScore}`)
+          document.getElementById('status').textContent = `Final Score: ${finalScore}`
         } else {
           const score = tracker.scoreCycle()
           window.evalSum += score

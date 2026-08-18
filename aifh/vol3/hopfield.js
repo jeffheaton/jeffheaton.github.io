@@ -13,8 +13,8 @@ function runNeuron(toNeuron) {
 	var matrix = []
 	for(var row=0;row<4;row++) {
 		c = []
-		for(var col=0;col<4;col++) { 
-			c.push(parseFloat($("#r"+row+"c"+col).val()))
+		for(var col=0;col<4;col++) {
+			c.push(parseFloat(document.getElementById("r"+row+"c"+col).value))
 		}
 		matrix.push(c)
 	}
@@ -22,10 +22,10 @@ function runNeuron(toNeuron) {
 
 	// Collect state
 	state = []
-	state.push(parseFloat($("#n0").val()))
-  	state.push(parseFloat($("#n1").val()))
-	state.push(parseFloat($("#n2").val()))
-	state.push(parseFloat($("#n3").val()))
+	state.push(parseFloat(document.getElementById("n0").value))
+  	state.push(parseFloat(document.getElementById("n1").value))
+	state.push(parseFloat(document.getElementById("n2").value))
+	state.push(parseFloat(document.getElementById("n3").value))
 
 	// Calculate value
 	sum = 0
@@ -34,33 +34,33 @@ function runNeuron(toNeuron) {
 	}
 
 	if( sum>0 ) {
-		$("#n"+toNeuron).val("1")
+		document.getElementById("n"+toNeuron).value = "1"
 	} else {
-		$("#n"+toNeuron).val("0")
+		document.getElementById("n"+toNeuron).value = "0"
 	}
 }
 
-$(document).ready(function(){
-  $("#addButton").click(function(){
-	str = $("#i0").val()+$("#i1").val()+$("#i2").val()+$("#i3").val()
-	$('#trainingList').append('<option value="'+str+'">'+str+'</option>')   	
+document.addEventListener('DOMContentLoaded', function(){
+  document.getElementById("addButton").addEventListener('click', function(){
+	str = document.getElementById("i0").value+document.getElementById("i1").value+document.getElementById("i2").value+document.getElementById("i3").value
+	document.getElementById('trainingList').insertAdjacentHTML('beforeend', '<option value="'+str+'">'+str+'</option>')
   });
-  $("#clearButton").click(function(){
-	$('#trainingList').empty()   	
+  document.getElementById("clearButton").addEventListener('click', function(){
+	document.getElementById('trainingList').innerHTML = ''
   });
-  $("#trainHebbianButton").click(function(){
+  document.getElementById("trainHebbianButton").addEventListener('click', function(){
 	training = []
-	$('#trainingList').find('option').map(function() {
-		var str = $(this).val()
+	document.querySelectorAll('#trainingList option').forEach(function(option) {
+		var str = option.value
 		pattern = [ parseFloat(str.charAt(0)), parseFloat(str.charAt(1)), parseFloat(str.charAt(2)), parseFloat(str.charAt(3)) ]
 		training.push(pattern)
 	});
-	
+
 	var matrix = []
 	for(var row=0;row<4;row++) {
 		c = []
-		for(var col=0;col<4;col++) { 
-			c.push($("#r"+row+"c"+col))
+		for(var col=0;col<4;col++) {
+			c.push(document.getElementById("r"+row+"c"+col))
 		}
 		matrix.push(c)
 	}
@@ -79,34 +79,34 @@ $(document).ready(function(){
             	}
 	}
 
-	
+
 	for(var i=0;i<4;i++) {
  		for(var j=0;j<4;j++) {
-			matrix[i][j].val(sumMatrix[i][j]/training.length)
+			matrix[i][j].value = sumMatrix[i][j]/training.length
 		}
 	}
   });
 
-  $("#trainStorkeyButton").click(function(){
+  document.getElementById("trainStorkeyButton").addEventListener('click', function(){
 	training = []
-	$('#trainingList').find('option').map(function() {
-		var str = $(this).val()
+	document.querySelectorAll('#trainingList option').forEach(function(option) {
+		var str = option.value
 		pattern = [ parseFloat(str.charAt(0)), parseFloat(str.charAt(1)), parseFloat(str.charAt(2)), parseFloat(str.charAt(3)) ]
 		training.push(pattern)
 	});
-	
+
 	var matrix = []
 	for(var row=0;row<4;row++) {
 		c = []
-		for(var col=0;col<4;col++) { 
-			c.push($("#r"+row+"c"+col))
+		for(var col=0;col<4;col++) {
+			c.push(document.getElementById("r"+row+"c"+col))
 		}
 		matrix.push(c)
 	}
 
 	var sumMatrix = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
 
-	
+
 	for(var idx=0;idx<training.length;idx++) {
 		pattern = training[idx]
 		n = training.length
@@ -121,30 +121,29 @@ $(document).ready(function(){
         	}
 	}
 
-	
+
 	for(var i=0;i<4;i++) {
  		for(var j=0;j<4;j++) {
-			matrix[i][j].val(sumMatrix[i][j])
+			matrix[i][j].value = sumMatrix[i][j]
 		}
 	}
   });
-  $("#runI0Button").click(function(){
+  document.getElementById("runI0Button").addEventListener('click', function(){
 	runNeuron(0)
   });
-  $("#runI1Button").click(function(){
+  document.getElementById("runI1Button").addEventListener('click', function(){
 	runNeuron(1)
   });
-  $("#runI2Button").click(function(){
+  document.getElementById("runI2Button").addEventListener('click', function(){
 	runNeuron(2)
   });
-  $("#runI3Button").click(function(){
+  document.getElementById("runI3Button").addEventListener('click', function(){
 	runNeuron(3)
   });
-  $("#runAllButton").click(function(){
+  document.getElementById("runAllButton").addEventListener('click', function(){
 	for(var i=0;i<4;i++) {
 		runNeuron(i)
 	}
   });
 
 });
-

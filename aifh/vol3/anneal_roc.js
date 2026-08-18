@@ -13,17 +13,17 @@ function randomize() {
 		w.push((Math.random()*2)-1);
 	}
 
-	$("#w1").val(w[0]);
-	$("#w2").val(w[1]);
-	$("#w3").val(w[2]);
-	$("#w4").val(w[3]);
-	$("#w5").val(w[4]);
-	$("#w6").val(w[5]);
-	$("#w7").val(w[6]);
-	$("#w8").val(w[7]);
-	$("#w9").val(w[8]);
+	document.getElementById("w1").value = w[0];
+	document.getElementById("w2").value = w[1];
+	document.getElementById("w3").value = w[2];
+	document.getElementById("w4").value = w[3];
+	document.getElementById("w5").value = w[4];
+	document.getElementById("w6").value = w[5];
+	document.getElementById("w7").value = w[6];
+	document.getElementById("w8").value = w[7];
+	document.getElementById("w9").value = w[8];
 
-	$("#mse").html("mse: "+calculate_mse(w));
+	document.getElementById("mse").innerHTML = "mse: "+calculate_mse(w);
 	update_roc(w);
 }
 
@@ -118,21 +118,22 @@ function calcProbability(ecurrent, enew, t) {
 }
 
 
-$(document).ready(function(){
-  randomize();
-  $("#calculateButton").click(function(){
+document.addEventListener('DOMContentLoaded', function(){
+  google.charts.load('current', {packages: ['corechart']});
+  google.charts.setOnLoadCallback(randomize);
+  document.getElementById("calculateButton").addEventListener('click', function(){
 	var str = "";
-  	var i1 = parseFloat($("#i1").val());
-	var i2 = parseFloat($("#i2").val());
-	var w1 = parseFloat($("#w1").val());
-	var w2 = parseFloat($("#w2").val());
-	var w3 = parseFloat($("#w3").val());
-	var w4 = parseFloat($("#w4").val());
-	var w5 = parseFloat($("#w5").val());
-	var w6 = parseFloat($("#w6").val());
-	var w7 = parseFloat($("#w7").val());
-	var w8 = parseFloat($("#w8").val());
-	var w9 = parseFloat($("#w9").val());
+  	var i1 = parseFloat(document.getElementById("i1").value);
+	var i2 = parseFloat(document.getElementById("i2").value);
+	var w1 = parseFloat(document.getElementById("w1").value);
+	var w2 = parseFloat(document.getElementById("w2").value);
+	var w3 = parseFloat(document.getElementById("w3").value);
+	var w4 = parseFloat(document.getElementById("w4").value);
+	var w5 = parseFloat(document.getElementById("w5").value);
+	var w6 = parseFloat(document.getElementById("w6").value);
+	var w7 = parseFloat(document.getElementById("w7").value);
+	var w8 = parseFloat(document.getElementById("w8").value);
+	var w9 = parseFloat(document.getElementById("w9").value);
 
 	// Calculate hidden neuron 1
 	var sum1 = (i1*w1) + (i2*w3) + w5;
@@ -141,7 +142,7 @@ $(document).ready(function(){
 	var n1 = 1.0 / (1.0 + Math.exp(-sum1))
 	str += "n1 = 1/(1+exp(-sum1)=" + n1+"<br>";
 
-	$("#n1").val(n1)
+	document.getElementById("n1").value = n1
 
 	// Calculate hidden neuron 2
 	var sum2 = (i1*w2) + (i2*w4) + w6;
@@ -150,7 +151,7 @@ $(document).ready(function(){
 	var n2 = 1.0 / (1.0 + Math.exp(-sum2))
 	str += "n2 = 1/(1+exp(-sum2)=" + n2+"<br>";
 
-	$("#n2").val(n2)
+	document.getElementById("n2").value = n2
 
 	// Calculate output neuron
 	var sum3 = (n1*w7) + (n2*w8) + w9;
@@ -159,28 +160,28 @@ $(document).ready(function(){
 	var o = 1.0 / (1.0 + Math.exp(-sum3))
 	str += "n3 = 1/(1+exp(-sum3)=" + o+"<br>";
 
-	$("#o").val(o)
+	document.getElementById("o").value = o
 
 
 	// Display calculation
-	$("#calculationDisplay").html(str);
+	document.getElementById("calculationDisplay").innerHTML = str;
 
   	});
-	$("#randomizeButton").click(function(){
+	document.getElementById("randomizeButton").addEventListener('click', function(){
 		randomize();
 	});
-	$("#annealButton").click(function(){
+	document.getElementById("annealButton").addEventListener('click', function(){
 		var w = [];
-		w.push(parseFloat($("#w1").val()));
-		w.push(parseFloat($("#w2").val()));
-		w.push(parseFloat($("#w3").val()));
-		w.push(parseFloat($("#w4").val()));
-		w.push(parseFloat($("#w5").val()));
-		w.push(parseFloat($("#w6").val()));
-		w.push(parseFloat($("#w7").val()));
-		w.push(parseFloat($("#w8").val()));
-		w.push(parseFloat($("#w9").val()));
-		
+		w.push(parseFloat(document.getElementById("w1").value));
+		w.push(parseFloat(document.getElementById("w2").value));
+		w.push(parseFloat(document.getElementById("w3").value));
+		w.push(parseFloat(document.getElementById("w4").value));
+		w.push(parseFloat(document.getElementById("w5").value));
+		w.push(parseFloat(document.getElementById("w6").value));
+		w.push(parseFloat(document.getElementById("w7").value));
+		w.push(parseFloat(document.getElementById("w8").value));
+		w.push(parseFloat(document.getElementById("w9").value));
+
 		var best_w = w.slice(0);
 		var best_mse = calculate_mse(w);
 
@@ -189,7 +190,7 @@ $(document).ready(function(){
 			for(var j=0;j<w.length;j++) {
 				w[j] += (Math.random()*0.25)-0.125;
 			}
-		
+
 			// Did we improve?
 			mse = calculate_mse(w);
 			if( mse<best_mse ) {
@@ -204,17 +205,17 @@ $(document).ready(function(){
 			}
 		}
 
-		$("#mse").html("MSE: "+calculate_mse(w));
+		document.getElementById("mse").innerHTML = "MSE: "+calculate_mse(w);
 		update_roc(w);
 
-		parseFloat($("#w1").val(w[0]));
-		parseFloat($("#w2").val(w[1]));
-		parseFloat($("#w3").val(w[2]));
-		parseFloat($("#w4").val(w[3]));
-		parseFloat($("#w5").val(w[4]));
-		parseFloat($("#w6").val(w[5]));
-		parseFloat($("#w7").val(w[6]));
-		parseFloat($("#w8").val(w[7]));
-		parseFloat($("#w9").val(w[8]));
+		document.getElementById("w1").value = w[0];
+		document.getElementById("w2").value = w[1];
+		document.getElementById("w3").value = w[2];
+		document.getElementById("w4").value = w[3];
+		document.getElementById("w5").value = w[4];
+		document.getElementById("w6").value = w[5];
+		document.getElementById("w7").value = w[6];
+		document.getElementById("w8").value = w[7];
+		document.getElementById("w9").value = w[8];
 	});
 });

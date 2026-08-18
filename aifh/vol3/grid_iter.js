@@ -1,13 +1,20 @@
-$(document).ready(function(){
-  $("#addNumericButton").click(function(){
-	var begin = parseFloat($("#num_begin").val());
-	var end = parseFloat($("#num_end").val());
-	var step = parseFloat($("#num_step").val());
+// Decode HTML entities in a string
+function htmlToText(html) {
+	var p = document.createElement("p");
+	p.innerHTML = html;
+	return p.textContent;
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  document.getElementById("addNumericButton").addEventListener('click', function(){
+	var begin = parseFloat(document.getElementById("num_begin").value);
+	var end = parseFloat(document.getElementById("num_end").value);
+	var step = parseFloat(document.getElementById("num_step").value);
 
 	if(begin>end) {
 		alert("Begin cannot be greater than end");
 	} else {
-		
+
 		var str = "";
 		var runaway = 0;
 		var current = begin;
@@ -23,32 +30,34 @@ $(document).ready(function(){
 				return;
 			}
 		}
-		
-		$("#axises").html($("#axises").html()+"Axis: "+str+"<br>");
+
+		var axises = document.getElementById("axises");
+		axises.innerHTML = axises.innerHTML+"Axis: "+str+"<br>";
 	}
   })
-  $("#addListButton").click(function(){
-	var str = $("#list_values").val();
-	str = $("<p>").html(str).text();
-    	$("#axises").html($("#axises").html()+"Axis: "+str+"<br>");
+  document.getElementById("addListButton").addEventListener('click', function(){
+	var str = document.getElementById("list_values").value;
+	str = htmlToText(str);
+	var axises = document.getElementById("axises");
+    	axises.innerHTML = axises.innerHTML+"Axis: "+str+"<br>";
   })
-  $("#goButton").click(function(){
+  document.getElementById("goButton").addEventListener('click', function(){
 	var axises = [];
 	var indexes = [];
-	var str = $("#axises").html();
+	var str = document.getElementById("axises").innerHTML;
 	var lines = str.split("Axis:");
 	for(var i=1;i<lines.length;i++) {
-		var line = $("<p>").html(lines[i]).text();
+		var line = htmlToText(lines[i]);
 		axises.push(line.split(','));
 		indexes.push(0);
 	}
-	
+
 	var iterationCount = 0;
 	str = "";
 
-	
+
 	var done = false;
-	
+
 	while(!done) {
 		iterationCount = iterationCount + 1;
 		if( iterationCount>1000 ) {
@@ -81,7 +90,7 @@ $(document).ready(function(){
 		str = "";
 	}
 
-	$("#display").html(str);	
-	
+	document.getElementById("display").innerHTML = str;
+
   })
 });

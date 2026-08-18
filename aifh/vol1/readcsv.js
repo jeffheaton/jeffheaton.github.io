@@ -1,6 +1,6 @@
-$(document).ready(function(){
-  $("#btnParse").click(function(){
-    contents = Papa.parse($("#textCSV").val())
+document.addEventListener('DOMContentLoaded', function(){
+  document.getElementById("btnParse").addEventListener('click', function(){
+    contents = Papa.parse(document.getElementById("textCSV").value)
     var tableStr = "<table><thead></tr>"
     for(var col=0;col<contents.data[0].length;col++) {
 		tableStr+="<th>";
@@ -18,14 +18,15 @@ $(document).ready(function(){
     	tableStr+="</tr>";
     }
     tableStr+="</tbody></table>";
-    $("#example-output").html(tableStr);
+    document.getElementById("example-output").innerHTML = tableStr;
   });
 
-  $("#btnPreload").click(function(){
-  	var url = $("#example-preload").val();
-  	$.get(url,
-    	function(data) {
-        	$("#textCSV").val(data);
+  document.getElementById("btnPreload").addEventListener('click', function(){
+  	var url = document.getElementById("example-preload").value;
+  	fetch(url)
+    	.then(function(response) { return response.text(); })
+    	.then(function(data) {
+        	document.getElementById("textCSV").value = data;
         });
 
   })

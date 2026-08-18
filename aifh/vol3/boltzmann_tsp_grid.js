@@ -1,7 +1,7 @@
-$(document).ready(function(){
-  $("#generateButton").click(function(){
-  		var cityCount = parseInt($("#cityCount").val());
-  		
+document.addEventListener('DOMContentLoaded', function(){
+  document.getElementById("generateButton").addEventListener('click', function(){
+  		var cityCount = parseInt(document.getElementById("cityCount").value);
+
     	// write out the one-of-n encoding
     	var tableStr = "<table><thead>";
 
@@ -54,8 +54,7 @@ $(document).ready(function(){
 
 
     	tableStr+="</tbody></table>";
-    	$("#weightOutput").html(tableStr);
-    	
+    	document.getElementById("weightOutput").innerHTML = tableStr;
+
   });
 });
-

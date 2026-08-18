@@ -67,10 +67,11 @@ function drawTanh() {
         chart.draw(data, options);
 }
 
-$(document).ready(function(){
-	google.setOnLoadCallback(function(){
+document.addEventListener('DOMContentLoaded', function(){
+	google.charts.load('current', {packages: ['corechart']});
+	google.charts.setOnLoadCallback(function(){
 		drawFunction("sigmoid_chart",function(x){return(1/(1+Math.exp(-x)))},-5.0,5.0,0.1);
 		drawFunction("tanh_chart",function(x){return(Math.tanh(x))},-5.0,5.0,0.1);
 		drawFunction("linear_chart",function(x){return(x)},-5.0,5.0,0.1);
-	});      
+	});
 });

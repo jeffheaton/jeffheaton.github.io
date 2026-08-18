@@ -4,7 +4,7 @@ function read_matrix(prefix,rows,cols) {
     var matrix_row = []
     for(var col=0;col<cols;col++) {
       var name = prefix+row+"-"+col
-      var value = parseFloat($("#"+name).val())
+      var value = parseFloat(document.getElementById(name).value)
       matrix_row.push(value)
     }
     matrix.push(matrix_row)
@@ -30,20 +30,20 @@ function latex_matrix(matrix) {
   return output
 }
 
-$(document).ready(function(){
-  $("#generateButton").click(function(){
-  	var rowsA = parseInt($("#rowsA").val())
-		var rowsB = parseInt($("#rowsB").val())
-		var colsA = parseInt($("#colsA").val())
-		var colsB = parseInt($("#colsB").val())
+document.addEventListener('DOMContentLoaded', function(){
+  document.getElementById("generateButton").addEventListener('click', function(){
+  	var rowsA = parseInt(document.getElementById("rowsA").value)
+		var rowsB = parseInt(document.getElementById("rowsB").value)
+		var colsA = parseInt(document.getElementById("colsA").value)
+		var colsB = parseInt(document.getElementById("colsB").value)
 
 		if( rowsA<1 || rowsB<1 || rowsA>25 || rowsB>25) {
-			$("#gridsOutput").html("Rows must be between 1 and 25")
+			document.getElementById("gridsOutput").innerHTML = "Rows must be between 1 and 25"
 			return
 		}
 
 		if( colsA<1 || colsB<1 || colsA>25 || colsB>25) {
-			$("#gridsOutput").html("Columns must be between 1 and 25")
+			document.getElementById("gridsOutput").innerHTML = "Columns must be between 1 and 25"
 			return
 		}
 
@@ -78,23 +78,24 @@ $(document).ready(function(){
 
 
 
-    	$("#gridsOutput").html(output)
-      $("#calculateOutput").html("")
+    	document.getElementById("gridsOutput").innerHTML = output
+      document.getElementById("calculateOutput").innerHTML = ""
   });
 
-  $("#multiplyButton").click(function(){
-  		var rowsA = parseInt($("#rowsA").val())
-		var rowsB = parseInt($("#rowsB").val())
-		var colsA = parseInt($("#colsA").val())
-		var colsB = parseInt($("#colsB").val())
+  document.getElementById("multiplyButton").addEventListener('click', function(){
+  		var rowsA = parseInt(document.getElementById("rowsA").value)
+		var rowsB = parseInt(document.getElementById("rowsB").value)
+		var colsA = parseInt(document.getElementById("colsA").value)
+		var colsB = parseInt(document.getElementById("colsB").value)
 
-    if( !$("#a0-0").val()) {
-      $("#calculateOutput").html("Generate grids first.")
+    var a00 = document.getElementById("a0-0")
+    if( !a00 || !a00.value) {
+      document.getElementById("calculateOutput").innerHTML = "Generate grids first."
       return
     }
 
     if( colsA != rowsB) {
-      $("#calculateOutput").html("To multiply the count of columns for A must be the same as the rows of B.")
+      document.getElementById("calculateOutput").innerHTML = "To multiply the count of columns for A must be the same as the rows of B."
       return
     }
 
@@ -137,23 +138,24 @@ $(document).ready(function(){
     output+= "$$" + latex_matrix(matrixAnswer) + ".$$<br>"
     output+= '<h3>LaTeX</h3>:<br><textarea rows="5" cols="80">'+output+'</textarea>'
 
-		$("#calculateOutput").html(output)
+		document.getElementById("calculateOutput").innerHTML = output
 		MathJax.Hub.Typeset()
   });
 
-  $("#addButton").click(function(){
-  		var rowsA = parseInt($("#rowsA").val())
-		var rowsB = parseInt($("#rowsB").val())
-		var colsA = parseInt($("#colsA").val())
-		var colsB = parseInt($("#colsB").val())
+  document.getElementById("addButton").addEventListener('click', function(){
+  		var rowsA = parseInt(document.getElementById("rowsA").value)
+		var rowsB = parseInt(document.getElementById("rowsB").value)
+		var colsA = parseInt(document.getElementById("colsA").value)
+		var colsB = parseInt(document.getElementById("colsB").value)
 
-    if( !$("#a0-0").val()) {
-      $("#calculateOutput").html("Generate grids first.")
+    var a00 = document.getElementById("a0-0")
+    if( !a00 || !a00.value) {
+      document.getElementById("calculateOutput").innerHTML = "Generate grids first."
       return
     }
 
     if( colsA != colsB || rowsA != rowsB ) {
-      $("#calculateOutput").html("To add matrix A and B must be the same size.")
+      document.getElementById("calculateOutput").innerHTML = "To add matrix A and B must be the same size."
       return
     }
 
@@ -186,23 +188,24 @@ $(document).ready(function(){
     output+= "$$" + latex_matrix(matrixAnswer) + ".$$<br>"
     output+= '<h3>LaTeX</h3>:<br><textarea rows="5" cols="80">'+output+'</textarea>'
 
-		$("#calculateOutput").html(output)
+		document.getElementById("calculateOutput").innerHTML = output
 		MathJax.Hub.Typeset()
   });
 
-  $("#subtractButton").click(function(){
-      var rowsA = parseInt($("#rowsA").val())
-    var rowsB = parseInt($("#rowsB").val())
-    var colsA = parseInt($("#colsA").val())
-    var colsB = parseInt($("#colsB").val())
+  document.getElementById("subtractButton").addEventListener('click', function(){
+      var rowsA = parseInt(document.getElementById("rowsA").value)
+    var rowsB = parseInt(document.getElementById("rowsB").value)
+    var colsA = parseInt(document.getElementById("colsA").value)
+    var colsB = parseInt(document.getElementById("colsB").value)
 
-    if( !$("#a0-0").val()) {
-      $("#calculateOutput").html("Generate grids first.")
+    var a00 = document.getElementById("a0-0")
+    if( !a00 || !a00.value) {
+      document.getElementById("calculateOutput").innerHTML = "Generate grids first."
       return
     }
 
     if( colsA != colsB || rowsA != rowsB ) {
-      $("#calculateOutput").html("To subtract matrix A and B must be the same size.")
+      document.getElementById("calculateOutput").innerHTML = "To subtract matrix A and B must be the same size."
       return
     }
 
@@ -235,7 +238,7 @@ $(document).ready(function(){
     output+= "$$" + latex_matrix(matrixAnswer) + ".$$<br>"
     output+= '<h3>LaTeX</h3>:<br><textarea rows="5" cols="80">'+output+'</textarea>'
 
-    $("#calculateOutput").html(output)
+    document.getElementById("calculateOutput").innerHTML = output
     MathJax.Hub.Typeset()
   });
 

@@ -1,17 +1,17 @@
-$(document).ready(function(){
-  $("#calculateButton").click(function(){
+document.addEventListener('DOMContentLoaded', function(){
+  document.getElementById("calculateButton").addEventListener('click', function(){
 	var str = "";
-  	var i1 = parseFloat($("#i1").val());
-	var i2 = parseFloat($("#i2").val());
-	var w1 = parseFloat($("#w1").val());
-	var w2 = parseFloat($("#w2").val());
-	var w3 = parseFloat($("#w3").val());
-	var w4 = parseFloat($("#w4").val());
-	var w5 = parseFloat($("#w5").val());
-	var w6 = parseFloat($("#w6").val());
-	var w7 = parseFloat($("#w7").val());
-	var w8 = parseFloat($("#w8").val());
-	var w9 = parseFloat($("#w9").val());
+  	var i1 = parseFloat(document.getElementById("i1").value);
+	var i2 = parseFloat(document.getElementById("i2").value);
+	var w1 = parseFloat(document.getElementById("w1").value);
+	var w2 = parseFloat(document.getElementById("w2").value);
+	var w3 = parseFloat(document.getElementById("w3").value);
+	var w4 = parseFloat(document.getElementById("w4").value);
+	var w5 = parseFloat(document.getElementById("w5").value);
+	var w6 = parseFloat(document.getElementById("w6").value);
+	var w7 = parseFloat(document.getElementById("w7").value);
+	var w8 = parseFloat(document.getElementById("w8").value);
+	var w9 = parseFloat(document.getElementById("w9").value);
 
 	// Calculate hidden neuron 1
 	var sum1 = (i1*w1) + (i2*w3) + w5;
@@ -20,7 +20,7 @@ $(document).ready(function(){
 	var n1 = 1.0 / (1.0 + Math.exp(-sum1))
 	str += "n1 = 1/(1+exp(-sum1)=" + n1+"<br>";
 
-	$("#n1").val(n1)
+	document.getElementById("n1").value = n1
 
 	// Calculate hidden neuron 2
 	var sum2 = (i1*w2) + (i2*w4) + w6;
@@ -29,7 +29,7 @@ $(document).ready(function(){
 	var n2 = 1.0 / (1.0 + Math.exp(-sum2))
 	str += "n2 = 1/(1+exp(-sum2)=" + n2+"<br>";
 
-	$("#n2").val(n2)
+	document.getElementById("n2").value = n2
 
 	// Calculate output neuron
 	var sum3 = (n1*w7) + (n2*w8) + w9;
@@ -38,12 +38,12 @@ $(document).ready(function(){
 	var o = 1.0 / (1.0 + Math.exp(-sum3))
 	str += "n3 = 1/(1+exp(-sum3)=" + o+"<br>";
 
-	$("#o").val(o)
+	document.getElementById("o").value = o
 
 
 	// Display calculation
-	$("#calculationDisplay").html(str);
+	document.getElementById("calculationDisplay").innerHTML = str;
 
-	
+
   });
 });
