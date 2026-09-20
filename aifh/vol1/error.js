@@ -35,55 +35,57 @@ function distChebyshev(vec1,vec2)
 }
 
 
-$(document).ready(function(){
-  $("#ButtonDimensionsOK").click(function(){
-  		var dimensionCount = parseInt($("#TextDimensionNum").val());
+document.addEventListener('DOMContentLoaded', function(){
+  document.getElementById("ButtonDimensionsOK").addEventListener('click', function(){
+  		var dimensionCount = parseInt(document.getElementById("TextDimensionNum").value);
 
     	var str = "";
     	for(var i = 0; i<dimensionCount; i++) {
     		str+= (i+1) + ": <input type='text' id='Vector1-"+i+"' value='0'><br>";
     	}
-    	$("#DivVector1").html(str);
+    	document.getElementById("DivVector1").innerHTML = str;
 
     	str = "";
     	for(var i = 0; i<dimensionCount; i++) {
     		str+= (i+1) + ": <input type='text' id='Vector2-"+i+"' value='0'><br>";
     	}
-    	$("#DivVector2").html(str);
+    	document.getElementById("DivVector2").innerHTML = str;
   });
 
-  $("#ButtonBookValues").click(function(){
+  document.getElementById("ButtonBookValues").addEventListener('click', function(){
       var actual = [ -0.36, 0.07, 0.55, 0.05, -0.37, 0.34, -0.72, -0.10, -0.41, -0.32]
       var ideal = [ -0.37, 0.06, 0.51, 0.06, -0.36, 0.35, -0.67, -0.09, -0.43, -0.33]
-      $("#TextDimensionNum").val(actual.length)
+      document.getElementById("TextDimensionNum").value = actual.length
 
       var str = "";
       for(var i = 0; i<actual.length; i++) {
         str+= (i+1) + ": <input type='text' id='Vector1-"+i+"' value='"+actual[i]+"'><br>";
       }
-      $("#DivVector1").html(str);
+      document.getElementById("DivVector1").innerHTML = str;
 
       str = "";
       for(var i = 0; i<ideal.length; i++) {
         str+= (i+1) + ": <input type='text' id='Vector2-"+i+"' value='"+ideal[i]+"'><br>";
       }
-      $("#DivVector2").html(str);
+      document.getElementById("DivVector2").innerHTML = str;
   });
 
 
-    $("#ButtonCalculate").click(function(){
-    	var dimensionCount = parseInt($("#TextDimensionNum").val());
+    document.getElementById("ButtonCalculate").addEventListener('click', function(){
+    	var dimensionCount = parseInt(document.getElementById("TextDimensionNum").value);
     	var vec1 = [];
     	var vec2 = [];
 
     	for(var i = 0; i<dimensionCount; i++) {
-    		vec1[i] = parseFloat($("#Vector1-"+i).val());
-    		vec2[i] = parseFloat($("#Vector2-"+i).val());
+    		var el1 = document.getElementById("Vector1-"+i);
+    		var el2 = document.getElementById("Vector2-"+i);
+    		vec1[i] = parseFloat(el1 ? el1.value : undefined);
+    		vec2[i] = parseFloat(el2 ? el2.value : undefined);
     	}
 
       if(dimensionCount<1 || isNaN(vec1[1])) {
-        $("#DivOutput").text("Please create vectors");
-      	$("#PreOutput").text("");
+        document.getElementById("DivOutput").textContent = "Please create vectors";
+      	document.getElementById("PreOutput").textContent = "";
         return
       }
 
@@ -93,8 +95,8 @@ $(document).ready(function(){
 
       var sum = 0
       for(var i = 0; i<dimensionCount; i++) {
-        var a = parseFloat($("#Vector1-"+i).val())
-        var e = parseFloat($("#Vector2-"+i).val())
+        var a = vec1[i]
+        var e = vec2[i]
         if(i>0) {
           str+="+"
         }
@@ -140,8 +142,8 @@ $(document).ready(function(){
       str+=rmse
       str+="$$"
 
-      $("#DivOutput").text(str);
-    	$("#PreOutput").text(str);
+      document.getElementById("DivOutput").textContent = str;
+    	document.getElementById("PreOutput").textContent = str;
       MathJax.Hub.Typeset()
 
 

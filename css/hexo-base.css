@@ -41,7 +41,8 @@
 .article-author:before,
 .article-category-link:before {
   display: inline-block;
-  font-family: FontAwesome;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   margin-right: 0.25em;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -81,7 +82,8 @@
 }
 .article-tag-list-link:before {
   display: inline-block;
-  font-family: FontAwesome;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   content: "\f02b";
   margin-right: 0.25em;
   text-rendering: auto;
@@ -89,7 +91,7 @@
 }
 
 .article-footer {
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border);
   padding-top: 15px;
 }
 
@@ -109,10 +111,10 @@
   font-size: 0.8em;
 }
 #article-nav>li>a {
-  border: 1px solid #337ab7;
+  border: 1px solid var(--link);
 }
 #article-nav>li>a:hover {
-  border: 1px solid #23527c;
+  border: 1px solid var(--link-hover);
 }
 .article-nav-link-wrap .fa {
   margin: 4px 0;
@@ -128,7 +130,7 @@
   margin: auto;
 }
 .article-entry .caption {
-  color: #999;
+  color: var(--muted);
   display: block;
   font-size: 0.9em;
   margin-top: 0.5em;
@@ -154,13 +156,13 @@
 
 .article-gallery {
   padding-top: 15px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border);
 }
 
 /* Archives */
 
 .archive-year-wrap {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border);
   font-size: 2em;
 }
 .archive-article {

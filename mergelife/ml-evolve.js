@@ -9,35 +9,41 @@ window.ml1.init({
 })
 window.ml1.startAnimation()
 window.ml1.autoStep = false
-const objStats = $('#textStats').val()
+const objStats = document.getElementById('textStats').value
 const config = JSON.parse(objStats)
 const evolve = new MergeLifeGA(config)
 evolve.reportTime = 5000
 
 evolve.newTopGenomeCallback = function (evl) {
-  $('#displayRule').text(evl.topGenome.rule)
+  document.getElementById('displayRule').textContent = evl.topGenome.rule
   window.ml1.updateRule = window.ml1.parseUpdateRule(evl.topGenome.rule)
   window.ml1.randomGrid()
   window.ml1.autoStep = true
 }
 
 evolve.foundGenomeCallback = function (genome) {
-  $('#rules ul').append(
-    $('<li>').append(
-      $('<a>').attr('href', `/mergelife/ml-viewer.html?rule=${genome.rule}`).attr('target', '_blank').append(
-        $('<span>').attr('class', 'tab').append(genome.rule))))
+  const link = document.createElement('a')
+  link.href = `/mergelife/ml-viewer.html?rule=${genome.rule}`
+  link.target = '_blank'
+  const span = document.createElement('span')
+  span.className = 'tab'
+  span.textContent = genome.rule
+  link.appendChild(span)
+  const item = document.createElement('li')
+  item.appendChild(link)
+  document.querySelector('#rules ul').appendChild(item)
 }
 
 evolve.reportCallback = function () {
-  $('#displayRun').text(evolve.runCount.toLocaleString())
-  $('#displayEval').text(evolve.evalCount.toLocaleString())
-  $('#displayPerf').text(evolve.evalsPerMin.toLocaleString())
-  $('#displayNoImprovement').text(`${evolve.noImprovement.toLocaleString()} (max patience: ${evolve.config.config.patience.toLocaleString()})`)
+  document.getElementById('displayRun').textContent = evolve.runCount.toLocaleString()
+  document.getElementById('displayEval').textContent = evolve.evalCount.toLocaleString()
+  document.getElementById('displayPerf').textContent = evolve.evalsPerMin.toLocaleString()
+  document.getElementById('displayNoImprovement').textContent = `${evolve.noImprovement.toLocaleString()} (max patience: ${evolve.config.config.patience.toLocaleString()})`
 
   if (evolve.topGenome) {
-    $('#displayScore').text(evolve.topGenome.score.toFixed(2))
+    document.getElementById('displayScore').textContent = evolve.topGenome.score.toFixed(2)
   } else {
-    $('#displayScore').text('N/A')
+    document.getElementById('displayScore').textContent = 'N/A'
   }
 }
 
@@ -54,14 +60,14 @@ function requestScore (target, evolve, rule) {
 }
 
 function startEvolve () {
-  const threads = parseInt($('#threadCount').val())
+  const threads = parseInt(document.getElementById('threadCount').value)
   evolve.randomize(evolve.children)
 
-  $('#displayRule').text(evolve.children[0].rule)
+  document.getElementById('displayRule').textContent = evolve.children[0].rule
   window.ml1.updateRule = window.ml1.parseUpdateRule(evolve.children[0].rule)
   window.ml1.randomGrid()
   window.ml1.autoStep = true
-  $('#displayRun').text('...starting up...')
+  document.getElementById('displayRun').textContent = '...starting up...'
 
   const workers = []
 
@@ -82,10 +88,10 @@ function startEvolve () {
   }
 }
 
-$('#evolveButton').click(function () {
-  $('#evolveButton').prop('disabled', true)
+document.getElementById('evolveButton').addEventListener('click', function () {
+  document.getElementById('evolveButton').disabled = true
   startEvolve()
 })
-$('#resetButton').click(function () {
+document.getElementById('resetButton').addEventListener('click', function () {
   window.location.reload()
 })

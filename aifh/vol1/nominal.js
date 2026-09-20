@@ -1,8 +1,8 @@
-$(document).ready(function(){
-  $("#generateButton").click(function(){
-  		var classCount = parseInt($("#classCount").val());
-  		var normalizedHigh = parseFloat($("#normalizedHigh").val());
-  		var normalizedLow = parseFloat($("#normalizedLow").val());
+document.addEventListener('DOMContentLoaded', function(){
+  document.getElementById("generateButton").addEventListener('click', function(){
+  		var classCount = parseInt(document.getElementById("classCount").value);
+  		var normalizedHigh = parseFloat(document.getElementById("normalizedHigh").value);
+  		var normalizedLow = parseFloat(document.getElementById("normalizedLow").value);
 
     	// write out the one-of-n encoding
     	var tableStr = "<table><thead><tr><th>Class</th>";
@@ -28,7 +28,7 @@ $(document).ready(function(){
     		tableStr+="</tr>";
     	}
     	tableStr+="</tbody></table>";
-    	$("#oneofnOutput").html(tableStr);
+    	document.getElementById("oneofnOutput").innerHTML = tableStr;
 
     	// write out the equilateral encoding
     	var r = 0.0;
@@ -93,6 +93,6 @@ $(document).ready(function(){
     		tableStr+="</tr>";
     	}
     	tableStr+="</tbody></table>";
-    	$("#equilateralOutput").html(tableStr);
+    	document.getElementById("equilateralOutput").innerHTML = tableStr;
   });
 });

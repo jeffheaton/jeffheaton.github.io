@@ -3,7 +3,7 @@
 .bs-callout {
   padding: 20px;
   margin: 20px 0;
-  border: 1px solid #eee;
+  border: 1px solid var(--border);
   border-left-width: 5px;
   border-radius: 3px;
 }

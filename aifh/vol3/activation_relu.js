@@ -44,8 +44,9 @@ function drawRELU() {
         chart.draw(data, options);
 }
 
-$(document).ready(function(){
-	google.setOnLoadCallback(function(){
+document.addEventListener('DOMContentLoaded', function(){
+	google.charts.load('current', {packages: ['corechart']});
+	google.charts.setOnLoadCallback(function(){
 		drawFunction("relu_chart",function(x){return(Math.max(0,x))},-1.0,5.0,0.1);
-	});      
+	});
 });

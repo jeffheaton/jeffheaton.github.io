@@ -12,7 +12,7 @@
 
 body {
   font-family: Georgia, "Times New Roman", Times, serif;
-  color: #555;
+  color: var(--text);
 }
 
 h1, .h1,
@@ -25,7 +25,7 @@ h6, .h6 {
   margin-bottom: 15px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
-  color: #333;
+  color: var(--heading);
 }
 
 p {
@@ -33,11 +33,11 @@ p {
 }
 
 code {
-  background-color: #eeeeee;
+  background-color: var(--code-bg);
   font-size: 16px;
 }
 
-.fa { margin-right: 0.25em; }
+.fa, .fa-brands, .fa-solid { margin-right: 0.25em; }
 
 /* Buttons */
 .btn {
@@ -49,13 +49,6 @@ code {
 }
 .nav-pills>li>a {
   border-radius: 30px;
-}
-
-/* Override Bootstrap's default container width */
-@media (min-width: 1200px) {
-  .container {
-    width: 970px;
-  }
 }
 
 /*
@@ -82,10 +75,28 @@ code {
   background-color: #65A2D6;
 }
 
-.navbar-inverse .navbar-brand,
+.navbar-brand {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  margin-right: 24px;
+}
+.navbar-inverse .navbar-brand {
+  color: #fff;
+}
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+  color: #fff;
+}
+.navbar-nav>li>a {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 .navbar-inverse .navbar-nav>li>a {
   color: #cdddeb;
   font-weight: 500;
+}
+.navbar-inverse .navbar-nav>li>a:hover,
+.navbar-inverse .navbar-nav>li>a:focus {
+  color: #fff;
 }
 
 .navbar-inverse .navbar-collapse,
@@ -103,16 +114,10 @@ code {
     min-height: 40px;
   }
 
-  /** The following may need modification depending on
-      the size of your `navbar-brand` (if enabled) */
-  #main-menu-navbar {
-    margin-left: -30px;
-  }
   .navbar-nav>li>a {
     padding-top: 10px;
     padding-bottom: 10px;
   }
-  /** ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
 
   .navbar-inverse .navbar-nav>li>a.active:after {
     position: absolute;
@@ -144,7 +149,7 @@ code {
 }
 .blog-description {
   font-size: 20px;
-  color: #999;
+  color: var(--muted);
 }
 
 /*
@@ -170,7 +175,7 @@ code {
 }
 .sidebar-module-inset {
   padding: 15px;
-  background-color: #f5f5f5;
+  background-color: var(--inset-bg);
   border-radius: 4px;
 }
 .sidebar-module-inset p:last-child,
@@ -201,16 +206,16 @@ code {
   margin-bottom: 5px;
 }
 .article-header h1 a {
-  color: #333;
+  color: var(--heading);
 }
 .article-header h1 a:hover {
-  color: #23527c;
+  color: var(--link-hover);
   text-decoration: none;
 }
 
 .article-meta {
   margin-bottom: 20px;
-  color: #999;
+  color: var(--muted);
   font-size: 0.9em;
 }
 .article-meta > * {
@@ -234,7 +239,7 @@ code {
 /* article footer content */
 .article-footer {
   font-size: 0.85em;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border);
   padding-top: 15px;
 }
 .article-footer:after { /* clearfix */
@@ -245,11 +250,11 @@ code {
   clear: both;
 }
 .article-footer a {
-  color: #999;
+  color: var(--muted);
   text-decoration: none;
 }
 .article-footer a:hover {
-  color: #666;
+  color: var(--text);
   text-decoration: underline;
 }
 
@@ -263,12 +268,12 @@ code {
 
 .archive-year-wrap a,
 .archive-article .article-datetime a {
-  color: #333;
+  color: var(--heading);
   text-decoration: none;
 }
 
 .archive-article .article-datetime a {
-  color: #999;
+  color: var(--muted);
   text-decoration: none;
 }
 
@@ -301,10 +306,10 @@ code {
 
 .blog-footer {
   padding: 40px 0;
-  color: #999;
+  color: var(--muted);
   text-align: center;
-  background-color: #f9f9f9;
-  border-top: 1px solid #e5e5e5;
+  background-color: var(--footer-bg);
+  border-top: 1px solid var(--footer-border);
 }
 .blog-footer p:last-child {
   margin-bottom: 0;

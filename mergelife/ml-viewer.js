@@ -2,6 +2,12 @@ const canvas1 = document.getElementById('myCanvas')
 window.ml1 = new MergeLifeRender()
 window.ml1.init({rule: '6Eb6-ba3d-70b4-ac6f-baae-2604-8529-8998', canvas: canvas1, cellSize: 2, controls: true})
 
+const hexCode = document.getElementById('hexCode')
+const ruleButton = document.getElementById('ruleButton')
+const randomRuleButton = document.getElementById('randomRuleButton')
+const selectPredefine = document.getElementById('selectPredefine')
+const outputDiv = document.getElementById('outputDiv')
+
 function getUrlParameter (name) {
   const name2 = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]')
   const regex = new RegExp('[\\?&]' + name2 + '=([^&#]*)')
@@ -10,40 +16,45 @@ function getUrlParameter (name) {
 }
 
 const ruleText = getUrlParameter('rule')
-if (ruleText.length>0) {
-  $("#hexCode").val(ruleText)
-  window.ml1.updateRule = window.ml1.parseUpdateRule($("#hexCode").val())
+if (ruleText.length>0 && hexCode) {
+  hexCode.value = ruleText
+  window.ml1.updateRule = window.ml1.parseUpdateRule(hexCode.value)
   renderTable(window.ml1.updateRule)
   window.ml1.randomGrid()
   window.ml1.startAnimation()
 }
 
-  $("#randomRuleButton").click(function(){
+if (randomRuleButton) {
+  randomRuleButton.addEventListener('click', function(){
     const str = MergeLifeRender.randomRule()
-    $("#hexCode").val(str)
+    hexCode.value = str
     window.ml1.updateRule = window.ml1.parseUpdateRule(str)
     renderTable(window.ml1.updateRule)
     window.ml1.randomGrid()
     window.ml1.startAnimation()
   })
-  $("#ruleButton").click(function(){
-    window.ml1.updateRule = window.ml1.parseUpdateRule($("#hexCode").val())
+}
+if (ruleButton) {
+  ruleButton.addEventListener('click', function(){
+    window.ml1.updateRule = window.ml1.parseUpdateRule(hexCode.value)
     renderTable(window.ml1.updateRule)
     window.ml1.randomGrid()
     window.ml1.startAnimation()
   })
+}
 
-$("#selectPredefine").change(function(){
-  const str = $("#selectPredefine option:selected").val();
-  $("#hexCode").val(str);
-  window.ml1.updateRule = window.ml1.parseUpdateRule($("#hexCode").val())
-  renderTable(window.ml1.updateRule)
-  window.ml1.randomGrid()
-  window.ml1.startAnimation()
-})
+if (selectPredefine) {
+  selectPredefine.addEventListener('change', function(){
+    hexCode.value = selectPredefine.value
+    window.ml1.updateRule = window.ml1.parseUpdateRule(hexCode.value)
+    renderTable(window.ml1.updateRule)
+    window.ml1.randomGrid()
+    window.ml1.startAnimation()
+  })
+}
 
 function renderTable(updateRule) {
-    output = '<table class="table"><thead>';
+    var output = '<table class="table"><thead>';
     output+= '<tr><th>High (&alpha;)</th><th>Range</th><th>Key Color</th><th>Percent (&beta;)</th><th>Index (&gamma;)</th><th>Octet-1</th><th>Octet-2</th></tr>';
     output+= '</thead><tbody>';
     var colors = ['Black','Red','Green','Yellow','Blue','Purple','Cyan','White'];
@@ -72,5 +83,5 @@ function renderTable(updateRule) {
       low = obj[0]
     }
     output+='</tbody></table>'
-    $("#outputDiv").html(output)
+    outputDiv.innerHTML = output
 }

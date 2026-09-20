@@ -1,5 +1,5 @@
 'use strict'
-$(document).ready(function(){
+document.addEventListener('DOMContentLoaded', function(){
 
         /////////////////////////////////////////////////////////////////////////////
         // Event functions
@@ -8,17 +8,17 @@ $(document).ready(function(){
         function ev_start(ev)
         {
             backgroundTimer = self.setInterval(ev_animate,100);
-            $("#btnStart").prop("disabled",true)
-            $("#btnStop").prop("disabled",false)
-            $("#btnSingle").prop("disabled",true)
+            document.getElementById("btnStart").disabled = true
+            document.getElementById("btnStop").disabled = false
+            document.getElementById("btnSingle").disabled = true
         }
 
         function ev_stop(ev)
         {
             self.clearInterval(backgroundTimer);
-            $("#btnStart").prop("disabled",false)
-            $("#btnStop").prop("disabled",true)
-            $("#btnSingle").prop("disabled",false)
+            document.getElementById("btnStart").disabled = false
+            document.getElementById("btnStop").disabled = true
+            document.getElementById("btnSingle").disabled = false
         }
 
         function ev_clear(ev)
@@ -156,10 +156,10 @@ $(document).ready(function(){
             }
         }
 
-        $("#btnStart").click(ev_start)
-        $("#btnStop").click(ev_stop)
-        $("#btnClear").click(ev_clear)
-        $("#btnSingle").click(ev_single)
+        document.getElementById("btnStart").addEventListener('click', ev_start)
+        document.getElementById("btnStop").addEventListener('click', ev_stop)
+        document.getElementById("btnClear").addEventListener('click', ev_clear)
+        document.getElementById("btnSingle").addEventListener('click', ev_single)
 
         grid1 = ENCOG.ArrayUtil.allocateBoolean2D(GRID_HEIGHT,GRID_WIDTH);
         grid2 = ENCOG.ArrayUtil.allocateBoolean2D(GRID_HEIGHT,GRID_WIDTH);
@@ -169,5 +169,5 @@ $(document).ready(function(){
 
         ev_clear();
         ev_start();
-        
+
 })
