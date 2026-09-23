@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Heaton Research">
 <meta property="og:description" content="[See Full Cellular Automata Gallery]                       MergeLife is a family of cellular automata. Each member of this family is represented by a hexa">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-08-16T18:29:46.320Z">
-<meta property="article:modified_time" content="2026-08-16T18:29:46.320Z">
+<meta property="article:published_time" content="2026-09-23T14:10:42.288Z">
+<meta property="article:modified_time" content="2026-09-23T14:10:42.288Z">
 <meta property="article:author" content="Jeff Heaton">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@jeffheaton">
@@ -132,16 +132,32 @@
   </div>
   <div class="row">
     <div class="col">
-      MergeLife is a family of cellular automata. Each member of this family is represented by a hexadecimal encoding, 
+      MergeLife is a family of cellular automata. Each member of this family is represented by a hexadecimal encoding,
       such as <code>E542-5F79-9341-F31E-6C6B-7F08-8773-7068</code> that represents a MergeLife update rule. The three patterns that you see above are three different
        update rules. Other than a random starting grid, these update rules are completely deterministic. Since developing the MergeLife update
       rule family, I've located over 1,000 MergeLife rules that can be seen on GitHub.<br><br>
       MergeLife rules are discovered using a Genetic Algorithm. You can think of MergeLife as a utility to create entirely new Cellular Automata that are similar
-      to <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a>. Complete implementations of MergeLife in Java, Python, and JavaScript are provided on GitHub.
-      <br><br>Some helpful links for MergeLife:<br><br>
+      to <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a>. Complete implementations of MergeLife in Java, Python, and JavaScript are provided on GitHub,
+      along with a fast rule-search trainer written in C.
+
+      <div class="bs-callout bs-callout-primary">
+        <h4>HeatonCA &mdash; the MergeLife app</h4>
+        <p>HeatonCA is MergeLife as a native application. It animates any 16-byte update rule in full color, includes a gallery of
+        thirty curated rules, decodes a rule into the eight sub-rules that define it, and runs the genetic algorithm from the paper
+        on your own device, so you can evolve new rules and save them as PNG images.</p>
+        <p>
+          <a class="btn btn-primary" target="_blank" rel="noopener" href="https://apps.apple.com/us/app/heatonca/id6469583429"><i class="fab fa-apple"></i>&nbsp; App Store</a>&nbsp;
+          <a class="btn btn-primary" target="_blank" rel="noopener" href="https://apps.microsoft.com/detail/9MX32SZ72H5W"><i class="fab fa-microsoft"></i>&nbsp; Microsoft Store</a>
+        </p>
+        <p>One App Store listing covers iPhone, iPad, and Mac; the Microsoft Store listing covers Windows 10 and 11.<br>
+        <i class="fab fa-google-play"></i>&nbsp; Google Play (Android) is in testing and is coming soon.</p>
+        <p>See the <a target="_blank" rel="noopener" href="https://github.com/jeffheaton/mergelife/blob/master/unity/heaton-ca/docs/manual.md">HeatonCA user manual</a>
+        for what each screen does, or <a target="_blank" rel="noopener" href="https://github.com/jeffheaton/mergelife/tree/master/unity/heaton-ca">browse the app's source</a> on GitHub.</p>
+      </div>
+
+      Some helpful links for MergeLife:<br><br>
       <ul>
         <li><a href="ml-viewer.html">Rule Viewer</a>
-        <li><a href="heaton-ca.html">HeatonCA Application</a></li>
         <li><a href="ml-evolve.html">Evolve New Rules Online</a>
         <li><a href="ml-objective.html">MergeLife Objective Function Lab</a>
         <li><a target="_blank" rel="noopener" href="https://codepen.io/jeffheaton/pen/YOZWjp">MergeLife CodePen</a>
